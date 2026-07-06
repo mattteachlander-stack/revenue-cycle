@@ -66,3 +66,24 @@ they can be reviewed afterwards. Newest phase at the bottom.
   apra.gov.au block direct fetches through the session proxy, so verification used
   search-indexed content of the same primary documents; sources.md lists the primary
   URLs.
+
+## D4 — Phase 3 synthetic data pack design
+- **Payer names:** all funds in Bayview's payer mix are fictional (Federation Health,
+  Wattle Group, AusCare Health) rather than real fund names, to keep every synthetic
+  number visibly synthetic. Real names appear only in the partner brief where they
+  cite real public data.
+- **The planted unfavourable terms** (what the demo "finds"): cl. 12.3 discretionary
+  indexation carve-out (already exercised: 1.9% paid vs 3.4% CPI), cl. 8.4 unilateral
+  re-banding on 30 days' notice (already exercised: 4 ophthalmic item groups moved
+  Band 2 → Band 1), cl. 14.5 24-month set-off/recovery paired with cl. 14.2's 30-day
+  claim window, plus structural extras: asymmetric termination (fund 90 days /
+  hospital 180 days, cl. 19.1), IOL bundled into the cataract case rate (cl. 10.2),
+  no-indexation holdover (cl. 2.2), and KPI obligations with no upside (cl. 17.3).
+  Deliberately more than the brief's 2–3 so the prototype can rank them.
+- **Internal coherence:** the numbers reconcile — Bayview's AusCare revenue ($3.12m,
+  1,690 episodes, $1,846 avg) is consistent with the Schedule 1 rates and case mix;
+  the second-tier downside (~-15%) matches the 85% floor; EBITDA trend (7.8→6.1→4.9%)
+  mirrors the sector squeeze in the Health Check. The app's fixtures mirror
+  `bayview-financials.json`.
+- **Demo "today":** July 2026; AusCare HPPA expires 30 Nov 2026; fund wants proposals
+  by 31 Aug 2026 — gives the dashboard a live clock and urgency.

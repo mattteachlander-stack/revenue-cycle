@@ -1,0 +1,62 @@
+{
+  "_notice": "SYNTHETIC DATA — fictional facility created for the prototype. No real hospital, fund, contract, or person is described.",
+  "facility": {
+    "name": "Bayview Day Surgery",
+    "type": "Day procedure centre",
+    "location": "Cheltenham, VIC",
+    "theatres": 4,
+    "procedureRooms": 2,
+    "accreditation": ["NSQHS", "Second-tier default eligible"],
+    "fte": 41,
+    "headcount": 62
+  },
+  "year": "FY2025-26",
+  "totals": {
+    "revenue": 14190000,
+    "ebitda": 690000,
+    "ebitdaMarginPct": 4.9,
+    "netProfitBeforeTax": 80000,
+    "episodes": 7820,
+    "avgRevenuePerEpisode": 1815
+  },
+  "ebitdaMarginTrend": [
+    { "year": "FY2023-24", "pct": 7.8 },
+    { "year": "FY2024-25", "pct": 6.1 },
+    { "year": "FY2025-26", "pct": 4.9 }
+  ],
+  "serviceLines": [
+    { "name": "Gastroenterology", "episodes": 3410, "avgRevenue": 1310, "revenue": 4470000 },
+    { "name": "Ophthalmology", "episodes": 2880, "avgRevenue": 2120, "revenue": 6110000 },
+    { "name": "Orthopaedics (day)", "episodes": 890, "avgRevenue": 2480, "revenue": 2210000 },
+    { "name": "Plastics & dermatology", "episodes": 640, "avgRevenue": 2190, "revenue": 1400000 }
+  ],
+  "payerMix": [
+    { "payer": "Federation Health", "sharePct": 24, "synthetic": true },
+    { "payer": "AusCare Health", "sharePct": 22, "synthetic": true, "negotiation": true },
+    { "payer": "Wattle Group", "sharePct": 19, "synthetic": true },
+    { "payer": "AHSA-aligned funds", "sharePct": 17 },
+    { "payer": "DVA / TAC / WorkSafe", "sharePct": 8 },
+    { "payer": "Self-funded / other", "sharePct": 10 }
+  ],
+  "ausCare": {
+    "episodes": 1690,
+    "revenue": 3120000,
+    "avgRevenuePerEpisode": 1846,
+    "contractSigned": "2023-12-01",
+    "contractExpires": "2026-11-30",
+    "proposalsDue": "2026-08-31",
+    "secondTierDownside": { "revenueAtSecondTier": 2650000, "delta": -470000, "deltaPct": -15.1 },
+    "ratePositionVsStateMedianPct": {
+      "cataractBand2": -7.2,
+      "colonoscopyBand1": -3.8,
+      "arthroscopyBand3": -5.5,
+      "plastics": 0.0
+    },
+    "history": {
+      "fy25IndexationPaidPct": 1.9,
+      "fy25CpiPct": 3.4,
+      "rebandingNoticesFY26": 2,
+      "itemGroupsRebandedDown": 4
+    }
+  }
+}
