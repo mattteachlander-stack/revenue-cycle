@@ -1,0 +1,21 @@
+# Node / prototype
+node_modules/
+prototypes/app/node_modules/
+prototypes/app/dist/
+prototypes/app/.vite/
+*.local
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# Env — there is NO API key in this project (canned demo mode), but guard anyway
+.env
+.env.*
+!.env.example
+
+# Build artefacts
+*.log
