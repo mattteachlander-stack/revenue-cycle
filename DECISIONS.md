@@ -133,3 +133,12 @@ they can be reviewed afterwards. Newest phase at the bottom.
   line; slide 3 uses only verified public figures (same set as the brief); slide 4
   is explicitly framed as a synthetic worked example; contact on slide 14 is a
   placeholder for the user to fill.
+
+## D8 — Phase 5 wrap-up stance
+- **Decision:** NEXT-STEPS.md leads with what the prototype does *not* prove
+  (generated-output quality on real contracts; a lawful benchmark source;
+  willingness to pay) and defines pilot kill criteria, rather than selling forward.
+- **Why:** the brief demands an honest assessment; a sophisticated partner will
+  trust the whole repo more if the wrap-up names the two venture-deciding risks
+  plainly. The synthetic data pack is positioned as the seed of the future
+  evaluation harness so Phase 3's effort compounds.

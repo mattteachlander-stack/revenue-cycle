@@ -10,12 +10,12 @@ Three deliverables live in this repo:
 | Deliverable | Where | Status |
 |---|---|---|
 | Partner & investor brief (the deep artefact) | [`outline/partner-brief.md`](outline/partner-brief.md) | ✅ Phase 1 |
-| Pilot-site pitch deck (day hospital CEOs) | `deck/` | Phase 2 |
-| Working prototype (Negotiation Agent + Contract Agent) | `prototypes/app/` | Phase 4 |
+| Pilot-site pitch deck (day hospital CEOs) | [`deck/counterpart-pilot-deck.pptx`](deck/) | ✅ Phase 2 |
+| Working prototype (Negotiation Agent + Contract Agent) | [`prototypes/app/`](prototypes/app/) | ✅ Phase 4 |
 
 Supporting material: research source map in [`outline/sources.md`](outline/sources.md),
-synthetic demo data in `prototypes/shared-data/`, decision log in
-[`DECISIONS.md`](DECISIONS.md), honest wrap-up in `NEXT-STEPS.md` (Phase 5).
+synthetic demo data in [`prototypes/shared-data/`](prototypes/shared-data/), decision log in
+[`DECISIONS.md`](DECISIONS.md), honest wrap-up in [`NEXT-STEPS.md`](NEXT-STEPS.md).
 
 ## The two products
 
