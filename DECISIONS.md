@@ -87,3 +87,31 @@ they can be reviewed afterwards. Newest phase at the bottom.
   `bayview-financials.json`.
 - **Demo "today":** July 2026; AusCare HPPA expires 30 Nov 2026; fund wants proposals
   by 31 Aug 2026 — gives the dashboard a live clock and urgency.
+
+## D5 — Product identity
+- **Decision:** the prototype presents as **"Counterpart Health — revenue cycle
+  intelligence"**, with the negotiation flow as a stepped copilot ("the human always
+  decides") and the Contract Agent as "Ask the contract".
+- **Why:** the venture needed a name for the UI to feel like a funded product;
+  "Counterpart" captures the thesis — the small facility becomes an equal counterparty.
+  Trivially renameable.
+
+## D6 — Prototype architecture & design choices
+- **Stack:** Vite + React 19 + TypeScript + Tailwind v4 (custom token theme — no
+  default component library anywhere), react-markdown for document rendering,
+  lucide icons, self-hosted fonts (Inter for UI, Source Serif 4 for generated
+  documents). Hash router so the built app also works from file-ish hosting.
+- **Canned streaming:** `useStream` reveals pre-authored text in word chunks with
+  variable cadence and paragraph pauses + a caret, with a visible "Skip animation"
+  control. Every screen states "pre-authored / no live model calls" in the chrome.
+- **Progression gating:** strategy unlocks after analysis; letter after posture;
+  response after letter; close-out after counter — enforcing the choose-your-own-
+  adventure spine in the demo itself. Changing posture re-drafts the letter and
+  resets downstream steps.
+- **Oracle free-text:** keyword-matches to the nearest canned answer; below a match
+  threshold it returns an honest fallback explaining the demo boundary (never fakes
+  an answer). One canned question deliberately demonstrates "the contract is silent
+  — escalate" (Saturday lists), and one demonstrates the competition-law refusal
+  (rate sharing with another facility).
+- **Verification:** production build compiles clean; full flow driven end-to-end in
+  headless Chromium (screenshots in `deck/assets/`, reused for the Phase 2 deck).
