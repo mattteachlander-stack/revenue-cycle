@@ -142,3 +142,20 @@ they can be reviewed afterwards. Newest phase at the bottom.
   trust the whole repo more if the wrap-up names the two venture-deciding risks
   plainly. The synthetic data pack is positioned as the seed of the future
   evaluation harness so Phase 3's effort compounds.
+
+## D9 — Deck polish pass (user-requested)
+- **Data graphics:** six charts rendered by `deck/build_charts.py` (matplotlib,
+  deck palette, 300 dpi, transparent background): sector-vs-insurer margins;
+  market-concentration bar with top-five bracket; clause-leakage bars; second-tier
+  walk-away comparison; Bayview margin trend; demo-settlement build-up. Real
+  figures carry their sources in chart footnotes; synthetic charts say "synthetic"
+  in the title and footnote.
+- **Layout upgrades:** title slide now carries a framed hero crop of the live
+  dashboard; slide 3's table replaced by the two market charts; slide 4's four
+  text cards replaced by leakage + walk-away charts; new slide 10 (close-out value:
+  settlement chart + board-pack screenshot); pilot slide gained a 3-phase timeline
+  strip. Deck is now 15 slides.
+- **Chart QA:** every chart visually inspected; fixed matplotlib mathtext eating
+  literal "$" (escaped), clipped titles/footnotes (figure-level chrome helper),
+  and label collisions (HBF leader label, leakage annotations, walk-away delta).
+  pptx re-linted: no out-of-bounds shapes, no unstyled runs.
