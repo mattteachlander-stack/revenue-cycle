@@ -159,3 +159,16 @@ they can be reviewed afterwards. Newest phase at the bottom.
   literal "$" (escaped), clipped titles/footnotes (figure-level chrome helper),
   and label collisions (HBF leader label, leakage annotations, walk-away delta).
   pptx re-linted: no out-of-bounds shapes, no unstyled runs.
+
+## D10 — Zero-install distribution of the prototype (user has no dev tools)
+- **Decision:** ship a **single self-contained `prototypes/counterpart-demo.html`**
+  (1.7 MB, all JS/CSS/fonts inlined via vite-plugin-singlefile) that runs by
+  double-click in any browser — no Node, no server, no internet. Committed to the
+  repo and buildable via `npm run build:single`. The from-source path (Node ≥18)
+  stays as option B for anyone who wants to edit it.
+- **Why:** the user needs to open and show the demo on a device without developer
+  tools. A double-click HTML file is the lowest-friction possible delivery and, being
+  offline and pre-authored, still can't fail live.
+- **Verified:** built file loads over `file://` in headless Chromium with zero
+  console/page errors and the negotiation flow is interactive (positioning paper
+  generates on click).

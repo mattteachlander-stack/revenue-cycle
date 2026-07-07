@@ -3,9 +3,26 @@
 A polished, **fully offline** demo of the Negotiation Agent (hero flow) and the
 Contract Agent, for Australian day hospitals negotiating HPPAs with health funds.
 
+## Two ways to run it
+
+**A. No tools needed — just open the file.** A prebuilt, self-contained copy is
+committed at [`../counterpart-demo.html`](../counterpart-demo.html) (one 1.7 MB
+HTML file with everything inlined). Download it and double-click to open in any
+modern browser. No install, no server, no internet. This is what to send to a
+pilot site or open on a laptop with nothing installed.
+
+**B. Run from source** (needs Node.js ≥18):
+
 ```bash
 npm install
-npm run dev
+npm run dev          # http://localhost:5173
+```
+
+To regenerate the standalone file after changing the app:
+
+```bash
+npm run build:single      # writes dist/index.html (self-contained)
+cp dist/index.html ../counterpart-demo.html
 ```
 
 ## Canned demo mode
