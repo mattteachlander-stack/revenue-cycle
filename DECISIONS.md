@@ -115,3 +115,21 @@ they can be reviewed afterwards. Newest phase at the bottom.
   (rate sharing with another facility).
 - **Verification:** production build compiles clean; full flow driven end-to-end in
   headless Chromium (screenshots in `deck/assets/`, reused for the Phase 2 deck).
+
+## D7 — Phase 2 deck (built after the prototype, deliberately)
+- **Order swap:** the brief numbers the deck Phase 2, but it explicitly allows
+  building the prototype first for screenshots. Did that: Phases 1 → 3 → 4 → 2 → 5.
+  Slides 5–10 use real captures of the working demo, which is the deck's core
+  credibility claim ("everything shown is working today").
+- **Tooling:** no pptx skill exists in this environment, so the deck is generated
+  with python-pptx from `deck/build_deck.py` — same design tokens as the app.
+  Georgia/Calibri instead of Inter/Source Serif for cross-machine portability of
+  the .pptx (embedded webfonts aren't reliable in PowerPoint).
+- **Verification:** LibreOffice's pptx import is broken in this container, so the
+  deck was verified structurally (python-pptx lint: shape bounds, run styling)
+  rather than visually; two layout bugs found and fixed that way (multi-line dark
+  title styling; screenshot overflow on slides 7/9).
+- **Honesty rails:** every slide footer carries the synthetic-data + not-advice
+  line; slide 3 uses only verified public figures (same set as the brief); slide 4
+  is explicitly framed as a synthetic worked example; contact on slide 14 is a
+  placeholder for the user to fill.
