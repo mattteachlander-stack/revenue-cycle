@@ -1,6 +1,6 @@
 # CORE pilot-site pitch deck
 
-`core-pilot-deck.pptx` — 14 slides aimed at day hospital CEOs/owners,
+`core-pilot-deck.pptx` — 16 slides aimed at day hospital CEOs/owners,
 built programmatically by `build_deck.py` (python-pptx) so the design system
 stays consistent with the prototype (ink-teal/paper/gold palette, Georgia
 display + Calibri body — fonts chosen for portability across machines).
