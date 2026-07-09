@@ -202,3 +202,21 @@ they can be reviewed afterwards. Newest phase at the bottom.
   · Mock audit files in `shared-data/audits/` mirror the in-app data.
 - **Verification:** full flow driven headless over file:// in the standalone build —
   import, workbench decision, and xlsx download all confirmed; no console errors.
+
+## D11 — CORE suite architecture (user-directed)
+- **The platform framework is now "CORE"** — four suites, each with modules beneath:
+  · **C — Contracting** (blue): Negotiation module (live negotiations) + Historical
+    module (negotiation performance over time and value realisation through each
+    contract period — new screen with negotiation history, FY26 indexation-realised
+    view, the Federation FY25 realisation tracker, and a value-opportunity register).
+  · **O — Operational** (ochre): roadmap modules — provisional DRG allocation, AI
+    coding assistant, billing bots.
+  · **R — Revenue Integrity** (violet): fund audit response (live) + proactive
+    optimisation / claims-vs-contract reconciliation (roadmap).
+  · **E — Enquiry** (green): Ask the contract (live) + future enquiry surfaces.
+- Landing rebuilt around the CORE letterforms; sidebar reorganised into lettered,
+  colour-coded suite sections with suite-coloured active rails; comprehensive-or-
+  bespoke licensing message on the landing pricing strip.
+- Historical-module numbers reconcile with the rest of the demo (AusCare 1.9% vs
+  3.4% CPI ≈ $45k/yr; the three in-negotiation opportunities are the same three
+  asks in the live copilot flow).

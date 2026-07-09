@@ -3,7 +3,7 @@ import { NavLink, useLocation } from 'react-router-dom'
 import {
   LayoutDashboard, FileSearch, Signpost, PenLine, MailQuestion,
   Landmark, MessagesSquare, Lock, Check, FlaskConical, LayoutGrid,
-  Gauge, Inbox, ClipboardCheck,
+  Gauge, Inbox, ClipboardCheck, History,
 } from 'lucide-react'
 import { useDemo } from '../state'
 import { useRi } from '../state-integrity'
@@ -18,24 +18,30 @@ const stepIcon = {
   closeout: Landmark,
 }
 
-// module identity colours (match --color-neg/ora/ri tokens, light-on-dark tints)
+// CORE suite tints for the dark sidebar
 const MOD = {
   neg: '#7fa8cd',
-  ora: '#8fbf9f',
+  ops: '#d3b25e',
   ri: '#b79ad4',
+  ora: '#8fbf9f',
 }
 
-function SectionLabel({ color, children }: { color?: string; children: ReactNode }) {
+function SectionLabel({ color, letter, children }: { color?: string; letter?: string; children: ReactNode }) {
   return (
-    <div className="px-2 pt-5 pb-2 flex items-center gap-1.5 text-[10.5px] uppercase tracking-[0.09em] text-white/40 font-medium">
-      {color && <span className="size-2 rounded-[3px]" style={{ background: color }} />}
+    <div className="px-2 pt-5 pb-2 flex items-center gap-2 text-[10.5px] uppercase tracking-[0.09em] text-white/40 font-medium">
+      {letter && (
+        <span className="grid place-items-center size-4 rounded-[5px] font-serif text-[10.5px] font-bold normal-case"
+              style={{ background: color, color: '#12211f' }}>
+          {letter}
+        </span>
+      )}
       {children}
     </div>
   )
 }
 
 function Item({
-  to, icon: Icon, label, sub, unlocked = true, trailing,
+  to, icon: Icon, label, sub, unlocked = true, trailing, accent,
 }: {
   to: string
   icon: typeof LayoutDashboard
@@ -43,6 +49,7 @@ function Item({
   sub: string
   unlocked?: boolean
   trailing?: ReactNode
+  accent?: string
 }) {
   const loc = useLocation()
   const active = loc.pathname === to
@@ -54,6 +61,7 @@ function Item({
         'group flex items-center gap-3 rounded-lg px-2.5 py-2 transition-colors',
         active ? 'bg-white/12' : unlocked ? 'hover:bg-white/6' : 'opacity-40 cursor-not-allowed',
       ].join(' ')}
+      style={active && accent ? { boxShadow: `inset 3px 0 0 ${accent}` } : undefined}
     >
       <span className={[
         'relative grid place-items-center size-7 rounded-md border',
@@ -116,13 +124,14 @@ export default function Shell({ children }: { children: ReactNode }) {
             <Item to="/" icon={LayoutGrid} label="Platform home" sub="Modules & licences" />
           </div>
 
-          <SectionLabel color={MOD.neg}>Negotiation Agent — {negotiation.fundShort}</SectionLabel>
+          <SectionLabel color={MOD.neg} letter="C">Contracting</SectionLabel>
+          <div className="px-2 pb-1 text-[10.75px] text-white/35">Negotiation — {negotiation.fundShort} renewal</div>
           <ol className="space-y-0.5">
             {steps.map((s, i) => {
               const Icon = stepIcon[s.key]
               return (
                 <li key={s.key}>
-                  <Item
+                  <Item accent={MOD.neg}
                     to={s.to} icon={Icon} label={s.label} sub={s.sub} unlocked={s.unlocked}
                     trailing={!s.unlocked ? <Lock className="size-3 text-white/35" />
                       : s.complete && i > 0 ? <Check className="size-3.5 text-sage-100/80" strokeWidth={2.5} /> : null}
@@ -131,21 +140,29 @@ export default function Shell({ children }: { children: ReactNode }) {
               )
             })}
           </ol>
+          <div className="mt-1.5">
+            <Item accent={MOD.neg} to="/performance" icon={History} label="Historical" sub="Performance & value realisation" />
+          </div>
 
-          <SectionLabel color={MOD.ora}>Contract Oracle</SectionLabel>
-          <Item to="/oracle" icon={MessagesSquare} label="Ask the contract" sub="Cited answers · compare contracts" />
+          <SectionLabel color={MOD.ops} letter="O">Operational</SectionLabel>
+          <div className="px-2.5 py-2 rounded-lg border border-dashed border-white/12 text-[11px] text-white/40 leading-snug">
+            Provisional DRG · AI coding · billing bots — modules on the roadmap.
+          </div>
 
-          <SectionLabel color={MOD.ri}>Revenue Integrity</SectionLabel>
+          <SectionLabel color={MOD.ri} letter="R">Revenue Integrity</SectionLabel>
           <div className="space-y-0.5">
-            <Item to="/integrity" icon={Gauge} label="Dashboard" sub="Outcomes, trends, learning" />
-            <Item
+            <Item accent={MOD.ri} to="/integrity" icon={Gauge} label="Dashboard" sub="Outcomes, trends, learning" />
+            <Item accent={MOD.ri}
               to="/integrity/inbox" icon={Inbox} label="Audit inbox" sub="Import fund audit files"
               trailing={!imported ? (
                 <span className="rounded-full px-1.5 py-0.5 text-[9.5px] font-bold" style={{ background: MOD.ri, color: '#241536' }}>1 NEW</span>
               ) : null}
             />
-            <Item to="/integrity/workbench" icon={ClipboardCheck} label="Workbench" sub="Review & respond" />
+            <Item accent={MOD.ri} to="/integrity/workbench" icon={ClipboardCheck} label="Workbench" sub="Review & respond" />
           </div>
+
+          <SectionLabel color={MOD.ora} letter="E">Enquiry</SectionLabel>
+          <Item accent={MOD.ora} to="/oracle" icon={MessagesSquare} label="Ask the contract" sub="Cited answers · compare contracts" />
         </nav>
 
         <div className="px-5 py-4 border-t border-white/10">

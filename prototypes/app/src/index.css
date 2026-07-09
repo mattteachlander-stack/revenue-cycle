@@ -46,19 +46,23 @@
 
   --color-gold: #c9a227;
 
-  /* module identity colours — modular purchasing framework */
-  --color-neg-700: #24507e;   /* Negotiation Agent — blue */
+  /* CORE suite identity colours */
+  --color-neg-700: #24507e;   /* C — Contracting suite — blue */
   --color-neg-600: #2f5d8a;
   --color-neg-100: #dde8f2;
   --color-neg-50: #eef4f9;
-  --color-ora-700: #3e6b4f;   /* Contract Oracle — green */
-  --color-ora-600: #4a7d5e;
-  --color-ora-100: #e3eee6;
-  --color-ora-50: #f0f6f2;
-  --color-ri-700: #5d4080;    /* Revenue Integrity — violet */
+  --color-ops-700: #8f6a14;   /* O — Operational suite — ochre */
+  --color-ops-600: #a87e1c;
+  --color-ops-100: #f2e7c8;
+  --color-ops-50: #f9f4e4;
+  --color-ri-700: #5d4080;    /* R — Revenue Integrity suite — violet */
   --color-ri-600: #6e4a8e;
   --color-ri-100: #e9e1f2;
   --color-ri-50: #f4f0f9;
+  --color-ora-700: #3e6b4f;   /* E — Enquiry suite — green */
+  --color-ora-600: #4a7d5e;
+  --color-ora-100: #e3eee6;
+  --color-ora-50: #f0f6f2;
 
   --shadow-card: 0 1px 2px rgb(22 48 47 / 0.05), 0 4px 16px -8px rgb(22 48 47 / 0.10);
   --shadow-raised: 0 2px 4px rgb(22 48 47 / 0.06), 0 12px 32px -12px rgb(22 48 47 / 0.18);

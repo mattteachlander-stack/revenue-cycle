@@ -1,85 +1,78 @@
 import { useNavigate } from 'react-router-dom'
 import {
-  ArrowRight, Handshake, MessagesSquare, ClipboardCheck, Check,
-  BarChart3, FileStack, Sparkles,
+  ArrowRight, Handshake, History, MessagesSquare, ClipboardCheck, Radar,
+  Braces, Bot, Layers, Sparkles, type LucideIcon,
 } from 'lucide-react'
 
 interface Module {
-  key: 'neg' | 'ora' | 'ri'
+  name: string
+  desc: string
+  icon: LucideIcon
+  to?: string          // live module
+  badge?: string       // e.g. "Live in demo"
+}
+
+interface Suite {
+  letter: string
+  key: 'neg' | 'ops' | 'ri' | 'ora'
   name: string
   strap: string
   desc: string
-  features: string[]
-  price: string
-  status: 'Licensed' | 'Licensed' | 'Active trial'
-  to: string
-  cta: string
-  icon: typeof Handshake
+  modules: Module[]
 }
 
-const modules: Module[] = [
+const suites: Suite[] = [
   {
+    letter: 'C',
     key: 'neg',
-    name: 'Negotiation Agent',
-    strap: 'Win the renewal',
-    desc: 'A human-in-the-loop copilot for HPPA negotiations — positioning paper, strategy options, drafted correspondence, fund-response analysis, board pack.',
-    features: [
-      'Contract digested like opposing counsel',
-      'Public-data benchmarking & priced walk-away',
-      'Choose-your-own-adventure strategy',
-      'Every letter drafted — nothing sent for you',
+    name: 'Contracting',
+    strap: 'Win and keep winning',
+    desc: 'Everything that touches the agreement itself — the live negotiation, and whether the value you negotiated actually lands.',
+    modules: [
+      { name: 'Negotiation', desc: 'Run current and live HPPA negotiations with the human-in-the-loop copilot.', icon: Handshake, to: '/dashboard', badge: 'Live in demo' },
+      { name: 'Historical', desc: 'Negotiation performance over time and value realisation through each contract period.', icon: History, to: '/performance', badge: 'Live in demo' },
     ],
-    price: 'From $18k/yr · per facility',
-    status: 'Licensed',
-    to: '/dashboard',
-    cta: 'Open the AusCare renewal',
-    icon: Handshake,
   },
   {
-    key: 'ora',
-    name: 'Contract Oracle',
-    strap: 'Ask the contract',
-    desc: 'Staff-facing Q&A grounded in every executed agreement, the PHI legal framework, and your internal decisions — with citations, confidence, and cross-contract comparison.',
-    features: [
-      'Clause-level citations on every answer',
-      'Compare terms across your whole portfolio',
-      '“The contract is silent — escalate” honesty',
-      'Front desk to theatre, one source of truth',
+    letter: 'O',
+    key: 'ops',
+    name: 'Operational',
+    strap: 'Run the revenue day-to-day',
+    desc: 'The modules that sit inside daily operations — coding, classification, and billing automation as they are developed.',
+    modules: [
+      { name: 'Provisional DRG allocation', desc: 'Suggested DRG at booking and discharge, before coding.', icon: Layers },
+      { name: 'AI coding assistant', desc: 'Draft clinical coding with confidence scores for coder review.', icon: Braces },
+      { name: 'Billing bots', desc: 'Automated claim assembly, checks and lodgement workflows.', icon: Bot },
     ],
-    price: '+ $6k/yr · add-on or standalone',
-    status: 'Licensed',
-    to: '/oracle',
-    cta: 'Ask the contract',
-    icon: MessagesSquare,
   },
   {
+    letter: 'R',
     key: 'ri',
     name: 'Revenue Integrity',
     strap: 'Defend every dollar',
-    desc: 'An audit-response and revenue-assurance platform: import fund audit files, enrich from your PAS, manage responses with a full record, export back to the fund, and learn from every outcome.',
-    features: [
-      'Fund audit spreadsheets in, Excel responses out',
-      'PAS enrichment on every audited episode',
-      'Comments, documents & audit trail per item',
-      'Outcome dashboards by fund, category & time',
+    desc: 'Audit management in both directions — respond to the funds’ audits with a full record, and proactively find your own leakage first.',
+    modules: [
+      { name: 'Fund audit response', desc: 'Import fund audit files, enrich from the PAS, manage responses, export back to the fund, and track outcomes on dashboards.', icon: ClipboardCheck, to: '/integrity', badge: 'Live in demo' },
+      { name: 'Proactive optimisation', desc: 'Claims-vs-contract reconciliation that surfaces underpayments and systematic leakage before anyone audits you.', icon: Radar },
     ],
-    price: '+ $9k/yr · add-on',
-    status: 'Active trial',
-    to: '/integrity',
-    cta: 'Open audit dashboard',
-    icon: ClipboardCheck,
   },
-]
-
-const coming = [
-  { icon: BarChart3, name: 'Benchmarking & Analytics', desc: 'Rate and case-mix benchmarks from public aggregates — competition-law-safe by design.' },
-  { icon: FileStack, name: 'Contract Lifecycle', desc: 'Renewal calendar, obligation tracker, and variation register across every agreement.' },
+  {
+    letter: 'E',
+    key: 'ora',
+    name: 'Enquiry',
+    strap: 'Ask anything, get citations',
+    desc: 'The question-answering layer over everything the platform holds — contracts today, and every other document set you load tomorrow.',
+    modules: [
+      { name: 'Ask the contract', desc: 'Staff-facing Q&A over every executed agreement with citations, confidence, and cross-contract comparison.', icon: MessagesSquare, to: '/oracle', badge: 'Live in demo' },
+    ],
+  },
 ]
 
 const tone = {
   neg: { c700: 'var(--color-neg-700)', c600: 'var(--color-neg-600)', c100: 'var(--color-neg-100)', c50: 'var(--color-neg-50)' },
-  ora: { c700: 'var(--color-ora-700)', c600: 'var(--color-ora-600)', c100: 'var(--color-ora-100)', c50: 'var(--color-ora-50)' },
+  ops: { c700: 'var(--color-ops-700)', c600: 'var(--color-ops-600)', c100: 'var(--color-ops-100)', c50: 'var(--color-ops-50)' },
   ri: { c700: 'var(--color-ri-700)', c600: 'var(--color-ri-600)', c100: 'var(--color-ri-100)', c50: 'var(--color-ri-50)' },
+  ora: { c700: 'var(--color-ora-700)', c600: 'var(--color-ora-600)', c100: 'var(--color-ora-100)', c50: 'var(--color-ora-50)' },
 }
 
 export default function Landing() {
@@ -87,98 +80,114 @@ export default function Landing() {
   return (
     <div className="min-h-full">
       {/* hero */}
-      <div className="px-10 pt-10 pb-8 border-b border-hairline bg-panel/60">
-        <div className="max-w-[1180px]">
+      <div className="px-10 pt-10 pb-8 border-b border-hairline"
+           style={{ background: 'linear-gradient(112deg, #ffffff 0%, #fdfcfa 46%, var(--color-neg-50) 72%, var(--color-ri-50) 88%, var(--color-ora-50) 100%)' }}>
+        <div className="max-w-[1240px]">
           <div className="label-caps">Counterpart Health · Bayview Day Surgery</div>
-          <h1 className="font-serif text-[34px] font-bold tracking-tight text-ink-950 mt-2 leading-tight">
-            One platform. Three modules.<br />Buy only what your facility needs.
-          </h1>
-          <p className="text-[14.5px] text-muted mt-3 max-w-[74ch] leading-relaxed">
-            Counterpart is modular: start with the negotiation that's in front of you, add the contract
-            oracle your staff will use every day, and switch on revenue integrity when the audit letters
-            arrive. Each module stands alone; together they cover the revenue cycle.
+          <div className="mt-3 flex items-end gap-6">
+            <div className="flex items-center gap-1.5">
+              {suites.map((s) => (
+                <span key={s.letter}
+                      className="grid place-items-center size-12 rounded-xl font-serif text-[26px] font-bold text-white"
+                      style={{ background: tone[s.key].c700 }}>
+                  {s.letter}
+                </span>
+              ))}
+            </div>
+            <h1 className="font-serif text-[32px] font-bold tracking-tight text-ink-950 leading-tight">
+              The full revenue cycle.<br />Or just the piece you need.
+            </h1>
+          </div>
+          <p className="text-[14.5px] text-muted mt-4 max-w-[80ch] leading-relaxed">
+            CORE is four suites — <Strong k="neg">Contracting</Strong>, <Strong k="ops">Operational</Strong>,{' '}
+            <Strong k="ri">Revenue&nbsp;Integrity</Strong> and <Strong k="ora">Enquiry</Strong> — with focused modules
+            underneath each. Licence the lot for a comprehensive, end-to-end treatment of the revenue cycle, or pick the
+            modules that are strategic for your facility. Everything works standalone; everything is better together.
           </p>
         </div>
       </div>
 
-      {/* modules */}
-      <div className="px-10 py-8 max-w-[1240px]">
-        <div className="grid grid-cols-3 gap-5">
-          {modules.map((m) => {
-            const t = tone[m.key]
-            const Icon = m.icon
+      {/* suites */}
+      <div className="px-10 py-8 max-w-[1300px]">
+        <div className="grid grid-cols-4 gap-4 items-start">
+          {suites.map((s) => {
+            const t = tone[s.key]
             return (
-              <div key={m.key} className="card flex flex-col overflow-hidden"
+              <div key={s.letter} className="card overflow-hidden flex flex-col"
                    style={{ borderTop: `4px solid ${t.c600}` }}>
-                <div className="p-6 pb-5 flex-1">
-                  <div className="flex items-start justify-between">
-                    <div className="size-11 rounded-xl grid place-items-center" style={{ background: t.c100 }}>
-                      <Icon className="size-5" style={{ color: t.c700 }} strokeWidth={1.75} />
-                    </div>
-                    <span className="inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[10.5px] font-bold tracking-wide uppercase"
-                          style={{ background: m.status === 'Active trial' ? 'var(--color-amber-100)' : t.c100,
-                                   color: m.status === 'Active trial' ? 'var(--color-amber-700)' : t.c700 }}>
-                      {m.status}
+                <div className="px-5 pt-5 pb-4">
+                  <div className="flex items-center gap-3">
+                    <span className="grid place-items-center size-10 rounded-lg font-serif text-[21px] font-bold text-white"
+                          style={{ background: t.c700 }}>
+                      {s.letter}
                     </span>
+                    <div>
+                      <div className="text-[10.5px] font-bold tracking-[0.09em] uppercase" style={{ color: t.c600 }}>{s.strap}</div>
+                      <h2 className="text-[17px] font-semibold tracking-tight text-ink-950 leading-tight">{s.name} suite</h2>
+                    </div>
                   </div>
-                  <div className="mt-4 text-[11px] font-bold tracking-[0.09em] uppercase" style={{ color: t.c600 }}>{m.strap}</div>
-                  <h2 className="text-[19px] font-semibold tracking-tight text-ink-950 mt-0.5">{m.name}</h2>
-                  <p className="text-[12.75px] text-muted leading-relaxed mt-2">{m.desc}</p>
-                  <ul className="mt-4 space-y-1.5">
-                    {m.features.map((f) => (
-                      <li key={f} className="flex items-start gap-2 text-[12.5px] text-ink-950 leading-snug">
-                        <Check className="size-3.5 mt-0.5 shrink-0" style={{ color: t.c600 }} strokeWidth={2.5} />
-                        {f}
-                      </li>
-                    ))}
-                  </ul>
+                  <p className="text-[12px] text-muted leading-relaxed mt-2.5">{s.desc}</p>
                 </div>
-                <div className="px-6 py-4 border-t border-hairline flex items-center justify-between" style={{ background: t.c50 }}>
-                  <span className="text-[11.5px] font-semibold" style={{ color: t.c700 }}>{m.price}</span>
-                  <button
-                    onClick={() => nav(m.to)}
-                    className="inline-flex items-center gap-1.5 rounded-lg px-3.5 py-2 text-[12.5px] font-semibold text-white transition hover:opacity-90"
-                    style={{ background: t.c700 }}
-                  >
-                    {m.cta} <ArrowRight className="size-3.5" strokeWidth={2.25} />
-                  </button>
+
+                <div className="px-3.5 pb-4 space-y-2 flex-1">
+                  {s.modules.map((m) => {
+                    const Icon = m.icon
+                    const live = !!m.to
+                    return (
+                      <button
+                        key={m.name}
+                        onClick={() => m.to && nav(m.to)}
+                        disabled={!live}
+                        className={[
+                          'w-full text-left rounded-xl border px-3.5 py-3 transition',
+                          live ? 'bg-panel hover:shadow-raised cursor-pointer' : 'border-dashed opacity-75 cursor-default',
+                        ].join(' ')}
+                        style={{ borderColor: live ? t.c100 : 'var(--color-hairline-strong)', background: live ? t.c50 : undefined }}
+                      >
+                        <div className="flex items-center gap-2">
+                          <Icon className="size-4 shrink-0" style={{ color: t.c700 }} strokeWidth={1.75} />
+                          <span className="text-[13px] font-semibold text-ink-950">{m.name}</span>
+                          <span className={'ml-auto shrink-0 rounded-full px-2 py-0.5 text-[9.5px] font-bold uppercase tracking-wide ' +
+                                           (live ? 'text-white' : 'bg-ink-50 text-faint')}
+                                style={live ? { background: t.c700 } : undefined}>
+                            {m.badge ?? 'Roadmap'}
+                          </span>
+                        </div>
+                        <p className="text-[11.5px] text-muted leading-snug mt-1.5">{m.desc}</p>
+                        {live && (
+                          <span className="mt-2 inline-flex items-center gap-1 text-[11.5px] font-semibold" style={{ color: t.c700 }}>
+                            Open <ArrowRight className="size-3" strokeWidth={2.5} />
+                          </span>
+                        )}
+                      </button>
+                    )
+                  })}
                 </div>
               </div>
             )
           })}
         </div>
 
-        {/* coming soon + pricing note */}
-        <div className="grid grid-cols-3 gap-5 mt-5">
-          {coming.map((c) => {
-            const Icon = c.icon
-            return (
-              <div key={c.name} className="rounded-xl border border-dashed border-hairline-strong px-6 py-5 flex items-start gap-4 opacity-80">
-                <div className="size-10 rounded-xl bg-ink-50 grid place-items-center shrink-0">
-                  <Icon className="size-4.5 text-faint" strokeWidth={1.75} />
-                </div>
-                <div>
-                  <div className="text-[10.5px] font-bold tracking-[0.09em] uppercase text-faint">On the roadmap</div>
-                  <div className="text-[14.5px] font-semibold text-ink-950 mt-0.5">{c.name}</div>
-                  <p className="text-[12px] text-muted leading-snug mt-1">{c.desc}</p>
-                </div>
-              </div>
-            )
-          })}
-          <div className="rounded-xl px-6 py-5 bg-ink-950 text-white flex items-start gap-4">
-            <div className="size-10 rounded-xl bg-white/10 grid place-items-center shrink-0">
-              <Sparkles className="size-4.5 text-white/80" strokeWidth={1.75} />
-            </div>
-            <div>
-              <div className="text-[10.5px] font-bold tracking-[0.09em] uppercase text-white/50">Modular pricing</div>
-              <p className="text-[12.5px] text-white/85 leading-relaxed mt-1">
-                Licences are per facility, tiered by theatre count. Add or drop modules at renewal —
-                no bundle lock-in. Indicative pricing shown; validated with pilot sites.
-              </p>
-            </div>
+        {/* pricing strip */}
+        <div className="mt-5 rounded-xl px-6 py-5 bg-ink-950 text-white flex items-start gap-4">
+          <div className="size-10 rounded-xl bg-white/10 grid place-items-center shrink-0">
+            <Sparkles className="size-4.5 text-white/80" strokeWidth={1.75} />
+          </div>
+          <div className="flex-1">
+            <div className="text-[10.5px] font-bold tracking-[0.09em] uppercase text-white/50">Modular by design</div>
+            <p className="text-[12.75px] text-white/85 leading-relaxed mt-1 max-w-[110ch]">
+              Suites and modules are licensed per facility, tiered by theatre count — comprehensive for a group that wants the
+              full treatment, bespoke for a smaller organisation that only wants the pieces strategic to its business. Add or
+              drop modules at renewal; no bundle lock-in. Indicative pricing: Contracting from $18k/yr · Enquiry +$6k ·
+              Revenue Integrity +$9k · Operational modules priced as released.
+            </p>
           </div>
         </div>
       </div>
     </div>
   )
+}
+
+function Strong({ k, children }: { k: keyof typeof tone; children: React.ReactNode }) {
+  return <strong className="font-semibold" style={{ color: tone[k].c700 }}>{children}</strong>
 }
