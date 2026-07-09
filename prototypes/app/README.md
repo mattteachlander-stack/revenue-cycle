@@ -1,4 +1,4 @@
-# Counterpart Health — prototype app
+# CORE — prototype app (by Counterpart Health)
 
 A polished, **fully offline** demo of the Negotiation Agent (hero flow) and the
 Contract Agent, for Australian day hospitals negotiating HPPAs with health funds.
@@ -6,7 +6,7 @@ Contract Agent, for Australian day hospitals negotiating HPPAs with health funds
 ## Two ways to run it
 
 **A. No tools needed — just open the file.** A prebuilt, self-contained copy is
-committed at [`../counterpart-demo.html`](../counterpart-demo.html) (one 1.7 MB
+committed at [`../core-demo.html`](../core-demo.html) (one ~2 MB
 HTML file with everything inlined). Download it and double-click to open in any
 modern browser. No install, no server, no internet. This is what to send to a
 pilot site or open on a laptop with nothing installed.
@@ -22,7 +22,7 @@ To regenerate the standalone file after changing the app:
 
 ```bash
 npm run build:single      # writes dist/index.html (self-contained)
-cp dist/index.html ../counterpart-demo.html
+cp dist/index.html ../core-demo.html
 ```
 
 ## Canned demo mode
