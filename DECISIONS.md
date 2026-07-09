@@ -220,3 +220,21 @@ they can be reviewed afterwards. Newest phase at the bottom.
 - Historical-module numbers reconcile with the rest of the demo (AusCare 1.9% vs
   3.4% CPI ≈ $45k/yr; the three in-negotiation opportunities are the same three
   asks in the live copilot flow).
+
+## D12 — CORE productisation + deck rebuild (user-directed)
+- **Branding:** the product is **CORE** (by Counterpart Health): app titlebar,
+  sidebar wordmark (four suite letterforms), footers and docs updated. Company
+  remains Counterpart Health.
+- **Product completed as a demo:** Operational suite gained a concept-preview
+  screen (provisional DRG allocation with confidence + est. payment, AI coding
+  assistant with coder accept/reject, billing bots with pre-lodgement checks) —
+  clearly badged "Concept preview · roadmap", synthetic examples throughout, so
+  all four suites now show something concrete.
+- **Deck rebuilt** as `deck/core-pilot-deck.pptx` (16 slides): pain → asymmetry →
+  cost (charts) → the CORE framework slide (four suite cards) → suite-by-suite
+  walkthrough with suite-lettered kickers and fresh CORE-branded screenshots
+  (C: copilot + historical; O: previews; R: workbench + outcomes dashboard;
+  E: cross-contract comparison) → trust → pilot (timeline) → ask → close.
+  Old counterpart-pilot-deck.pptx removed; build scripts remain the source of truth.
+- **Verification:** pptx lint clean (bounds + styling); standalone single-file
+  demo rebuilt and smoke-tested over file:// (landing + operational previews).

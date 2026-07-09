@@ -1,0 +1,68 @@
+import { chromium } from 'playwright'
+const A = '/workspace/revenue-cycle/deck/assets'
+const V = '/workspace/revenue-cycle/deck/assets/v2'
+const browser = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome' })
+const page = await browser.newPage({ viewport: { width: 1600, height: 1000 }, deviceScaleFactor: 2 })
+const base = 'http://localhost:4174/#'
+const errors = []
+page.on('pageerror', (e) => errors.push(String(e)))
+const shot = (p) => page.screenshot({ path: p })
+const btn = (re) => page.getByRole('button', { name: re }).first()
+
+// landing
+await page.goto(`${base}/`); await page.waitForTimeout(1300)
+await shot(`${V}/30-core-landing.png`)
+// negotiation flow
+await page.goto(`${base}/dashboard`); await page.waitForTimeout(900)
+await shot(`${A}/01-dashboard.png`)
+await page.goto(`${base}/analyse`); await page.waitForTimeout(400)
+await btn(/Generate positioning paper/).click(); await page.waitForTimeout(800)
+await btn(/Skip animation/).click(); await page.waitForTimeout(500)
+await page.evaluate(() => window.scrollTo(0, 0)); await page.waitForTimeout(300)
+await shot(`${A}/03-positioning-done.png`)
+await page.goto(`${base}/strategy`); await page.waitForTimeout(700)
+await shot(`${A}/04-strategy.png`)
+await page.getByRole('button', { name: /Choose this posture/ }).nth(1).click(); await page.waitForTimeout(400)
+await btn(/Draft opening letter/).click(); await page.waitForTimeout(900)
+await btn(/Skip animation/).click(); await page.waitForTimeout(400)
+await page.evaluate(() => window.scrollTo(0, 0)); await page.waitForTimeout(300)
+await shot(`${A}/05-letter.png`)
+await btn(/AusCare has replied/).click(); await page.waitForTimeout(500)
+await btn(/Digest the response/).click(); await page.waitForTimeout(1000)
+await btn(/Skip animation/).click(); await page.waitForTimeout(400)
+await page.evaluate(() => window.scrollTo(0, 0)); await page.waitForTimeout(300)
+await shot(`${A}/07-digest.png`)
+await btn(/Draft the counter/).click(); await page.waitForTimeout(700)
+await btn(/Skip animation/).click(); await page.waitForTimeout(400)
+await btn(/Settle & close out/).click(); await page.waitForTimeout(400)
+await btn(/Generate board pack/).click(); await page.waitForTimeout(800)
+await btn(/Skip animation/).click(); await page.waitForTimeout(400)
+await page.evaluate(() => window.scrollTo(0, 0)); await page.waitForTimeout(300)
+await shot(`${A}/08-boardpack.png`)
+// historical
+await page.goto(`${base}/performance`); await page.waitForTimeout(800)
+await shot(`${V}/31-performance.png`)
+// operational previews
+await page.goto(`${base}/operational`); await page.waitForTimeout(800)
+await shot(`${V}/33-operational.png`)
+// oracle single answer
+await page.goto(`${base}/oracle`); await page.waitForTimeout(700)
+await shot(`${V}/21-oracle-portfolio-landing.png`)
+await page.getByRole('button', { name: /premium multifocal lens/ }).click()
+await page.waitForTimeout(9500)
+await shot(`${A}/10-oracle-answer.png`)
+// oracle comparison (fresh page for clean layout)
+await page.goto(`${base}/oracle`); await page.waitForTimeout(600)
+await page.getByRole('button', { name: /termination notice periods/ }).click()
+await page.waitForTimeout(14000)
+await shot(`${V}/22-oracle-compare-termination.png`)
+// RI
+await page.goto(`${base}/integrity`); await page.waitForTimeout(900)
+await shot(`${V}/23-ri-dashboard.png`)
+await page.goto(`${base}/integrity/inbox`); await page.waitForTimeout(500)
+await btn(/Import file/).click(); await page.waitForTimeout(4500)
+await shot(`${V}/25-ri-import-done.png`)
+await btn(/Open in workbench/).click(); await page.waitForTimeout(800)
+await shot(`${V}/26-ri-workbench.png`)
+console.log('errors:', errors.length ? errors : 'none')
+await browser.close()

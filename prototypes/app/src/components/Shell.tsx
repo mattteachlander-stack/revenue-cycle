@@ -3,7 +3,7 @@ import { NavLink, useLocation } from 'react-router-dom'
 import {
   LayoutDashboard, FileSearch, Signpost, PenLine, MailQuestion,
   Landmark, MessagesSquare, Lock, Check, FlaskConical, LayoutGrid,
-  Gauge, Inbox, ClipboardCheck, History,
+  Gauge, Inbox, ClipboardCheck, History, Layers,
 } from 'lucide-react'
 import { useDemo } from '../state'
 import { useRi } from '../state-integrity'
@@ -102,13 +102,18 @@ export default function Shell({ children }: { children: ReactNode }) {
     <div className="min-h-screen flex">
       <aside className="w-[264px] shrink-0 bg-ink-950 text-white flex flex-col fixed inset-y-0 no-print overflow-y-auto">
         <div className="px-5 pt-5 pb-4 border-b border-white/10">
-          <NavLink to="/" className="flex items-center gap-2.5">
-            <div className="size-8 rounded-lg bg-gradient-to-br from-ink-500 to-ink-700 grid place-items-center font-serif text-[15px] font-bold text-white">
-              C
+          <NavLink to="/" className="block">
+            <div className="flex items-center gap-[3px]">
+              {(['C', 'O', 'R', 'E'] as const).map((l, i) => (
+                <span key={l}
+                      className="grid place-items-center size-7 rounded-[8px] font-serif text-[15px] font-bold"
+                      style={{ background: [MOD.neg, MOD.ops, MOD.ri, MOD.ora][i], color: '#12211f' }}>
+                  {l}
+                </span>
+              ))}
             </div>
-            <div>
-              <div className="text-[14.5px] font-semibold tracking-tight leading-none">Counterpart Health</div>
-              <div className="text-[10.5px] text-white/45 mt-1 tracking-wide">REVENUE CYCLE INTELLIGENCE</div>
+            <div className="text-[10px] text-white/45 tracking-[0.12em] mt-2">
+              REVENUE CYCLE INTELLIGENCE · BY COUNTERPART HEALTH
             </div>
           </NavLink>
         </div>
@@ -145,9 +150,7 @@ export default function Shell({ children }: { children: ReactNode }) {
           </div>
 
           <SectionLabel color={MOD.ops} letter="O">Operational</SectionLabel>
-          <div className="px-2.5 py-2 rounded-lg border border-dashed border-white/12 text-[11px] text-white/40 leading-snug">
-            Provisional DRG · AI coding · billing bots — modules on the roadmap.
-          </div>
+          <Item accent={MOD.ops} to="/operational" icon={Layers} label="Concept previews" sub="Provisional DRG · coding · billing bots" />
 
           <SectionLabel color={MOD.ri} letter="R">Revenue Integrity</SectionLabel>
           <div className="space-y-0.5">
@@ -183,7 +186,7 @@ export default function Shell({ children }: { children: ReactNode }) {
             Demo — synthetic data only (Bayview Day Surgery, AusCare Health and Federation Health are fictional).
             Decision support, <strong className="font-medium text-muted">not legal or financial advice</strong>.
           </p>
-          <p className="text-[11px] text-faint tabular">Counterpart Health · prototype 0.2</p>
+          <p className="text-[11px] text-faint tabular">CORE by Counterpart Health · prototype 0.3</p>
         </footer>
       </div>
     </div>

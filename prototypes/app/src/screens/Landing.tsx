@@ -40,9 +40,9 @@ const suites: Suite[] = [
     strap: 'Run the revenue day-to-day',
     desc: 'The modules that sit inside daily operations — coding, classification, and billing automation as they are developed.',
     modules: [
-      { name: 'Provisional DRG allocation', desc: 'Suggested DRG at booking and discharge, before coding.', icon: Layers },
-      { name: 'AI coding assistant', desc: 'Draft clinical coding with confidence scores for coder review.', icon: Braces },
-      { name: 'Billing bots', desc: 'Automated claim assembly, checks and lodgement workflows.', icon: Bot },
+      { name: 'Provisional DRG allocation', desc: 'Suggested DRG at booking and discharge, before coding.', icon: Layers, to: '/operational', badge: 'Preview' },
+      { name: 'AI coding assistant', desc: 'Draft clinical coding with confidence scores for coder review.', icon: Braces, to: '/operational', badge: 'Preview' },
+      { name: 'Billing bots', desc: 'Automated claim assembly, checks and lodgement workflows.', icon: Bot, to: '/operational', badge: 'Preview' },
     ],
   },
   {
@@ -83,7 +83,7 @@ export default function Landing() {
       <div className="px-10 pt-10 pb-8 border-b border-hairline"
            style={{ background: 'linear-gradient(112deg, #ffffff 0%, #fdfcfa 46%, var(--color-neg-50) 72%, var(--color-ri-50) 88%, var(--color-ora-50) 100%)' }}>
         <div className="max-w-[1240px]">
-          <div className="label-caps">Counterpart Health · Bayview Day Surgery</div>
+          <div className="label-caps">CORE · by Counterpart Health · licensed to Bayview Day Surgery</div>
           <div className="mt-3 flex items-end gap-6">
             <div className="flex items-center gap-1.5">
               {suites.map((s) => (

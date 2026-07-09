@@ -1,4 +1,4 @@
-# Revenue Cycle Intelligence — Australian private & day hospitals
+# CORE — revenue cycle intelligence for Australian private & day hospitals
 
 An AI-assisted negotiation and contract-intelligence platform concept for Australian
 private hospitals — especially small independents and **day procedure centres** — that
@@ -10,14 +10,22 @@ Three deliverables live in this repo:
 | Deliverable | Where | Status |
 |---|---|---|
 | Partner & investor brief (the deep artefact) | [`outline/partner-brief.md`](outline/partner-brief.md) | ✅ Phase 1 |
-| Pilot-site pitch deck (day hospital CEOs) | [`deck/counterpart-pilot-deck.pptx`](deck/) | ✅ Phase 2 |
+| Pilot-site pitch deck (day hospital CEOs) | [`deck/core-pilot-deck.pptx`](deck/) | ✅ Phase 2 |
 | Working prototype (Negotiation Agent + Contract Agent) | [`prototypes/app/`](prototypes/app/) | ✅ Phase 4 |
 
 Supporting material: research source map in [`outline/sources.md`](outline/sources.md),
 synthetic demo data in [`prototypes/shared-data/`](prototypes/shared-data/), decision log in
 [`DECISIONS.md`](DECISIONS.md), honest wrap-up in [`NEXT-STEPS.md`](NEXT-STEPS.md).
 
-## The two products
+## The platform — CORE
+
+**CORE** (by Counterpart Health) is four suites, each with modules beneath:
+**C**ontracting (negotiation copilot + historical value realisation), **O**perational
+(provisional DRG, AI coding, billing bots — concept previews), **R**evenue Integrity
+(fund audit response live; proactive optimisation on the roadmap), and **E**nquiry
+(cited, cross-contract Q&A). Licence all of it or only the strategic pieces.
+
+### The two founding products
 
 - **Negotiation Agent ("the copilot")** — a human-in-the-loop HPPA negotiation copilot:
   public-data benchmarking (APRA, Ombudsman, AIHW), contract digestion, positioning

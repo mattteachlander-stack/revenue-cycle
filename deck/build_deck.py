@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-"""Build the Counterpart Health pilot-site pitch deck (16:9 pptx).
+"""Build the CORE pilot-site pitch deck (16:9 pptx).
 
 Audience: day hospital CEOs/owners considering a pilot. Design system matches
-the prototype: ink-teal on warm paper, gold accent, serif display type.
+the prototype: ink-teal on warm paper, gold accent, serif display type, plus
+the CORE suite colours (C blue · O ochre · R violet · E green).
 Run (from repo root):
     python3 deck/build_charts.py   # data graphics
     python3 deck/build_deck.py     # the deck itself
@@ -18,8 +19,9 @@ import os
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ASSETS = os.path.join(HERE, 'assets')
+V2 = os.path.join(ASSETS, 'v2')
 CHARTS = os.path.join(ASSETS, 'charts')
-OUT = os.path.join(HERE, 'counterpart-pilot-deck.pptx')
+OUT = os.path.join(HERE, 'core-pilot-deck.pptx')
 
 # ---------- palette ----------
 INK = RGBColor(0x10, 0x20, 0x1F)
@@ -32,14 +34,21 @@ MUTED = RGBColor(0x5D, 0x67, 0x63)
 FAINT = RGBColor(0x8A, 0x93, 0x8E)
 GOLD = RGBColor(0xC9, 0xA2, 0x27)
 GOLD_SOFT = RGBColor(0xE8, 0xC9, 0x6A)
-CLAY = RGBColor(0x9C, 0x3D, 0x2E)
 WHITE = RGBColor(0xFF, 0xFF, 0xFF)
 W80 = RGBColor(0xD9, 0xE6, 0xE4)
 MIST = RGBColor(0x8A, 0xA5, 0xA2)
+# suite colours
+C_BLUE = RGBColor(0x24, 0x50, 0x7E)
+O_OCHRE = RGBColor(0x8F, 0x6A, 0x14)
+R_VIOLET = RGBColor(0x5D, 0x40, 0x80)
+E_GREEN = RGBColor(0x3E, 0x6B, 0x4F)
+C_BLUE_L = RGBColor(0xDD, 0xE8, 0xF2)
+O_OCHRE_L = RGBColor(0xF2, 0xE7, 0xC8)
+R_VIOLET_L = RGBColor(0xE9, 0xE1, 0xF2)
+E_GREEN_L = RGBColor(0xE3, 0xEE, 0xE6)
 
 SERIF = 'Georgia'
 SANS = 'Calibri'
-
 SW, SH = Inches(13.333), Inches(7.5)
 
 prs = Presentation()
@@ -52,8 +61,7 @@ def slide(bg=PAPER):
     s = prs.slides.add_slide(BLANK)
     r = s.shapes.add_shape(MSO_SHAPE.RECTANGLE, 0, 0, SW, SH)
     r.fill.solid(); r.fill.fore_color.rgb = bg
-    r.line.fill.background()
-    r.shadow.inherit = False
+    r.line.fill.background(); r.shadow.inherit = False
     return s
 
 
@@ -90,7 +98,7 @@ def kicker(s, text, x=Inches(0.75), y=Inches(0.55), color=TEAL, w=Inches(11)):
     p.runs[0].font._rPr.set('spc', '160')
 
 
-def title(s, text, x=Inches(0.72), y=Inches(0.92), size=33, color=INK, w=Inches(11.8)):
+def title(s, text, x=Inches(0.72), y=Inches(0.92), size=32, color=INK, w=Inches(11.8)):
     _, tf = box(s, x, y, w, Inches(1.2))
     add_par(tf, text, size, color, font=SERIF, bold=True, line=1.05)
 
@@ -104,7 +112,7 @@ def rule(s, x, y, w, color=HAIR, h=Pt(1.2)):
 
 def footer(s, n, dark=False):
     _, tf = box(s, Inches(0.75), Inches(7.06), Inches(11), Inches(0.3))
-    add_par(tf, 'Counterpart Health — pilot briefing · demonstration uses synthetic data · not legal or financial advice',
+    add_par(tf, 'CORE by Counterpart Health — pilot briefing · demonstration uses synthetic data · not legal or financial advice',
             9, W80 if dark else FAINT)
     _, tf2 = box(s, Inches(12.35), Inches(7.06), Inches(0.6), Inches(0.3))
     add_par(tf2, f'{n:02d}', 9, W80 if dark else FAINT, align=PP_ALIGN.RIGHT)
@@ -119,13 +127,23 @@ def card(s, x, y, w, h, fill=PANEL, line_c=HAIR):
     return c
 
 
+def core_letters(s, x, y, size=Inches(0.5), gap=Inches(0.08), font_pt=20):
+    for i, (l, colr) in enumerate(zip('CORE', [C_BLUE, O_OCHRE, R_VIOLET, E_GREEN])):
+        sq = s.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, x + i * (size + gap), y, size, size)
+        sq.adjustments[0] = 0.22
+        sq.fill.solid(); sq.fill.fore_color.rgb = colr
+        sq.line.fill.background(); sq.shadow.inherit = False
+        tf = sq.text_frame; tf.word_wrap = False
+        tf.margin_left = tf.margin_right = tf.margin_top = tf.margin_bottom = 0
+        setp(tf.paragraphs[0], l, font_pt, WHITE, font=SERIF, bold=True, align=PP_ALIGN.CENTER, space_after=0)
+
+
 def img_aspect(path):
     with Image.open(path) as im:
         return im.height / im.width
 
 
 def pic_card(s, img, x, y, w, caption=None, folder=ASSETS):
-    """Image with hairline frame, preserving aspect. Returns rendered height."""
     path = os.path.join(folder, img)
     h = Emu(int(w * img_aspect(path)))
     frame = s.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, x - Emu(19050), y - Emu(19050),
@@ -142,7 +160,6 @@ def pic_card(s, img, x, y, w, caption=None, folder=ASSETS):
 
 
 def chart(s, name, x, y, w, on_card=True):
-    """Place a chart PNG on a soft card. Returns rendered height."""
     path = os.path.join(CHARTS, name)
     h = Emu(int(w * img_aspect(path)))
     if on_card:
@@ -163,26 +180,36 @@ def bullets(tf, items, size=14, color=INK, gap=8, bold_lead=True, line=1.15, mut
             r2.font.size = Pt(size); r2.font.name = SANS; r2.font.color.rgb = muted
 
 
-# hero crop for the title slide (top portion of the dashboard)
+def suite_kicker(s, letter, colr, text, y=Inches(0.52)):
+    """Slide kicker with the suite letter chip."""
+    sq = s.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, Inches(0.75), y, Inches(0.34), Inches(0.34))
+    sq.adjustments[0] = 0.25
+    sq.fill.solid(); sq.fill.fore_color.rgb = colr
+    sq.line.fill.background(); sq.shadow.inherit = False
+    tf = sq.text_frame
+    tf.margin_left = tf.margin_right = tf.margin_top = tf.margin_bottom = 0
+    setp(tf.paragraphs[0], letter, 14, WHITE, font=SERIF, bold=True, align=PP_ALIGN.CENTER, space_after=0)
+    kicker(s, text, x=Inches(1.22), y=y + Inches(0.03), color=colr)
+
+
+# hero crop for the title slide
 hero_path = os.path.join(ASSETS, 'title-hero.png')
-with Image.open(os.path.join(ASSETS, '01-dashboard.png')) as im:
-    im.crop((0, 0, im.width, int(im.height * 0.60))).save(hero_path)
+with Image.open(os.path.join(V2, '30-core-landing.png')) as im:
+    im.crop((0, 0, im.width, int(im.height * 0.62))).save(hero_path)
 
 # ================================================================ 1 · title
 s = slide(INK)
-rule(s, Inches(0.75), Inches(2.05), Inches(1.1), GOLD, Pt(3))
-_, tf = box(s, Inches(0.72), Inches(2.3), Inches(7.6), Inches(1.9))
-add_par(tf, 'Counterpart Health', 46, WHITE, font=SERIF, bold=True, space_after=10)
-add_par(tf, 'The contracting team your day hospital never had.', 20, W80, font=SERIF, italic=True, line=1.15)
-_, tf = box(s, Inches(0.75), Inches(4.15), Inches(6.6), Inches(1.3))
-add_par(tf, 'AI-assisted HPPA negotiation and contract intelligence for Australian day hospitals and independent private hospitals.',
+core_letters(s, Inches(0.75), Inches(1.7), size=Inches(0.72), gap=Inches(0.11), font_pt=30)
+_, tf = box(s, Inches(0.72), Inches(2.75), Inches(7.2), Inches(1.9))
+add_par(tf, 'The full revenue cycle.', 40, WHITE, font=SERIF, bold=True, space_after=2)
+add_par(tf, 'Or just the piece you need.', 40, GOLD_SOFT, font=SERIF, bold=True, space_after=12)
+add_par(tf, 'CORE — Contracting · Operational · Revenue Integrity · Enquiry. Modular revenue-cycle intelligence for Australian day hospitals and independent private hospitals.',
         13.5, MIST, line=1.35)
-# hero product shot, lower right
-hh = pic_card(s, 'title-hero.png', Inches(7.55), Inches(3.62), Inches(5.35))
-_, tf = box(s, Inches(7.55), Inches(3.62) + hh + Inches(0.07), Inches(5.35), Inches(0.3))
-add_par(tf, 'The working demonstration — synthetic data', 9.5, MIST, italic=True)
-_, tf = box(s, Inches(0.75), Inches(6.35), Inches(6.6), Inches(0.6))
-add_par(tf, 'Briefing for prospective pilot sites', 12, W80)
+hh = pic_card(s, 'title-hero.png', Inches(7.75), Inches(3.55), Inches(5.15), folder=ASSETS)
+_, tf = box(s, Inches(7.75), Inches(3.55) + hh + Inches(0.07), Inches(5.15), Inches(0.3))
+add_par(tf, 'The working platform — synthetic data', 9.5, MIST, italic=True)
+_, tf = box(s, Inches(0.75), Inches(6.35), Inches(6.6), Inches(0.5))
+add_par(tf, 'By Counterpart Health · Briefing for prospective pilot sites', 12, W80)
 footer(s, 1, dark=True)
 
 # ================================================================ 2 · the pain
@@ -192,9 +219,9 @@ title(s, 'The negotiation you dread arrives every three years')
 _, tf = box(s, Inches(0.75), Inches(2.1), Inches(6.1), Inches(4.6))
 bullets(tf, [
     ('The letter lands in June. ', 'Your HPPA expires in November. The fund invites "proposals", attaches nothing, and suggests your rates are already generous.'),
-    ('You negotiate between theatre lists. ', 'No benchmarks, no contracting team, no time — against a national fund team that does this every day, with data on every comparable facility.'),
-    ('The contract reads politely and bites quietly. ', '"CPI indexation" with a discretionary carve-out. Re-banding "alignments" that cut rates without a negotiation. A holdover clause that makes delay free — for them.'),
-    ('So you sign. ', 'And the gap compounds for three more years, on a facility already running at a 4–5% margin.'),
+    ('You negotiate between theatre lists. ', 'No benchmarks, no contracting team, no time — against a national fund team that does this every day.'),
+    ('The contract bites quietly for three years. ', '"CPI" with a discretionary carve-out. Re-banding "alignments" that cut rates without a negotiation. Then the audit letters start arriving.'),
+    ('And nobody ever checks ', 'whether the value you did negotiate actually landed.'),
 ], size=15, gap=14)
 c = card(s, Inches(7.3), Inches(2.02), Inches(5.3), Inches(1.92), fill=PANEL)
 _, tf = box(s, Inches(7.62), Inches(2.22), Inches(4.7), Inches(1.6))
@@ -226,115 +253,153 @@ chart(s, 'leakage.png', Inches(1.0), Inches(2.2), Inches(6.35))
 chart(s, 'second-tier.png', Inches(8.0), Inches(2.42), Inches(4.6))
 c = card(s, Inches(0.75), Inches(6.28), Inches(11.85), Inches(0.62), fill=RGBColor(0xF3, 0xF0, 0xE8), line_c=HAIR)
 _, tf = box(s, Inches(1.05), Inches(6.37), Inches(11.3), Inches(0.45))
-add_par(tf, 'And the fallback if you walk away — the second-tier default — is a floor the fund computes precisely. Most facilities never model it. The copilot always does.',
+add_par(tf, 'And the fallback if you walk away — the second-tier default — is a floor the fund computes precisely. Most facilities never model it. CORE always does.',
         13, INK, font=SERIF, italic=True)
 footer(s, 4)
 
-# ================================================================ 5 · copilot intro + dashboard
+# ================================================================ 5 · CORE framework
 s = slide()
-kicker(s, 'Product 1 · the negotiation copilot')
-title(s, 'Walk in with a contracting team behind you', size=30)
+kicker(s, 'The platform')
+title(s, 'CORE — four suites, buy what you need', size=30)
+suite_data = [
+    ('C', C_BLUE, C_BLUE_L, 'Contracting', 'Win the renewal, then verify the value lands.',
+     ['Negotiation — the live-deal copilot', 'Historical — performance & value realisation']),
+    ('O', O_OCHRE, O_OCHRE_L, 'Operational', 'The revenue day-to-day, automated with review.',
+     ['Provisional DRG allocation', 'AI coding assistant', 'Billing bots']),
+    ('R', R_VIOLET, R_VIOLET_L, 'Revenue Integrity', 'Audit management in both directions.',
+     ['Fund audit response — import → respond → export', 'Proactive optimisation — find leakage first']),
+    ('E', E_GREEN, E_GREEN_L, 'Enquiry', 'Ask anything, get citations.',
+     ['Ask the contract — cited, confidence-scored Q&A', 'Cross-contract comparison']),
+]
+for i, (letter, colr, colr_l, name, strap, mods) in enumerate(suite_data):
+    x = Inches(0.75) + i * Inches(3.08)
+    c = card(s, x, Inches(2.0), Inches(2.9), Inches(3.95))
+    bar = s.shapes.add_shape(MSO_SHAPE.RECTANGLE, x, Inches(2.0), Inches(2.9), Pt(4))
+    bar.fill.solid(); bar.fill.fore_color.rgb = colr; bar.line.fill.background(); bar.shadow.inherit = False
+    sq = s.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, x + Inches(0.25), Inches(2.3), Inches(0.55), Inches(0.55))
+    sq.adjustments[0] = 0.22
+    sq.fill.solid(); sq.fill.fore_color.rgb = colr; sq.line.fill.background(); sq.shadow.inherit = False
+    tfsq = sq.text_frame
+    tfsq.margin_left = tfsq.margin_right = tfsq.margin_top = tfsq.margin_bottom = 0
+    setp(tfsq.paragraphs[0], letter, 22, WHITE, font=SERIF, bold=True, align=PP_ALIGN.CENTER, space_after=0)
+    _, tf = box(s, x + Inches(0.25), Inches(3.0), Inches(2.45), Inches(2.9))
+    add_par(tf, name, 16, INK, font=SERIF, bold=True, space_after=2)
+    add_par(tf, strap, 10.5, colr, bold=True, space_after=8)
+    for m in mods:
+        p = tf.add_paragraph(); p.space_after = Pt(5); p.line_spacing = 1.12
+        r1 = p.add_run(); r1.text = '■  '
+        r1.font.size = Pt(8); r1.font.color.rgb = colr; r1.font.name = SANS
+        r2 = p.add_run(); r2.text = m
+        r2.font.size = Pt(11.5); r2.font.color.rgb = MUTED; r2.font.name = SANS
+_, tf = box(s, Inches(0.75), Inches(6.25), Inches(11.85), Inches(0.6))
+add_par(tf, 'Comprehensive for a group that wants the full treatment — bespoke for a facility that wants only the pieces strategic to its business. Per-facility licences, tiered by theatres; add or drop modules at renewal.',
+        13, INK, font=SERIF, italic=True, line=1.25)
+footer(s, 5)
+
+# ================================================================ 6 · C: copilot dashboard
+s = slide()
+suite_kicker(s, 'C', C_BLUE, 'Contracting suite · Negotiation module')
+title(s, 'Walk into the renewal with a contracting team', size=29)
 _, tf = box(s, Inches(0.75), Inches(1.9), Inches(4.5), Inches(4.7))
 bullets(tf, [
     ('Reads your contract like opposing counsel. ', 'Every adverse clause found, priced, and explained.'),
-    ('Benchmarks your position. ', 'Public industry data (APRA, Ombudsman, AIHW) + your own case mix and financials.'),
+    ('Benchmarks your position. ', 'Public industry data plus your own case mix and financials.'),
     ('Prices your walk-away. ', 'The second-tier default scenario modelled in dollars, not vibes.'),
-    ('Then runs the negotiation with you. ', 'Options at every decision point — you choose, it drafts, you send.'),
+    ('Runs the negotiation with you. ', 'Options at every decision point — you choose, it drafts, you send.'),
 ], size=13.5, gap=10)
 pic_card(s, '01-dashboard.png', Inches(5.5), Inches(1.95), Inches(7.1),
          caption='The renewal, at a glance — live demo, synthetic data')
-footer(s, 5)
-
-# ================================================================ 6 · positioning paper
-s = slide()
-kicker(s, 'Step 1 · analyse position')
-title(s, 'A positioning paper a major group would recognise', size=30)
-pic_card(s, '03-positioning-done.png', Inches(0.75), Inches(1.95), Inches(7.1),
-         caption='Streamed, exportable, board-ready — demo output')
-_, tf = box(s, Inches(8.25), Inches(2.1), Inches(4.35), Inches(4.5))
-bullets(tf, [
-    ('Where you stand. ', 'Rate position by service line, volume-weighted, with the dollar impact.'),
-    ('What the terms have cost. ', 'The carve-out, the re-bandings, the holdover — quantified over the current term.'),
-    ('Your BATNA, priced. ', 'Second-tier default modelled against your actual case mix.'),
-    ('Targets set. ', 'Target / anchor / walk-away for every element — rates and terms.'),
-], size=13.5, gap=10)
 footer(s, 6)
 
-# ================================================================ 7 · strategy
+# ================================================================ 7 · C: paper + strategy
 s = slide()
-kicker(s, 'Step 2 · choose your posture')
-title(s, 'Choose your own adventure — you stay in command', size=30)
-pic_card(s, '04-strategy.png', Inches(3.35), Inches(1.82), Inches(8.3))
-_, tf = box(s, Inches(0.75), Inches(2.1), Inches(2.35), Inches(4.6))
-bullets(tf, [
-    ('Options, ', 'not orders.'),
-    ('Risks ', 'stated up front.'),
-    ('Fund’s likely response ', 'predicted for each path.'),
-    ('Change course ', 'any time — everything re-drafts.'),
-    ('', 'Three internally consistent strategies — working demo.'),
-], size=12.5, gap=10)
+suite_kicker(s, 'C', C_BLUE, 'Contracting suite · Negotiation module')
+title(s, 'From positioning paper to signed outcome', size=29)
+pic_card(s, '03-positioning-done.png', Inches(0.75), Inches(1.95), Inches(6.05),
+         caption='Positioning paper: rate gaps, priced BATNA, targets — streamed & exportable')
+pic_card(s, '07-digest.png', Inches(7.05), Inches(1.95), Inches(6.05),
+         caption='The fund’s reply, digested: traps flagged, counter drafted')
+_, tf = box(s, Inches(0.75), Inches(6.15), Inches(11.8), Inches(0.7))
+add_par(tf, 'Three strategy postures, drafted correspondence, a board pack at close — and nothing is ever sent without you. The demo settlement lands ≈ +$289k/yr on the synthetic facility.',
+        12.5, MUTED, line=1.3)
 footer(s, 7)
 
-# ================================================================ 8 · letters
+# ================================================================ 8 · C: historical
 s = slide()
-kicker(s, 'Step 3 · correspondence')
-title(s, 'It drafts every letter. You edit. You send.', size=30)
-pic_card(s, '05-letter.png', Inches(0.75), Inches(1.95), Inches(7.1),
-         caption='Opening letter for the chosen posture — demo output')
+suite_kicker(s, 'C', C_BLUE, 'Contracting suite · Historical module')
+title(s, 'Did the value you negotiated actually land?', size=29)
+pic_card(s, '31-performance.png', Inches(0.75), Inches(1.95), Inches(7.1), folder=V2,
+         caption='Negotiation history · indexation realised vs CPI · value-opportunity register')
 _, tf = box(s, Inches(8.25), Inches(2.1), Inches(4.35), Inches(4.5))
 bullets(tf, [
-    ('Fund-appropriate register. ', 'Professional, firm, precise — the letter a contracting team would write.'),
-    ('Your asks, structured. ', 'Rates and terms held together as one package, with deadlines attached.'),
-    ('Nothing sent autonomously. ', 'The copilot has no send button. Ever. That is a design principle, not a disclaimer.'),
+    ('Every negotiation, on the record. ', 'Cycle, approach, settlement — and what it looks like three years later.'),
+    ('Realisation, not just agreement. ', 'The Federation deal tracked line by line: 78% of negotiated value landed, and the platform knows which lines are behind.'),
+    ('An opportunity register. ', '$332k/yr identified across the portfolio — captured, in negotiation, or lapsed with a reason.'),
 ], size=13.5, gap=12)
 footer(s, 8)
 
-# ================================================================ 9 · fund reply digestion
+# ================================================================ 9 · O: operational previews
 s = slide()
-kicker(s, 'Step 4 · the fund replies')
-title(s, 'It reads their letter for the traps you’d miss', size=30)
-pic_card(s, '07-digest.png', Inches(3.35), Inches(1.82), Inches(8.3))
-_, tf = box(s, Inches(0.75), Inches(2.1), Inches(2.35), Inches(4.6))
-bullets(tf, [
-    ('“Warm” ≠ movement. ', 'The digest scores real concessions.'),
-    ('Wording traps flagged. ', 'e.g. a “floor” that legalises 50% indexation.'),
-    ('Counter drafted ', 'within the strategy you chose.'),
-    ('', 'Line-by-line digest and movement scorecard — working demo.'),
-], size=12.5, gap=10)
-footer(s, 9)
-
-# ================================================================ 10 · close-out value
-s = slide()
-kicker(s, 'Step 5 · close-out')
-title(s, 'It finishes the job — board pack included', size=30)
-chart(s, 'settlement.png', Inches(0.98), Inches(2.35), Inches(5.5))
-pic_card(s, '08-boardpack.png', Inches(7.15), Inches(2.18), Inches(5.45),
-         caption='Sought vs settled on every element, dollars and implementation — demo')
-_, tf = box(s, Inches(0.98), Inches(5.95), Inches(5.5), Inches(0.9))
-add_par(tf, 'The demo settlement is hypothetical — but the board pack format is exactly what your directors will ask for.',
-        12.5, MUTED, line=1.3, italic=True)
-footer(s, 10)
-
-# ================================================================ 11 · oracle
-s = slide()
-kicker(s, 'Product 2 · the contract oracle')
-title(s, 'Your whole team can finally ask the contract', size=30)
-pic_card(s, '10-oracle-answer.png', Inches(0.75), Inches(1.95), Inches(7.1),
-         caption='Every answer cites clause and source, and states confidence — demo')
+suite_kicker(s, 'O', O_OCHRE, 'Operational suite · roadmap previews')
+title(s, 'Next: the revenue day-to-day, automated with review', size=29)
+pic_card(s, '33-operational.png', Inches(0.75), Inches(1.95), Inches(7.1), folder=V2,
+         caption='Concept previews — provisional DRG, AI coding, billing bots (synthetic)')
 _, tf = box(s, Inches(8.25), Inches(2.1), Inches(4.35), Inches(4.5))
 bullets(tf, [
-    ('Grounded, cited, scored. ', 'Answers come from your executed HPPAs, the legislation, and your own policy register — with clause-level citations and a confidence rating.'),
-    ('Honest about silence. ', 'Where the contract doesn’t answer, it says so and recommends escalation. It never invents a clause.'),
-    ('Front desk to theatre. ', 'Excess collection, IFC, lens upgrades, transfer rules, audit notices — answered in seconds, consistently.'),
+    ('Provisional DRG allocation. ', 'Tomorrow’s list with a revenue forecast before the episode happens.'),
+    ('AI coding assistant. ', 'Draft ICD-10-AM / ACHI codes with confidence — the coder decides.'),
+    ('Billing bots. ', 'Pre-lodgement checks against contract and policy; failures held with reasons, not lodged and hoped for.'),
 ], size=13.5, gap=12)
+footer(s, 9)
+
+# ================================================================ 10 · R: revenue integrity
+s = slide()
+suite_kicker(s, 'R', R_VIOLET, 'Revenue Integrity suite · fund audit response')
+title(s, 'When the audit letter arrives, you’re already ready', size=29)
+pic_card(s, '26-ri-workbench.png', Inches(0.75), Inches(1.95), Inches(7.1), folder=V2,
+         caption='Fund spreadsheet in → PAS-enriched workbench → Excel response out')
+_, tf = box(s, Inches(8.25), Inches(2.1), Inches(4.35), Inches(4.5))
+bullets(tf, [
+    ('Import the fund’s file. ', 'Every queried claim parsed and enriched from your patient administration system.'),
+    ('Respond with a record. ', 'Suggested responses, your decision per item, comments, documents — an audit trail of the audit.'),
+    ('Export back to the fund. ', 'One click builds the Excel response from your decisions.'),
+    ('Next: proactive optimisation. ', 'The same engine, pointed at your own claims — find leakage before anyone audits you.'),
+], size=13.5, gap=11)
+footer(s, 10)
+
+# ================================================================ 11 · R: dashboard
+s = slide()
+suite_kicker(s, 'R', R_VIOLET, 'Revenue Integrity suite · outcomes')
+title(s, 'Prove improvement, don’t just respond', size=29)
+pic_card(s, '23-ri-dashboard.png', Inches(3.35), Inches(1.82), Inches(8.3), folder=V2)
+_, tf = box(s, Inches(0.75), Inches(2.1), Inches(2.35), Inches(4.6))
+bullets(tf, [
+    ('61% overturned ', 'on the synthetic year — $32.9k defended.'),
+    ('By fund, category, time. ', 'Who audits you, for what, with what result.'),
+    ('A learning loop. ', 'Every category feeds a process fix so findings don’t repeat.'),
+], size=12.5, gap=10)
 footer(s, 11)
 
-# ================================================================ 12 · trust
+# ================================================================ 12 · E: enquiry
+s = slide()
+suite_kicker(s, 'E', E_GREEN, 'Enquiry suite · ask the contract')
+title(s, 'Your whole team can finally ask the contracts', size=29)
+pic_card(s, '22-oracle-compare-termination.png', Inches(0.75), Inches(1.95), Inches(7.1), folder=V2,
+         caption='One question, every agreement answered side by side — with clause citations')
+_, tf = box(s, Inches(8.25), Inches(2.1), Inches(4.35), Inches(4.5))
+bullets(tf, [
+    ('Grounded, cited, scored. ', 'Answers from your executed HPPAs, the legislation, and your own policy register.'),
+    ('Compares across contracts. ', 'Termination 60 vs 90 days; payment 14 vs ~21; indexation strong vs weak — instantly, with citations.'),
+    ('Honest about silence. ', 'Where the contracts don’t answer, it says so and recommends escalation. It never invents a clause.'),
+], size=13.5, gap=12)
+footer(s, 12)
+
+# ================================================================ 13 · trust
 s = slide(INK)
 kicker(s, 'Why you can trust it', color=GOLD)
 title(s, 'Human-in-the-loop isn’t a disclaimer.\nIt’s the architecture.', color=WHITE, size=30)
 cols = [
-    ('You decide, always', 'Every action is proposed, never taken. The copilot cannot send, agree, or concede anything. The audit trail shows a human choice at every step.'),
+    ('You decide, always', 'Every action is proposed, never taken. CORE cannot send, agree, code, lodge, or concede anything on its own. The audit trail shows a human choice at every step.'),
     ('Your data stays yours', 'Strict per-facility isolation. Your rates and financials are never used to benchmark, train, or inform any other customer. Benchmarks come from public data only.'),
     ('Built for a regulated sector', 'Privacy Act / APP-aligned handling, Australian data residency, security review before any real data is touched. Decision support — not legal or financial advice, and it says so on every page.'),
 ]
@@ -345,11 +410,11 @@ for i, (h, b) in enumerate(cols):
     add_par(tf, h, 17, WHITE, font=SERIF, bold=True, space_after=8)
     add_par(tf, b, 12.5, W80, line=1.35)
 _, tf = box(s, Inches(0.75), Inches(6.45), Inches(11.8), Inches(0.4))
-add_par(tf, 'And one bright line: the platform serves one hospital against its fund. It will never share or align rates between competing hospitals.',
+add_par(tf, 'And one bright line: CORE serves one hospital against its funds. It will never share or align rates between competing hospitals.',
         13, GOLD_SOFT, font=SERIF, italic=True)
-footer(s, 12, dark=True)
+footer(s, 13, dark=True)
 
-# ================================================================ 13 · the pilot
+# ================================================================ 14 · the pilot
 s = slide()
 kicker(s, 'The pilot')
 title(s, 'What a pilot involves — and what you get', size=30)
@@ -366,17 +431,16 @@ c = card(s, Inches(6.85), Inches(1.9), Inches(5.75), Inches(3.7))
 _, tf = box(s, Inches(7.15), Inches(2.12), Inches(5.15), Inches(3.3))
 add_par(tf, 'What you get', 14, TEAL, bold=True, space_after=7)
 bullets(tf, [
-    ('Free pilot access ', 'to both products for the duration.'),
+    ('Free pilot access ', 'to the Contracting, Revenue Integrity and Enquiry suites.'),
     ('A real positioning paper ', 'for your live negotiation — clause analysis, benchmarks, priced walk-away, targets.'),
-    ('Drafted correspondence ', 'through your actual negotiation rounds.'),
-    ('First-customer pricing ', 'locked in if you continue — and a real say in the roadmap.'),
+    ('Your audit season, managed ', 'through the Revenue Integrity workbench.'),
+    ('Founding-customer pricing ', 'locked in if you continue — and a real say in the roadmap.'),
 ], size=12, gap=7)
-# pilot timeline strip
 _, tf = box(s, Inches(0.75), Inches(5.78), Inches(4), Inches(0.3))
 add_par(tf, 'PILOT TIMELINE', 10.5, MUTED, bold=True)
 phases = [
-    ('Weeks 1–2', 'Onboard under NDA · digest your HPPA', Inches(2.9), INK2),
-    ('Weeks 3–10', 'Live negotiation support · positioning paper · correspondence rounds', Inches(5.9), TEAL),
+    ('Weeks 1–2', 'Onboard under NDA · digest your HPPAs', Inches(2.9), INK2),
+    ('Weeks 3–10', 'Live negotiation support · audit responses · staff using Enquiry', Inches(5.9), TEAL),
     ('Weeks 11–12', 'Measure the outcome · decide together', Inches(3.05), RGBColor(0x4E, 0x8B, 0x87)),
 ]
 px = Inches(0.75)
@@ -392,15 +456,15 @@ for name, desc, w, colr in phases:
     r2 = p.add_run(); r2.text = desc
     r2.font.size = Pt(10.5); r2.font.color.rgb = W80; r2.font.name = SANS
     px += w + Inches(0.1)
-footer(s, 13)
+footer(s, 14)
 
-# ================================================================ 14 · who / ask
+# ================================================================ 15 · who / ask
 s = slide()
 kicker(s, 'Who we are & what we’re asking')
 title(s, 'We’re recruiting 2–3 founding pilot sites', size=30)
 _, tf = box(s, Inches(0.75), Inches(2.05), Inches(6.0), Inches(4.4))
 add_par(tf, 'Who we are', 15, TEAL, bold=True, space_after=8)
-add_par(tf, 'A venture in formation: product and AI engineering with health-sector revenue-cycle domain input, building in the open with Day Hospitals Australia and APHA networks. The prototype behind every screenshot in this deck is working today — on synthetic data, by design: no real hospital data will be touched before independent security review.',
+add_par(tf, 'Counterpart Health — a venture in formation: product and AI engineering with health-sector revenue-cycle domain input, building in the open with Day Hospitals Australia and APHA networks. Everything pictured in this deck is the working CORE platform today — on synthetic data, by design: no real hospital data will be touched before independent security review.',
         13, MUTED, line=1.35, space_after=14)
 add_par(tf, 'Why now', 15, TEAL, bold=True, space_after=8)
 add_par(tf, 'Sector margins are at break-even, contracting disputes are national news, and AI can finally read a 40-page HPPA reliably enough to matter — with a human deciding every step.',
@@ -409,7 +473,7 @@ c = card(s, Inches(7.3), Inches(2.05), Inches(5.3), Inches(4.4), fill=INK2, line
 _, tf = box(s, Inches(7.65), Inches(2.35), Inches(4.6), Inches(3.9))
 add_par(tf, 'The ask', 15, GOLD, bold=True, space_after=10)
 for lead, rest in [
-    ('One conversation ', 'about your next renewal date and your last negotiation.'),
+    ('One conversation ', 'about your next renewal date, your audit season, and your last negotiation.'),
     ('One document ', '— your expiring HPPA — under NDA, when you’re ready.'),
     ('One pilot slot ', '— 2–3 facilities, first come, renewal-date priority.'),
 ]:
@@ -418,20 +482,20 @@ for lead, rest in [
     r1.font.size = Pt(13.5); r1.font.name = SANS; r1.font.bold = True; r1.font.color.rgb = WHITE
     r2 = p.add_run(); r2.text = rest
     r2.font.size = Pt(13.5); r2.font.name = SANS; r2.font.color.rgb = W80
-footer(s, 14)
+footer(s, 15)
 
-# ================================================================ 15 · close
+# ================================================================ 16 · close
 s = slide(INK)
-rule(s, Inches(0.75), Inches(2.7), Inches(1.1), GOLD, Pt(3))
+core_letters(s, Inches(0.75), Inches(2.05), size=Inches(0.55), gap=Inches(0.09), font_pt=23)
 _, tf = box(s, Inches(0.72), Inches(2.95), Inches(11.8), Inches(1.6))
 add_par(tf, 'Next step: a 30-minute walkthrough,\non your renewal timeline.', 34, WHITE, font=SERIF, bold=True, line=1.15)
 _, tf = box(s, Inches(0.75), Inches(4.9), Inches(11), Inches(0.9))
-add_par(tf, 'We’ll run the full negotiation flow live — dashboard to board pack — and leave you the positioning-paper sample.',
+add_par(tf, 'We’ll run CORE end to end — renewal dashboard to board pack, audit inbox to Excel response — and leave you the positioning-paper sample.',
         15, W80, line=1.3)
 _, tf = box(s, Inches(0.75), Inches(6.3), Inches(11.8), Inches(0.4))
-add_par(tf, 'Counterpart Health · pilot enquiries — [contact to be added] · Product imagery is a working demo on synthetic data; public figures cited to APRA, DoHAC, ACCC and the PHI Rules.',
+add_par(tf, 'CORE by Counterpart Health · pilot enquiries — [contact to be added] · Product imagery is the working demo on synthetic data; public figures cited to APRA, DoHAC, ACCC and the PHI Rules.',
         10.5, MIST)
-footer(s, 15, dark=True)
+footer(s, 16, dark=True)
 
 prs.save(OUT)
 print(f'wrote {OUT} — {len(prs.slides._sldIdLst)} slides')
