@@ -172,3 +172,33 @@ they can be reviewed afterwards. Newest phase at the bottom.
 - **Verified:** built file loads over `file://` in headless Chromium with zero
   console/page errors and the negotiation flow is interactive (positioning paper
   generates on click).
+
+## D10 — Modular platform refinement (user-directed)
+- **Second contract:** Federation Health HPPA added (`shared-data/hppa-2025-bayview-federation.md`)
+  written to contrast AusCare on every comparable axis (60-day symmetric termination vs
+  90/180; 14-day payment vs 15 business days; 60-day lodgement vs 30; mutual-consent
+  re-banding vs unilateral; full-CPI indexation vs carve-out). Kept AusCare unchanged so
+  the negotiation storyline stays intact; the user's 14-vs-20-day payment example is
+  expressed as 14 days vs 15 business days (≈21 calendar) — same contrast, internally
+  consistent.
+- **Oracle:** four portfolio-comparison Q&As (termination, payment/lodgement, indexation,
+  re-banding) rendered as side-by-side tables with per-contract citation chips
+  (AusCare teal, Federation blue) and a "Portfolio comparison · 2 contracts" badge.
+- **Modular purchasing:** new landing page ("One platform. Three modules.") with module
+  identity colours — Negotiation Agent blue, Contract Oracle green, Revenue Integrity
+  violet — licence status chips, indicative modular pricing, and two roadmap slots
+  (Benchmarking & Analytics, Contract Lifecycle). Sidebar restructured into
+  colour-dotted module sections.
+- **Revenue Integrity module** (informed by a market scan of MDaudit, Beamtree PICQ,
+  MRO, SAI360 — features adopted: centralised audit inbox with due-date countdowns,
+  status pipeline, root-cause categorisation feeding a learning-actions register,
+  outcome/overturn-rate/impact dashboards by payer, category and time):
+  · Inbox: import the fund's audit CSV → parse → PAS enrichment animation → workbench.
+  · Workbench: per-item fund assertion vs PAS record, copilot-suggested response
+    (human decides: dispute/accept/partial), comments & document trail, and a real
+    .xlsx response export built from the decisions (SheetJS).
+  · Dashboard: KPI row, monthly outcome chart, defended-vs-conceded by category,
+    fund split, and the learning-actions loop; fund/period filters recompute live.
+  · Mock audit files in `shared-data/audits/` mirror the in-app data.
+- **Verification:** full flow driven headless over file:// in the standalone build —
+  import, workbench decision, and xlsx download all confirmed; no console errors.

@@ -2,13 +2,13 @@ import type { ReactNode } from 'react'
 import { Sparkles } from 'lucide-react'
 
 export function PageHeader({
-  kicker, title, lede, right,
-}: { kicker: string; title: string; lede?: string; right?: ReactNode }) {
+  kicker, title, lede, right, accent,
+}: { kicker: string; title: string; lede?: string; right?: ReactNode; accent?: string }) {
   return (
     <div className="px-8 pt-7 pb-5 border-b border-hairline bg-panel/60">
       <div className="flex items-end justify-between gap-6 max-w-[1180px]">
         <div>
-          <div className="label-caps">{kicker}</div>
+          <div className="label-caps" style={accent ? { color: accent } : undefined}>{kicker}</div>
           <h1 className="text-[22px] font-semibold tracking-tight text-ink-950 mt-1">{title}</h1>
           {lede && <p className="text-[13.5px] text-muted mt-1.5 max-w-[68ch] leading-relaxed">{lede}</p>}
         </div>

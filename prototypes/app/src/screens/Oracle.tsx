@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
-import { BookMarked, CornerDownLeft, ShieldQuestion } from 'lucide-react'
+import { BookMarked, Columns3, CornerDownLeft, ShieldQuestion } from 'lucide-react'
 import { PageHeader, Pill } from '../components/ui'
 import { Doc } from '../components/Doc'
 import { useStream } from '../lib/stream'
-import { oracleCorpus, suggestedQuestions, fallbackAnswer, type OracleQA, type Citation } from '../content/oracle'
+import { oracleCorpus, suggestedQuestions, portfolioQuestions, singleQuestions, fallbackAnswer, type OracleQA, type Citation } from '../content/oracle'
 
 interface Turn {
   question: string
@@ -51,19 +51,31 @@ export default function Oracle() {
       <PageHeader
         kicker="Contract oracle · staff-facing"
         title="Ask the contract"
-        lede="Answers grounded in the executed AusCare HPPA, the public legal framework, and Bayview’s internal decisions register. Every answer cites its sources and states confidence; where the contract is silent, it says so and recommends escalation."
+        lede="Answers grounded in every executed agreement — AusCare and Federation — plus the public legal framework and Bayview’s internal decisions register. Ask one contract, or compare across the portfolio. Every answer cites its sources and states confidence; where the contracts are silent, it says so and recommends escalation."
       />
 
       <div className="flex-1 overflow-y-auto px-8 py-6">
         <div className="max-w-[880px] space-y-6">
           {turns.length === 0 && (
-            <div className="card p-6">
-              <div className="flex items-center gap-2 mb-3">
-                <ShieldQuestion className="size-4 text-ink-600" strokeWidth={1.75} />
-                <span className="text-[13.5px] font-semibold text-ink-950">Try a question your front desk asked this week</span>
+            <>
+              <div className="card p-6 border-ora-100" style={{ borderColor: 'var(--color-ora-100)' }}>
+                <div className="flex items-center gap-2 mb-1">
+                  <Columns3 className="size-4 text-ora-600" strokeWidth={1.75} />
+                  <span className="text-[13.5px] font-semibold text-ink-950">Compare across your whole contract portfolio</span>
+                </div>
+                <p className="text-[12px] text-muted mb-3">
+                  Two agreements loaded — AusCare Health (2023) and Federation Health (2025). Ask one question, get every contract's answer side by side.
+                </p>
+                <SuggestedGrid onPick={(qa) => ask(qa.question, qa)} ids={portfolioQuestions.map((s) => s.id)} />
               </div>
-              <SuggestedGrid onPick={(qa) => ask(qa.question, qa)} ids={suggestedQuestions.map((s) => s.id)} />
-            </div>
+              <div className="card p-6">
+                <div className="flex items-center gap-2 mb-3">
+                  <ShieldQuestion className="size-4 text-ink-600" strokeWidth={1.75} />
+                  <span className="text-[13.5px] font-semibold text-ink-950">Or ask a single agreement — questions your front desk asked this week</span>
+                </div>
+                <SuggestedGrid onPick={(qa) => ask(qa.question, qa)} ids={singleQuestions.map((s) => s.id)} />
+              </div>
+            </>
           )}
 
           {turns.map((t, i) => (
@@ -91,7 +103,7 @@ export default function Oracle() {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && submitFree()}
-            placeholder="Ask about the AusCare agreement, obligations, or internal policy…"
+            placeholder="Ask any agreement — or compare terms across all of them…"
             className="flex-1 rounded-lg border border-hairline-strong bg-paper px-4 py-2.5 text-[13.5px] outline-none
                        focus:border-ink-500 focus:ring-2 focus:ring-ink-100 placeholder:text-faint"
           />
@@ -105,7 +117,7 @@ export default function Oracle() {
           </button>
         </div>
         <p className="max-w-[880px] text-[10.75px] text-faint mt-2">
-          Demo corpus: synthetic HPPA · curated legislation summaries · synthetic internal register. Free-text questions map to the nearest demo answer.
+          Demo corpus: two synthetic HPPAs (AusCare, Federation) · curated legislation summaries · synthetic internal register. Free-text questions map to the nearest demo answer.
         </p>
       </div>
     </div>
@@ -149,7 +161,15 @@ function TurnView({ turn, live, onDone }: { turn: Turn; live: boolean; onDone: (
       <div className="card p-5 max-w-[760px]">
         <div className="flex items-center justify-between mb-2.5">
           <span className="label-caps">Contract oracle</span>
-          <ConfidenceBadge level={confidence} />
+          <span className="flex items-center gap-2">
+            {qa?.scope === 'portfolio' && (
+              <span className="inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-[11px] font-semibold"
+                    style={{ background: 'var(--color-ora-100)', color: 'var(--color-ora-700)' }}>
+                <Columns3 className="size-3" /> Portfolio comparison · 2 contracts
+              </span>
+            )}
+            <ConfidenceBadge level={confidence} />
+          </span>
         </div>
         <div className={done ? '' : 'stream-caret'}>
           <Doc md={shown} className="!text-[0.9rem]" />
@@ -176,7 +196,8 @@ function ConfidenceBadge({ level }: { level: OracleQA['confidence'] }) {
 
 function CitationRow({ c }: { c: Citation }) {
   const tone =
-    c.source === 'HPPA' ? 'bg-ink-50 text-ink-700 border-ink-100'
+    c.source === 'AusCare HPPA' ? 'bg-ink-50 text-ink-700 border-ink-100'
+    : c.source === 'Federation HPPA' ? 'bg-neg-50 text-neg-700 border-neg-100'
     : c.source === 'Legislation' ? 'bg-amber-100/60 text-amber-700 border-amber-100'
     : 'bg-sage-100/60 text-sage-700 border-sage-100'
   return (

@@ -2,9 +2,11 @@ import type { ReactNode } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
 import {
   LayoutDashboard, FileSearch, Signpost, PenLine, MailQuestion,
-  Landmark, MessagesSquare, Lock, Check, FlaskConical,
+  Landmark, MessagesSquare, Lock, Check, FlaskConical, LayoutGrid,
+  Gauge, Inbox, ClipboardCheck,
 } from 'lucide-react'
 import { useDemo } from '../state'
+import { useRi } from '../state-integrity'
 import { facility, negotiation } from '../data/facility'
 
 const stepIcon = {
@@ -16,9 +18,61 @@ const stepIcon = {
   closeout: Landmark,
 }
 
+// module identity colours (match --color-neg/ora/ri tokens, light-on-dark tints)
+const MOD = {
+  neg: '#7fa8cd',
+  ora: '#8fbf9f',
+  ri: '#b79ad4',
+}
+
+function SectionLabel({ color, children }: { color?: string; children: ReactNode }) {
+  return (
+    <div className="px-2 pt-5 pb-2 flex items-center gap-1.5 text-[10.5px] uppercase tracking-[0.09em] text-white/40 font-medium">
+      {color && <span className="size-2 rounded-[3px]" style={{ background: color }} />}
+      {children}
+    </div>
+  )
+}
+
+function Item({
+  to, icon: Icon, label, sub, unlocked = true, trailing,
+}: {
+  to: string
+  icon: typeof LayoutDashboard
+  label: string
+  sub: string
+  unlocked?: boolean
+  trailing?: ReactNode
+}) {
+  const loc = useLocation()
+  const active = loc.pathname === to
+  return (
+    <NavLink
+      to={unlocked ? to : '#'}
+      onClick={(e) => { if (!unlocked) e.preventDefault() }}
+      className={[
+        'group flex items-center gap-3 rounded-lg px-2.5 py-2 transition-colors',
+        active ? 'bg-white/12' : unlocked ? 'hover:bg-white/6' : 'opacity-40 cursor-not-allowed',
+      ].join(' ')}
+    >
+      <span className={[
+        'relative grid place-items-center size-7 rounded-md border',
+        active ? 'border-white/25 bg-white/10' : 'border-white/12',
+      ].join(' ')}>
+        <Icon className="size-3.5" strokeWidth={1.75} />
+      </span>
+      <span className="flex-1 min-w-0">
+        <span className="block text-[13px] font-medium leading-tight">{label}</span>
+        <span className="block text-[11px] text-white/45 leading-tight mt-px">{sub}</span>
+      </span>
+      {trailing}
+    </NavLink>
+  )
+}
+
 export default function Shell({ children }: { children: ReactNode }) {
   const { analysisDone, posture, letterDone, responseDigested } = useDemo()
-  const loc = useLocation()
+  const { imported } = useRi()
 
   const steps: {
     key: keyof typeof stepIcon
@@ -38,10 +92,9 @@ export default function Shell({ children }: { children: ReactNode }) {
 
   return (
     <div className="min-h-screen flex">
-      {/* ---------- sidebar ---------- */}
-      <aside className="w-[264px] shrink-0 bg-ink-950 text-white flex flex-col fixed inset-y-0 no-print">
+      <aside className="w-[264px] shrink-0 bg-ink-950 text-white flex flex-col fixed inset-y-0 no-print overflow-y-auto">
         <div className="px-5 pt-5 pb-4 border-b border-white/10">
-          <div className="flex items-center gap-2.5">
+          <NavLink to="/" className="flex items-center gap-2.5">
             <div className="size-8 rounded-lg bg-gradient-to-br from-ink-500 to-ink-700 grid place-items-center font-serif text-[15px] font-bold text-white">
               C
             </div>
@@ -49,7 +102,7 @@ export default function Shell({ children }: { children: ReactNode }) {
               <div className="text-[14.5px] font-semibold tracking-tight leading-none">Counterpart Health</div>
               <div className="text-[10.5px] text-white/45 mt-1 tracking-wide">REVENUE CYCLE INTELLIGENCE</div>
             </div>
-          </div>
+          </NavLink>
         </div>
 
         <div className="px-5 py-3.5 border-b border-white/10">
@@ -58,63 +111,41 @@ export default function Shell({ children }: { children: ReactNode }) {
           <div className="text-[11.5px] text-white/50">{facility.theatres} theatres · {facility.location}</div>
         </div>
 
-        <nav className="flex-1 overflow-y-auto px-3 py-4">
-          <div className="px-2 pb-2 text-[10.5px] uppercase tracking-[0.09em] text-white/40 font-medium">
-            Negotiation copilot — {negotiation.fundShort}
+        <nav className="flex-1 px-3 pb-4">
+          <div className="pt-3">
+            <Item to="/" icon={LayoutGrid} label="Platform home" sub="Modules & licences" />
           </div>
+
+          <SectionLabel color={MOD.neg}>Negotiation Agent — {negotiation.fundShort}</SectionLabel>
           <ol className="space-y-0.5">
             {steps.map((s, i) => {
               const Icon = stepIcon[s.key]
-              const active = loc.pathname === s.to
               return (
                 <li key={s.key}>
-                  <NavLink
-                    to={s.unlocked ? s.to : '#'}
-                    onClick={(e) => { if (!s.unlocked) e.preventDefault() }}
-                    className={[
-                      'group flex items-center gap-3 rounded-lg px-2.5 py-2 transition-colors',
-                      active ? 'bg-white/12' : s.unlocked ? 'hover:bg-white/6' : 'opacity-40 cursor-not-allowed',
-                    ].join(' ')}
-                  >
-                    <span className={[
-                      'relative grid place-items-center size-7 rounded-md border',
-                      active ? 'border-white/25 bg-white/10' : 'border-white/12',
-                    ].join(' ')}>
-                      <Icon className="size-3.5" strokeWidth={1.75} />
-                    </span>
-                    <span className="flex-1 min-w-0">
-                      <span className="block text-[13px] font-medium leading-tight">{s.label}</span>
-                      <span className="block text-[11px] text-white/45 leading-tight mt-px">{s.sub}</span>
-                    </span>
-                    {!s.unlocked ? (
-                      <Lock className="size-3 text-white/35" />
-                    ) : s.complete && i > 0 ? (
-                      <Check className="size-3.5 text-sage-100/80" strokeWidth={2.5} />
-                    ) : null}
-                  </NavLink>
+                  <Item
+                    to={s.to} icon={Icon} label={s.label} sub={s.sub} unlocked={s.unlocked}
+                    trailing={!s.unlocked ? <Lock className="size-3 text-white/35" />
+                      : s.complete && i > 0 ? <Check className="size-3.5 text-sage-100/80" strokeWidth={2.5} /> : null}
+                  />
                 </li>
               )
             })}
           </ol>
 
-          <div className="px-2 pt-6 pb-2 text-[10.5px] uppercase tracking-[0.09em] text-white/40 font-medium">
-            Contract oracle
+          <SectionLabel color={MOD.ora}>Contract Oracle</SectionLabel>
+          <Item to="/oracle" icon={MessagesSquare} label="Ask the contract" sub="Cited answers · compare contracts" />
+
+          <SectionLabel color={MOD.ri}>Revenue Integrity</SectionLabel>
+          <div className="space-y-0.5">
+            <Item to="/integrity" icon={Gauge} label="Dashboard" sub="Outcomes, trends, learning" />
+            <Item
+              to="/integrity/inbox" icon={Inbox} label="Audit inbox" sub="Import fund audit files"
+              trailing={!imported ? (
+                <span className="rounded-full px-1.5 py-0.5 text-[9.5px] font-bold" style={{ background: MOD.ri, color: '#241536' }}>1 NEW</span>
+              ) : null}
+            />
+            <Item to="/integrity/workbench" icon={ClipboardCheck} label="Workbench" sub="Review & respond" />
           </div>
-          <NavLink
-            to="/oracle"
-            className={({ isActive }) => [
-              'group flex items-center gap-3 rounded-lg px-2.5 py-2 transition-colors',
-              isActive ? 'bg-white/12' : 'hover:bg-white/6',
-            ].join(' ')}
-          >
-            <span className="grid place-items-center size-7 rounded-md border border-white/12">
-              <MessagesSquare className="size-3.5" strokeWidth={1.75} />
-            </span>
-            <span className="flex-1">
-              <span className="block text-[13px] font-medium leading-tight">Ask the contract</span>
-              <span className="block text-[11px] text-white/45 leading-tight mt-px">Cited answers, staff-facing</span>
-            </span>
-          </NavLink>
         </nav>
 
         <div className="px-5 py-4 border-t border-white/10">
@@ -128,15 +159,14 @@ export default function Shell({ children }: { children: ReactNode }) {
         </div>
       </aside>
 
-      {/* ---------- main ---------- */}
       <div className="flex-1 ml-[264px] flex flex-col min-h-screen">
         <main className="flex-1">{children}</main>
         <footer className="no-print border-t border-hairline bg-panel/70 px-8 py-3 flex items-center justify-between">
           <p className="text-[11px] text-faint">
-            Demo — synthetic data only (Bayview Day Surgery and AusCare Health are fictional).
+            Demo — synthetic data only (Bayview Day Surgery, AusCare Health and Federation Health are fictional).
             Decision support, <strong className="font-medium text-muted">not legal or financial advice</strong>.
           </p>
-          <p className="text-[11px] text-faint tabular">Counterpart Health · prototype 0.1</p>
+          <p className="text-[11px] text-faint tabular">Counterpart Health · prototype 0.2</p>
         </footer>
       </div>
     </div>

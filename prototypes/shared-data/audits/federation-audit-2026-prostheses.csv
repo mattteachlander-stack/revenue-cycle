@@ -1,0 +1,7 @@
+AuditRef,ClaimID,MemberNo,AdmissionDate,MBSItems,Band,PaidAmount,ProsthesisBilled,AuditCategory,FundAssertion,RequestedAction,ResponseDue
+FED-2026-PR-01,BV-87102,FXXX1190,2026-01-13,42702,Band 2,1655.00,IOL-MONO-STD $412,Prostheses / rebate,"Prosthesis billed above current Prescribed List benefit ($386 from 1 Jan 2026).","Adjust $26 or evidence supply date pre-change",2026-08-21
+FED-2026-PR-02,BV-87241,FXXX4523,2026-01-27,42702,Band 2,1655.00,IOL-MONO-STD $412,Prostheses / rebate,"As FED-2026-PR-01 (same list change).","Adjust $26 or evidence supply date",2026-08-21
+FED-2026-PR-03,BV-87355,FXXX8834,2026-02-10,42698,Band 2,1655.00,IOL-TORIC $721,Prostheses / rebate,"Toric lens billed; clinical indication (astigmatism ≥1.5D) documentation requested.","Provide biometry report",2026-08-21
+FED-2026-PR-04,BV-87590,FXXX2011,2026-03-05,49561,Band 3,2364.00,ANCHOR-SUT x2 $644,Prostheses / quantity,"Two suture anchors billed; operative report indicates single anchor deployed.","Repay $322 or provide corrected operative report",2026-08-21
+FED-2026-PR-05,BV-87663,FXXX6647,2026-03-19,49557,Band 3,2364.00,ANCHOR-SUT x3 $966,Prostheses / quantity,"Three anchors billed; imaging suggests two. Clarification requested.","Provide operative report and prosthesis stickers",2026-08-21
+FED-2026-PR-06,BV-87801,FXXX9958,2026-04-14,45203,Band 4,2505.00,"MESH-DERM $1,204",Prostheses / list eligibility,"Dermal matrix item not on Prescribed List for this procedure code.","Repay $1,204 or evidence alternative listing",2026-08-21
