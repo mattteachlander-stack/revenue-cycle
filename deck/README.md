@@ -1,6 +1,11 @@
 # CORE pilot-site pitch deck
 
-`core-pilot-deck.pptx` — 16 slides aimed at day hospital CEOs/owners,
+Two formats, same 16 slides, aimed at day hospital CEOs/owners:
+
+- **`core-pilot-deck.html`** — one self-contained file (all images embedded).
+  Double-click to open in any browser; arrow keys / clicks to present;
+  Ctrl+P → PDF. No PowerPoint needed. Rebuilt by `build_deck_html.py`.
+- **`core-pilot-deck.pptx`** — the PowerPoint original,
 built programmatically by `build_deck.py` (python-pptx) so the design system
 stays consistent with the prototype (ink-teal/paper/gold palette, Georgia
 display + Calibri body — fonts chosen for portability across machines).

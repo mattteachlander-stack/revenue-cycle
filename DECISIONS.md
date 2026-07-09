@@ -238,3 +238,14 @@ they can be reviewed afterwards. Newest phase at the bottom.
   Old counterpart-pilot-deck.pptx removed; build scripts remain the source of truth.
 - **Verification:** pptx lint clean (bounds + styling); standalone single-file
   demo rebuilt and smoke-tested over file:// (landing + operational previews).
+
+## D13 — Deck as a combined single HTML file
+- **Decision:** the pitch deck now also ships as `deck/core-pilot-deck.html` —
+  one self-contained file (~2.2MB) with all screenshots and charts embedded as
+  data URIs, scroll-snap slides, keyboard/click navigation, and print-to-PDF.
+  Built by `deck/build_deck_html.py`; the pptx remains for anyone who wants to
+  edit in PowerPoint.
+- **Why:** the user's device has no developer tools and possibly no PowerPoint;
+  an HTML deck opens anywhere the demo file already opens. Verified over
+  file:// in headless Chromium (title, framework, and suite slides; no console
+  errors).
