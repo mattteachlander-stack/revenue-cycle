@@ -15,17 +15,18 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, 'assets', 'charts')
 os.makedirs(OUT, exist_ok=True)
 
-INK = '#10201F'
-INK2 = '#1D403E'
-TEAL = '#336C69'
-TEAL_SOFT = '#7FA6A3'
-HAIR = '#D3CEC1'
-MUTED = '#5D6763'
-FAINT = '#8A938E'
-GOLD = '#C9A227'
-GOLD_D = '#8F7418'
-CLAY = '#B04A39'
-CLAY_D = '#9C3D2E'
+# CORE brand palette
+INK = '#0B1730'          # navy ink
+INK2 = '#122244'
+TEAL = '#2F6BF6'         # brand blue (primary series)
+TEAL_SOFT = '#8FB0F9'
+HAIR = '#CDD7E6'
+MUTED = '#5A6784'
+FAINT = '#8B96AF'
+GOLD = '#0899B8'         # brand cyan (highlight)
+GOLD_D = '#0E7E99'
+CLAY = '#CC3A4E'         # adverse
+CLAY_D = '#B52E40'
 
 plt.rcParams.update({
     'font.family': 'DejaVu Sans',
@@ -86,8 +87,8 @@ plt.close(fig)
 # ------------------------------------------------------- 2 · concentration bar
 fig, ax = plt.subplots(figsize=(5.6, 2.6))
 funds = [('Medibank', 27.1, INK2, 'w'), ('Bupa', 24.9, TEAL, 'w'),
-         ('HCF', 12.5, '#4E8B87', 'w'), ('nib', 9.6, TEAL_SOFT, 'w'),
-         ('HBF', 7.7, '#A9C4C1', None), ('≈20 smaller\nfunds · 18%', 18.2, HAIR, INK)]
+         ('HCF', 12.5, '#4F46E5', 'w'), ('nib', 9.6, TEAL_SOFT, 'w'),
+         ('HBF', 7.7, '#A5C0FB', None), ('≈20 smaller\nfunds · 18%', 18.2, HAIR, INK)]
 left = 0.0
 for name, share, colr, txtc in funds:
     ax.barh(0, share, left=left, height=0.52, color=colr, zorder=3)
@@ -127,7 +128,7 @@ items = [
 labels = [i[0] for i in items][::-1]
 vals = [i[1] for i in items][::-1]
 notes = [i[2] for i in items][::-1]
-cols = [CLAY if v == max(vals) else '#C4705F' for v in vals]
+cols = [CLAY if v == max(vals) else '#DB6E7E' for v in vals]
 bars = ax.barh(labels, vals, height=0.6, color=cols, zorder=3)
 for b, v, n in zip(bars, vals, notes):
     yc = b.get_y() + b.get_height() / 2
@@ -191,7 +192,7 @@ plt.close(fig)
 
 # ------------------------------------------------------ 6 · settlement value
 fig, ax = plt.subplots(figsize=(5.6, 3.1))
-comp = [('Rate uplifts', 168, TEAL), ('Re-banding\nrestored', 74, '#4E8B87'),
+comp = [('Rate uplifts', 168, TEAL), ('Re-banding\nrestored', 74, '#4F46E5'),
         ('Indexation\nintegrity', 47, TEAL_SOFT)]
 xpos = [0, 1, 2, 3.15]
 cum = 0

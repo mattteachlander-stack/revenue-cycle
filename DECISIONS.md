@@ -249,3 +249,19 @@ they can be reviewed afterwards. Newest phase at the bottom.
   an HTML deck opens anywhere the demo file already opens. Verified over
   file:// in headless Chromium (title, framework, and suite slides; no console
   errors).
+
+## D14 — Brand adoption (user-supplied logo & colours)
+- **Brand:** hexagonal gradient "C" mark (aqua→cyan→blue→indigo), deep navy,
+  geometric caps, tagline "Every Contract. Every Dollar. Every Decision.",
+  descriptor "Commercial intelligence for healthcare".
+- **Applied everywhere:** app design tokens rebuilt (navy chrome, cool light
+  surfaces, brand-gradient CTAs, suite colours re-derived from the gradient
+  family: C blue, O cyan, R indigo, E aqua/teal); logo recreated as crisp SVG
+  in-app and transparent PNG for decks; Montserrat display type for headings
+  and wordmark (Inter body; generated documents keep their serif face —
+  they are documents); charts re-paletted; both deck formats re-paletted with
+  the mark and tagline on title/close slides; all screenshots re-taken.
+- **Semantic colours kept:** adverse/success/warn stay rose/teal/amber for
+  legibility — brand colours carry identity, semantic colours carry meaning.
+- **Verification:** full app flow reshoot clean (no console errors); pptx lint
+  clean; HTML deck + standalone demo verified over file://.

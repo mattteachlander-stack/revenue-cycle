@@ -3,6 +3,7 @@ import {
   ArrowRight, Handshake, History, MessagesSquare, ClipboardCheck, Radar,
   Braces, Bot, Layers, Sparkles, type LucideIcon,
 } from 'lucide-react'
+import { CoreMark } from '../components/Logo'
 
 interface Module {
   name: string
@@ -79,30 +80,28 @@ export default function Landing() {
   const nav = useNavigate()
   return (
     <div className="min-h-full">
-      {/* hero */}
-      <div className="px-10 pt-10 pb-8 border-b border-hairline"
-           style={{ background: 'linear-gradient(112deg, #ffffff 0%, #fdfcfa 46%, var(--color-neg-50) 72%, var(--color-ri-50) 88%, var(--color-ora-50) 100%)' }}>
-        <div className="max-w-[1240px]">
-          <div className="label-caps">CORE · by Counterpart Health · licensed to Bayview Day Surgery</div>
-          <div className="mt-3 flex items-end gap-6">
-            <div className="flex items-center gap-1.5">
-              {suites.map((s) => (
-                <span key={s.letter}
-                      className="grid place-items-center size-12 rounded-xl font-serif text-[26px] font-bold text-white"
-                      style={{ background: tone[s.key].c700 }}>
-                  {s.letter}
-                </span>
-              ))}
+      {/* hero — brand navy */}
+      <div className="px-10 pt-9 pb-9 relative overflow-hidden" style={{ background: 'var(--color-navy-950)' }}>
+        <div className="absolute -right-24 -top-40 size-[520px] rounded-full opacity-[0.13] blur-3xl brand-gradient" />
+        <div className="max-w-[1240px] relative">
+          <div className="label-caps" style={{ color: '#5f7397' }}>Commercial intelligence for healthcare · licensed to Bayview Day Surgery</div>
+          <div className="mt-4 flex items-center gap-5">
+            <CoreMark size={64} />
+            <div>
+              <h1 className="font-display font-extrabold tracking-tight text-[33px] leading-[1.12] text-white">
+                The full revenue cycle.<br />
+                <span className="brand-gradient-text">Or just the piece you need.</span>
+              </h1>
             </div>
-            <h1 className="font-serif text-[32px] font-bold tracking-tight text-ink-950 leading-tight">
-              The full revenue cycle.<br />Or just the piece you need.
-            </h1>
           </div>
-          <p className="text-[14.5px] text-muted mt-4 max-w-[80ch] leading-relaxed">
+          <p className="text-[14px] mt-5 max-w-[82ch] leading-relaxed" style={{ color: '#a9b6cf' }}>
             CORE is four suites — <Strong k="neg">Contracting</Strong>, <Strong k="ops">Operational</Strong>,{' '}
             <Strong k="ri">Revenue&nbsp;Integrity</Strong> and <Strong k="ora">Enquiry</Strong> — with focused modules
-            underneath each. Licence the lot for a comprehensive, end-to-end treatment of the revenue cycle, or pick the
-            modules that are strategic for your facility. Everything works standalone; everything is better together.
+            underneath each. Licence the lot for an end-to-end treatment of the revenue cycle, or pick the modules
+            strategic for your facility.
+          </p>
+          <p className="font-display font-bold text-[13px] tracking-[0.06em] mt-4 text-white/90">
+            Every <span style={{ color: '#2ee6c9' }}>Contract</span>. Every <span style={{ color: '#22b8f0' }}>Dollar</span>. Every <span style={{ color: '#7c9dff' }}>Decision</span>.
           </p>
         </div>
       </div>
@@ -117,7 +116,7 @@ export default function Landing() {
                    style={{ borderTop: `4px solid ${t.c600}` }}>
                 <div className="px-5 pt-5 pb-4">
                   <div className="flex items-center gap-3">
-                    <span className="grid place-items-center size-10 rounded-lg font-serif text-[21px] font-bold text-white"
+                    <span className="grid place-items-center size-10 rounded-lg font-display text-[19px] font-extrabold text-white"
                           style={{ background: t.c700 }}>
                       {s.letter}
                     </span>

@@ -8,6 +8,7 @@ import {
 import { useDemo } from '../state'
 import { useRi } from '../state-integrity'
 import { facility, negotiation } from '../data/facility'
+import { CoreMark, CoreWordmark } from './Logo'
 
 const stepIcon = {
   dashboard: LayoutDashboard,
@@ -18,20 +19,20 @@ const stepIcon = {
   closeout: Landmark,
 }
 
-// CORE suite tints for the dark sidebar
+// CORE suite tints for the dark navy sidebar (brand gradient family)
 const MOD = {
-  neg: '#7fa8cd',
-  ops: '#d3b25e',
-  ri: '#b79ad4',
-  ora: '#8fbf9f',
+  neg: '#5a8bff',
+  ops: '#2fc4e0',
+  ri: '#8b83f0',
+  ora: '#2ee6c9',
 }
 
 function SectionLabel({ color, letter, children }: { color?: string; letter?: string; children: ReactNode }) {
   return (
     <div className="px-2 pt-5 pb-2 flex items-center gap-2 text-[10.5px] uppercase tracking-[0.09em] text-white/40 font-medium">
       {letter && (
-        <span className="grid place-items-center size-4 rounded-[5px] font-serif text-[10.5px] font-bold normal-case"
-              style={{ background: color, color: '#12211f' }}>
+        <span className="grid place-items-center size-4 rounded-[5px] font-display text-[10px] font-bold normal-case"
+              style={{ background: color, color: '#081022' }}>
           {letter}
         </span>
       )}
@@ -100,20 +101,16 @@ export default function Shell({ children }: { children: ReactNode }) {
 
   return (
     <div className="min-h-screen flex">
-      <aside className="w-[264px] shrink-0 bg-ink-950 text-white flex flex-col fixed inset-y-0 no-print overflow-y-auto">
+      <aside className="w-[264px] shrink-0 text-white flex flex-col fixed inset-y-0 no-print overflow-y-auto"
+             style={{ background: 'var(--color-navy-950)' }}>
         <div className="px-5 pt-5 pb-4 border-b border-white/10">
-          <NavLink to="/" className="block">
-            <div className="flex items-center gap-[3px]">
-              {(['C', 'O', 'R', 'E'] as const).map((l, i) => (
-                <span key={l}
-                      className="grid place-items-center size-7 rounded-[8px] font-serif text-[15px] font-bold"
-                      style={{ background: [MOD.neg, MOD.ops, MOD.ri, MOD.ora][i], color: '#12211f' }}>
-                  {l}
-                </span>
-              ))}
-            </div>
-            <div className="text-[10px] text-white/45 tracking-[0.12em] mt-2">
-              REVENUE CYCLE INTELLIGENCE · BY COUNTERPART HEALTH
+          <NavLink to="/" className="flex items-center gap-3">
+            <CoreMark size={34} />
+            <div>
+              <CoreWordmark />
+              <div className="text-[8.5px] text-white/50 tracking-[0.16em] mt-1.5 leading-[1.5]">
+                COMMERCIAL INTELLIGENCE<br />FOR <span style={{ color: '#2fc4e0' }}>HEALTHCARE</span>
+              </div>
             </div>
           </NavLink>
         </div>
@@ -186,7 +183,7 @@ export default function Shell({ children }: { children: ReactNode }) {
             Demo — synthetic data only (Bayview Day Surgery, AusCare Health and Federation Health are fictional).
             Decision support, <strong className="font-medium text-muted">not legal or financial advice</strong>.
           </p>
-          <p className="text-[11px] text-faint tabular">CORE by Counterpart Health · prototype 0.3</p>
+          <p className="text-[11px] text-faint tabular">CORE · Every Contract. Every Dollar. Every Decision. · prototype 0.4</p>
         </footer>
       </div>
     </div>

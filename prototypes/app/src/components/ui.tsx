@@ -29,8 +29,9 @@ export function GenerateButton({
     <button
       onClick={onClick}
       disabled={disabled}
-      className="inline-flex items-center gap-2 rounded-lg bg-ink-800 px-4.5 py-2.5 text-[13.5px] font-medium text-white shadow-raised
-                 hover:bg-ink-700 active:translate-y-px transition disabled:opacity-40 disabled:pointer-events-none"
+      className="inline-flex items-center gap-2 rounded-lg px-4.5 py-2.5 text-[13.5px] font-semibold text-white shadow-raised
+                 hover:brightness-110 active:translate-y-px transition disabled:opacity-40 disabled:pointer-events-none"
+      style={{ background: 'linear-gradient(120deg, #0ea5c4 0%, #2f6bf6 55%, #4f46e5 100%)' }}
     >
       <Sparkles className="size-4" strokeWidth={1.75} />
       {children}

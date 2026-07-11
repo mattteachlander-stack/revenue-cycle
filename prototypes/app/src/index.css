@@ -1,4 +1,7 @@
 @import '@fontsource-variable/inter';
+@import '@fontsource/montserrat/600.css';
+@import '@fontsource/montserrat/700.css';
+@import '@fontsource/montserrat/800.css';
 @import '@fontsource/source-serif-4/400.css';
 @import '@fontsource/source-serif-4/400-italic.css';
 @import '@fontsource/source-serif-4/600.css';
@@ -6,66 +9,83 @@
 @import 'tailwindcss';
 
 /*
-  Counterpart Health — design tokens.
-  Restrained health/fintech palette: ink-teal primary on warm paper,
-  amber for risk, sage for favourable, clay for adverse.
+  CORE — brand design tokens.
+  Deep navy chrome, cyan→blue→indigo gradient family, cool light surfaces.
+  Display type: Montserrat (geometric caps, brand). UI: Inter.
+  Generated documents keep a serif face — they are documents.
 */
 @theme {
   --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Montserrat', 'Inter Variable', ui-sans-serif, sans-serif;
   --font-serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
 
-  --color-paper: #faf9f6;
+  /* surfaces */
+  --color-paper: #f6f8fc;
   --color-panel: #ffffff;
-  --color-hairline: #e5e1d8;
-  --color-hairline-strong: #d3cec1;
+  --color-hairline: #e3e9f2;
+  --color-hairline-strong: #cdd7e6;
 
-  --color-ink-950: #10201f;
-  --color-ink-900: #16302f;
-  --color-ink-800: #1d403e;
-  --color-ink-700: #275553;
-  --color-ink-600: #336c69;
-  --color-ink-500: #46817d;
-  --color-ink-100: #d9e6e4;
-  --color-ink-50: #eef4f3;
+  /* brand navy (chrome + headings) */
+  --color-navy-950: #081022;
+  --color-navy-900: #0a1428;
+  --color-navy-800: #101f3c;
+  --color-navy-700: #1a2c50;
 
-  --color-body: #232a29;
-  --color-muted: #5d6763;
-  --color-faint: #8a938e;
+  /* brand gradient family */
+  --color-aqua-500: #2ee6c9;
+  --color-cyan-500: #14b8d4;
+  --color-cyan-600: #0899b8;
+  --color-blue-600: #2f6bf6;
+  --color-blue-700: #2456d4;
+  --color-indigo-600: #4f46e5;
 
-  --color-sage-700: #3e6b4f;
-  --color-sage-600: #4a7d5e;
-  --color-sage-100: #e3eee6;
+  /* legacy ink aliases → navy/blue family (keeps components working) */
+  --color-ink-950: #0b1730;
+  --color-ink-900: #122244;
+  --color-ink-800: #1a2f5c;
+  --color-ink-700: #24408a;
+  --color-ink-600: #2f6bf6;
+  --color-ink-500: #4a80f7;
+  --color-ink-100: #dbe6fd;
+  --color-ink-50: #eef3fe;
 
+  --color-body: #1c2740;
+  --color-muted: #5a6784;
+  --color-faint: #8b96af;
+
+  /* semantic (kept warm for legibility against the cool brand) */
+  --color-sage-700: #0f766e;
+  --color-sage-600: #0d9488;
+  --color-sage-100: #d6f3ef;
   --color-amber-700: #92600c;
   --color-amber-600: #b07514;
-  --color-amber-100: #f7ecd7;
+  --color-amber-100: #f8edd4;
+  --color-clay-700: #b52e40;
+  --color-clay-600: #cc3a4e;
+  --color-clay-100: #fbe2e6;
 
-  --color-clay-700: #9c3d2e;
-  --color-clay-600: #b04a39;
-  --color-clay-100: #f6e3de;
+  --color-gold: #14b8d4; /* legacy alias — now brand cyan */
 
-  --color-gold: #c9a227;
+  /* CORE suite identity colours (from the brand gradient) */
+  --color-neg-700: #2456d4;   /* C — Contracting — blue */
+  --color-neg-600: #2f6bf6;
+  --color-neg-100: #dbe6fd;
+  --color-neg-50: #eef3fe;
+  --color-ops-700: #0e7e99;   /* O — Operational — cyan */
+  --color-ops-600: #0899b8;
+  --color-ops-100: #d3f0f7;
+  --color-ops-50: #ebf8fb;
+  --color-ri-700: #4338ca;    /* R — Revenue Integrity — indigo */
+  --color-ri-600: #4f46e5;
+  --color-ri-100: #e3e1fb;
+  --color-ri-50: #f1f0fd;
+  --color-ora-700: #0c8577;   /* E — Enquiry — aqua/teal */
+  --color-ora-600: #0d9488;
+  --color-ora-100: #d6f3ef;
+  --color-ora-50: #ecfaf8;
 
-  /* CORE suite identity colours */
-  --color-neg-700: #24507e;   /* C — Contracting suite — blue */
-  --color-neg-600: #2f5d8a;
-  --color-neg-100: #dde8f2;
-  --color-neg-50: #eef4f9;
-  --color-ops-700: #8f6a14;   /* O — Operational suite — ochre */
-  --color-ops-600: #a87e1c;
-  --color-ops-100: #f2e7c8;
-  --color-ops-50: #f9f4e4;
-  --color-ri-700: #5d4080;    /* R — Revenue Integrity suite — violet */
-  --color-ri-600: #6e4a8e;
-  --color-ri-100: #e9e1f2;
-  --color-ri-50: #f4f0f9;
-  --color-ora-700: #3e6b4f;   /* E — Enquiry suite — green */
-  --color-ora-600: #4a7d5e;
-  --color-ora-100: #e3eee6;
-  --color-ora-50: #f0f6f2;
-
-  --shadow-card: 0 1px 2px rgb(22 48 47 / 0.05), 0 4px 16px -8px rgb(22 48 47 / 0.10);
-  --shadow-raised: 0 2px 4px rgb(22 48 47 / 0.06), 0 12px 32px -12px rgb(22 48 47 / 0.18);
+  --shadow-card: 0 1px 2px rgb(10 20 40 / 0.05), 0 4px 16px -8px rgb(10 20 40 / 0.10);
+  --shadow-raised: 0 2px 4px rgb(10 20 40 / 0.06), 0 14px 34px -14px rgb(20 40 90 / 0.28);
 }
 
 html {
@@ -82,7 +102,7 @@ html {
 
 .label-caps {
   font-size: 0.6875rem;
-  font-weight: 600;
+  font-weight: 650;
   letter-spacing: 0.09em;
   text-transform: uppercase;
   color: var(--color-muted);
@@ -91,52 +111,63 @@ html {
 .card {
   background: var(--color-panel);
   border: 1px solid var(--color-hairline);
-  border-radius: 0.75rem;
+  border-radius: 0.8rem;
   box-shadow: var(--shadow-card);
 }
 
 .tabular { font-variant-numeric: tabular-nums; }
 
-/* ---------- generated-document rendering ---------- */
+/* brand gradient utilities */
+.brand-gradient {
+  background-image: linear-gradient(135deg, #2ee6c9 0%, #22b8f0 34%, #3b6cf6 68%, #4f46e5 100%);
+}
+.brand-gradient-text {
+  background-image: linear-gradient(100deg, #2ee6c9 0%, #22b8f0 40%, #3b6cf6 75%, #4f46e5 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ---------- generated-document rendering (documents stay serif) ---------- */
 
 .doc {
   font-family: var(--font-serif);
   font-size: 0.9575rem;
   line-height: 1.72;
-  color: #26302e;
+  color: #22304e;
 }
 .doc > :first-child { margin-top: 0; }
 .doc h1 {
   font-size: 1.45rem; font-weight: 700; line-height: 1.25;
-  color: var(--color-ink-900); margin: 2.2rem 0 0.9rem;
+  color: var(--color-navy-900); margin: 2.2rem 0 0.9rem;
   letter-spacing: -0.01em;
 }
 .doc h2 {
-  font-size: 1.12rem; font-weight: 700; color: var(--color-ink-900);
+  font-size: 1.12rem; font-weight: 700; color: var(--color-navy-900);
   margin: 2rem 0 0.65rem; letter-spacing: -0.005em;
 }
 .doc h3 {
   font-family: var(--font-sans);
   font-size: 0.72rem; font-weight: 650; letter-spacing: 0.08em;
-  text-transform: uppercase; color: var(--color-ink-600);
+  text-transform: uppercase; color: var(--color-blue-700);
   margin: 1.6rem 0 0.5rem;
 }
 .doc p { margin: 0.65rem 0; }
-.doc strong { font-weight: 650; color: var(--color-ink-950); }
+.doc strong { font-weight: 650; color: var(--color-navy-950); }
 .doc em { font-style: italic; }
 .doc ul, .doc ol { margin: 0.65rem 0 0.9rem; padding-left: 1.35rem; }
 .doc ul { list-style: none; }
 .doc ul > li { position: relative; margin: 0.32rem 0; }
 .doc ul > li::before {
   content: ''; position: absolute; left: -1.1rem; top: 0.66em;
-  width: 0.32rem; height: 0.12rem; background: var(--color-ink-500);
+  width: 0.32rem; height: 0.12rem; background: var(--color-blue-600);
 }
 .doc ol { list-style: decimal; }
 .doc ol > li { margin: 0.32rem 0; padding-left: 0.2rem; }
 .doc blockquote {
   margin: 1rem 0; padding: 0.7rem 1.1rem;
-  border-left: 3px solid var(--color-gold);
-  background: #f7f5ef; border-radius: 0 0.5rem 0.5rem 0;
+  border-left: 3px solid var(--color-cyan-500);
+  background: #f0f6fb; border-radius: 0 0.5rem 0.5rem 0;
   font-size: 0.925rem;
 }
 .doc blockquote p { margin: 0.3rem 0; }
@@ -160,7 +191,7 @@ html {
 .doc tbody tr:last-child td { border-bottom: none; }
 .doc code {
   font-family: var(--font-sans); font-size: 0.8em; font-weight: 600;
-  background: var(--color-ink-50); color: var(--color-ink-700);
+  background: var(--color-ink-50); color: var(--color-blue-700);
   padding: 0.1em 0.42em; border-radius: 0.32em;
   white-space: nowrap;
 }
@@ -169,7 +200,7 @@ html {
 .stream-caret::after {
   content: ''; display: inline-block; width: 0.55em; height: 1.05em;
   margin-left: 0.15em; vertical-align: text-bottom;
-  background: var(--color-ink-600);
+  background: var(--color-blue-600);
   animation: caret-blink 0.9s steps(1) infinite;
 }
 @keyframes caret-blink { 50% { opacity: 0; } }

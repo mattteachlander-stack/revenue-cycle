@@ -53,26 +53,26 @@ IMG = {
 
 CSS = """
 :root{
-  --ink:#10201f; --ink2:#1d403e; --teal:#336c69; --paper:#faf9f6; --panel:#fff;
-  --hair:#d3cec1; --muted:#5d6763; --faint:#8a938e; --gold:#c9a227; --gold-soft:#e8c96a;
-  --c:#24507e; --o:#8f6a14; --r:#5d4080; --e:#3e6b4f;
-  --cl:#dde8f2; --ol:#f2e7c8; --rl:#e9e1f2; --el:#e3eee6;
-  --mist:#8aa5a2; --w80:#d9e6e4; --clay:#9c3d2e; --sage:#3e6b4f;
+  --ink:#081022; --ink2:#101f3c; --teal:#2456d4; --paper:#f6f8fc; --panel:#fff;
+  --hair:#cdd7e6; --muted:#5a6784; --faint:#8b96af; --gold:#14b8d4; --gold-soft:#2ee6c9;
+  --c:#2456d4; --o:#0e7e99; --r:#4338ca; --e:#0c8577;
+  --cl:#dbe6fd; --ol:#d3f0f7; --rl:#e3e1fb; --el:#d6f3ef;
+  --mist:#8a9abf; --w80:#c6d2e8; --clay:#b52e40; --sage:#0d9488;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-snap-type:y mandatory}
-body{font-family:'Segoe UI',Calibri,'Helvetica Neue',Arial,sans-serif;color:var(--ink);background:#0c1817}
+body{font-family:'Segoe UI',Calibri,'Helvetica Neue',Arial,sans-serif;color:var(--ink);background:#050b18}
 .slide{min-height:100vh;scroll-snap-align:start;display:flex;align-items:center;justify-content:center;
   background:var(--paper);position:relative;padding:4.5vh 4vw 6vh}
 .slide.dark{background:var(--ink);color:#fff}
 .inner{width:min(1220px,100%)}
-.serif{font-family:Georgia,'Times New Roman',serif}
+.serif{font-family:Verdana,Geneva,sans-serif}
 .kicker{display:flex;align-items:center;gap:.55rem;font-size:.72rem;font-weight:700;letter-spacing:.14em;
   text-transform:uppercase;color:var(--teal);margin-bottom:.7rem}
 .dark .kicker{color:var(--gold)}
 .chip{display:inline-grid;place-items:center;width:1.5rem;height:1.5rem;border-radius:.4rem;color:#fff;
-  font-family:Georgia,serif;font-size:.95rem;font-weight:700}
-h1{font-family:Georgia,serif;font-size:clamp(1.6rem,3.4vw,2.5rem);line-height:1.08;letter-spacing:-.01em;margin-bottom:1rem}
+  font-family:Verdana,Geneva,sans-serif;font-size:.95rem;font-weight:700}
+h1{font-family:Verdana,Geneva,sans-serif;font-weight:700;font-size:clamp(1.6rem,3.4vw,2.5rem);line-height:1.08;letter-spacing:-.01em;margin-bottom:1rem}
 .lede{font-size:clamp(.85rem,1.25vw,1rem);color:var(--muted);line-height:1.45;max-width:72ch;margin-bottom:1.4rem}
 .dark .lede{color:var(--w80)}
 .cols{display:grid;gap:1.4rem;align-items:start}
@@ -84,17 +84,17 @@ ul.b{list-style:none;display:flex;flex-direction:column;gap:.75rem;font-size:cla
 ul.b b{color:var(--ink)} ul.b span{color:var(--muted)}
 .dark ul.b b{color:#fff}.dark ul.b span{color:var(--w80)}
 .card{background:var(--panel);border:1px solid var(--hair);border-radius:.8rem;padding:1.15rem 1.3rem}
-.quote{font-family:Georgia,serif;font-style:italic;font-size:.95rem;line-height:1.4;color:var(--ink)}
+.quote{font-family:Verdana,Geneva,sans-serif;font-style:italic;font-size:.95rem;line-height:1.4;color:var(--ink)}
 .small{font-size:.7rem;color:var(--faint);margin-top:.5rem}
-.punch{font-family:Georgia,serif;font-style:italic;font-size:clamp(.85rem,1.2vw,1rem);color:var(--teal);margin-top:1.2rem}
+.punch{font-family:Verdana,Geneva,sans-serif;font-style:italic;font-size:clamp(.85rem,1.2vw,1rem);color:var(--teal);margin-top:1.2rem}
 .dark .punch{color:var(--gold-soft)}
 .corebar{display:flex;gap:.5rem;margin-bottom:1.1rem}
 .corebar .l{display:grid;place-items:center;width:3.4rem;height:3.4rem;border-radius:.8rem;color:#fff;
-  font-family:Georgia,serif;font-size:1.7rem;font-weight:700}
+  font-family:Verdana,Geneva,sans-serif;font-size:1.7rem;font-weight:700}
 .suite{background:var(--panel);border:1px solid var(--hair);border-radius:.8rem;overflow:hidden;display:flex;flex-direction:column}
 .suite .bar{height:4px}
 .suite .pad{padding:1rem 1.1rem}
-.suite h3{font-family:Georgia,serif;font-size:1.05rem;margin:.4rem 0 .1rem}
+.suite h3{font-family:Verdana,Geneva,sans-serif;font-size:1.05rem;margin:.4rem 0 .1rem}
 .suite .strap{font-size:.62rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase}
 .suite ul{list-style:none;margin-top:.6rem;display:flex;flex-direction:column;gap:.35rem;font-size:.76rem;color:var(--muted)}
 .foot{position:absolute;left:4vw;right:4vw;bottom:1.4vh;display:flex;justify-content:space-between;
@@ -161,6 +161,7 @@ slides.append(f"""
       <span style="color:var(--gold-soft)">Or just the piece you need.</span></h1>
       <p class="lede" style="color:var(--mist)">CORE — Contracting · Operational · Revenue Integrity · Enquiry.
       Modular revenue-cycle intelligence for Australian day hospitals and independent private hospitals.</p>
+      <p style="font-size:.95rem;font-weight:700;color:#fff;margin-bottom:.8rem">Every <span style="color:#2ee6c9">Contract</span>. Every <span style="color:#22b8f0">Dollar</span>. Every <span style="color:#7c9dff">Decision</span>.</p>
       <p style="font-size:.85rem;color:var(--w80)">By Counterpart Health · Briefing for prospective pilot sites</p>
     </div>
     <div><img class="shot" src="{IMG['hero']}" alt="CORE platform home">

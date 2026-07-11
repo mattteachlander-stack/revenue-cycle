@@ -24,30 +24,31 @@ CHARTS = os.path.join(ASSETS, 'charts')
 OUT = os.path.join(HERE, 'core-pilot-deck.pptx')
 
 # ---------- palette ----------
-INK = RGBColor(0x10, 0x20, 0x1F)
-INK2 = RGBColor(0x1D, 0x40, 0x3E)
-TEAL = RGBColor(0x33, 0x6C, 0x69)
-PAPER = RGBColor(0xFA, 0xF9, 0xF6)
+# CORE brand palette
+INK = RGBColor(0x08, 0x10, 0x22)          # navy 950
+INK2 = RGBColor(0x10, 0x1F, 0x3C)         # navy 800
+TEAL = RGBColor(0x24, 0x56, 0xD4)         # brand blue (headings/accents on light)
+PAPER = RGBColor(0xF6, 0xF8, 0xFC)
 PANEL = RGBColor(0xFF, 0xFF, 0xFF)
-HAIR = RGBColor(0xD3, 0xCE, 0xC1)
-MUTED = RGBColor(0x5D, 0x67, 0x63)
-FAINT = RGBColor(0x8A, 0x93, 0x8E)
-GOLD = RGBColor(0xC9, 0xA2, 0x27)
-GOLD_SOFT = RGBColor(0xE8, 0xC9, 0x6A)
+HAIR = RGBColor(0xCD, 0xD7, 0xE6)
+MUTED = RGBColor(0x5A, 0x67, 0x84)
+FAINT = RGBColor(0x8B, 0x96, 0xAF)
+GOLD = RGBColor(0x14, 0xB8, 0xD4)         # brand cyan
+GOLD_SOFT = RGBColor(0x2E, 0xE6, 0xC9)    # brand aqua
 WHITE = RGBColor(0xFF, 0xFF, 0xFF)
-W80 = RGBColor(0xD9, 0xE6, 0xE4)
-MIST = RGBColor(0x8A, 0xA5, 0xA2)
-# suite colours
-C_BLUE = RGBColor(0x24, 0x50, 0x7E)
-O_OCHRE = RGBColor(0x8F, 0x6A, 0x14)
-R_VIOLET = RGBColor(0x5D, 0x40, 0x80)
-E_GREEN = RGBColor(0x3E, 0x6B, 0x4F)
-C_BLUE_L = RGBColor(0xDD, 0xE8, 0xF2)
-O_OCHRE_L = RGBColor(0xF2, 0xE7, 0xC8)
-R_VIOLET_L = RGBColor(0xE9, 0xE1, 0xF2)
-E_GREEN_L = RGBColor(0xE3, 0xEE, 0xE6)
+W80 = RGBColor(0xC6, 0xD2, 0xE8)
+MIST = RGBColor(0x8A, 0x9A, 0xBF)
+# suite colours (brand gradient family)
+C_BLUE = RGBColor(0x24, 0x56, 0xD4)
+O_OCHRE = RGBColor(0x0E, 0x7E, 0x99)
+R_VIOLET = RGBColor(0x43, 0x38, 0xCA)
+E_GREEN = RGBColor(0x0C, 0x85, 0x77)
+C_BLUE_L = RGBColor(0xDB, 0xE6, 0xFD)
+O_OCHRE_L = RGBColor(0xD3, 0xF0, 0xF7)
+R_VIOLET_L = RGBColor(0xE3, 0xE1, 0xFB)
+E_GREEN_L = RGBColor(0xD6, 0xF3, 0xEF)
 
-SERIF = 'Georgia'
+SERIF = 'Verdana'  # geometric-ish display fallback available everywhere
 SANS = 'Calibri'
 SW, SH = Inches(13.333), Inches(7.5)
 
@@ -199,12 +200,14 @@ with Image.open(os.path.join(V2, '30-core-landing.png')) as im:
 
 # ================================================================ 1 · title
 s = slide(INK)
-core_letters(s, Inches(0.75), Inches(1.7), size=Inches(0.72), gap=Inches(0.11), font_pt=30)
+s.shapes.add_picture(os.path.join(ASSETS, 'core-mark.png'), Inches(0.72), Inches(0.62), height=Inches(0.85))
+core_letters(s, Inches(0.75), Inches(1.85), size=Inches(0.72), gap=Inches(0.11), font_pt=28)
 _, tf = box(s, Inches(0.72), Inches(2.75), Inches(7.2), Inches(1.9))
 add_par(tf, 'The full revenue cycle.', 40, WHITE, font=SERIF, bold=True, space_after=2)
 add_par(tf, 'Or just the piece you need.', 40, GOLD_SOFT, font=SERIF, bold=True, space_after=12)
-add_par(tf, 'CORE — Contracting · Operational · Revenue Integrity · Enquiry. Modular revenue-cycle intelligence for Australian day hospitals and independent private hospitals.',
-        13.5, MIST, line=1.35)
+add_par(tf, 'CORE — Contracting · Operational · Revenue Integrity · Enquiry. Commercial intelligence for healthcare: modular revenue-cycle capability for Australian day hospitals and independent private hospitals.',
+        13.5, MIST, line=1.35, space_after=10)
+add_par(tf, 'Every Contract. Every Dollar. Every Decision.', 14, GOLD_SOFT, bold=True)
 hh = pic_card(s, 'title-hero.png', Inches(7.75), Inches(3.55), Inches(5.15), folder=ASSETS)
 _, tf = box(s, Inches(7.75), Inches(3.55) + hh + Inches(0.07), Inches(5.15), Inches(0.3))
 add_par(tf, 'The working platform — synthetic data', 9.5, MIST, italic=True)
@@ -486,7 +489,8 @@ footer(s, 15)
 
 # ================================================================ 16 · close
 s = slide(INK)
-core_letters(s, Inches(0.75), Inches(2.05), size=Inches(0.55), gap=Inches(0.09), font_pt=23)
+s.shapes.add_picture(os.path.join(ASSETS, 'core-mark.png'), Inches(0.72), Inches(1.35), height=Inches(0.7))
+core_letters(s, Inches(0.75), Inches(2.25), size=Inches(0.55), gap=Inches(0.09), font_pt=22)
 _, tf = box(s, Inches(0.72), Inches(2.95), Inches(11.8), Inches(1.6))
 add_par(tf, 'Next step: a 30-minute walkthrough,\non your renewal timeline.', 34, WHITE, font=SERIF, bold=True, line=1.15)
 _, tf = box(s, Inches(0.75), Inches(4.9), Inches(11), Inches(0.9))
