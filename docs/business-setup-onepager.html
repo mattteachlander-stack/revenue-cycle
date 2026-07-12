@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<title>Starting a health-tech business in Victoria — one-page guide</title>
+<style>
+  :root {
+    --navy: #081022; --blue: #2f6bf6; --blue-d: #2456d4; --indigo: #4f46e5;
+    --cyan: #0899b8; --aqua: #2ee6c9; --ink: #14203a; --muted: #4a5872;
+    --faint: #8a94a8; --hair: #dde3ee; --panel: #f5f7fb; --amber: #9a6b15; --clay: #a13c2e;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  @page { size: A4; margin: 0; }
+  html, body { width: 210mm; }
+  body {
+    font-family: 'Segoe UI', -apple-system, 'Helvetica Neue', Arial, sans-serif;
+    color: var(--ink); background: #fff; font-size: 7.7pt; line-height: 1.34;
+  }
+  .page { width: 210mm; min-height: 297mm; padding: 7mm 10mm 5.5mm; display: flex; flex-direction: column; }
+  .masthead { display: flex; align-items: baseline; justify-content: space-between; border-bottom: 2.5px solid var(--navy); padding-bottom: 2.2mm; }
+  .masthead h1 { font-size: 14.5pt; font-weight: 800; letter-spacing: -0.01em; color: var(--navy); }
+  .masthead h1 span { background: linear-gradient(120deg, var(--cyan), var(--blue) 55%, var(--indigo)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .masthead .meta { font-size: 7pt; color: var(--faint); text-align: right; }
+  .disclaimer { font-size: 6.8pt; color: var(--muted); background: var(--panel); border: 1px solid var(--hair); border-radius: 2mm; padding: 1.2mm 2.4mm; margin: 1.8mm 0 2mm; }
+  .cols { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4mm; flex: 1; }
+  h2 { font-size: 8.6pt; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 1.6mm; padding-bottom: 0.8mm; border-bottom: 1.5px solid var(--hair); }
+  .c1 h2 { color: var(--blue-d); } .c2 h2 { color: var(--clay); } .c3 h2 { color: var(--cyan); }
+  h3 { font-size: 7.5pt; font-weight: 700; color: var(--navy); margin: 1.3mm 0 0.5mm; }
+  p, li { font-size: 7.25pt; color: var(--ink); }
+  ul, ol { padding-left: 3.6mm; margin-bottom: 1mm; }
+  li { margin-bottom: 0.45mm; }
+  .sub { color: var(--muted); }
+  strong { font-weight: 700; color: var(--navy); }
+  .step { display: flex; gap: 1.8mm; margin-bottom: 0.8mm; }
+  .step .n { flex-shrink: 0; width: 4mm; height: 4mm; border-radius: 1.1mm; background: var(--blue); color: #fff; font-size: 6.6pt; font-weight: 800; display: grid; place-items: center; margin-top: 0.3mm; }
+  .warn { border-left: 2.5px solid var(--clay); background: #fbf3f1; padding: 1.4mm 2mm; border-radius: 0 1.5mm 1.5mm 0; margin: 1.4mm 0; }
+  .warn p, .warn li { font-size: 7pt; }
+  .grant { border: 1px solid var(--hair); border-radius: 1.8mm; padding: 1.2mm 2mm; margin-bottom: 1mm; }
+  .grant .name { font-weight: 700; font-size: 7.6pt; color: var(--navy); }
+  .grant .amt { float: right; font-weight: 800; font-size: 7.4pt; color: var(--cyan); }
+  .grant p { font-size: 6.9pt; color: var(--muted); margin-top: 0.4mm; }
+  .recs { margin-top: 2mm; background: var(--navy); color: #fff; border-radius: 2.2mm; padding: 2.6mm 3.2mm; }
+  .recs h2 { color: var(--aqua); border-bottom-color: rgba(255,255,255,0.18); }
+  .recs ol { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1mm 5mm; padding-left: 4mm; }
+  .recs li { color: #dce4f5; font-size: 7pt; margin-bottom: 0.4mm; }
+  .recs strong { color: #fff; }
+  .sources { margin-top: 1.8mm; border-top: 1px solid var(--hair); padding-top: 1.4mm; font-size: 6.2pt; color: var(--faint); line-height: 1.5; }
+  .sources a { color: var(--blue-d); text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="masthead">
+    <h1>Starting a health-tech business in <span>Victoria</span> — setup, protection &amp; funding</h1>
+    <div class="meta">Prepared July 2026 · two co-founders, both currently employed<br>in the field of the venture, by the same organisation</div>
+  </div>
+  <p class="disclaimer"><strong>General information only — not legal, tax or financial advice.</strong> The employment/IP section in particular turns on the exact wording of your contracts and policies: engage an employment/IP lawyer and an accountant before acting. Sources listed at foot; figures current at July 2026.</p>
+
+  <div class="cols">
+    <!-- ============ column 1: setup ============ -->
+    <div class="c1">
+      <h2>1 · Set up the business properly</h2>
+      <h3>Structure — company, not partnership</h3>
+      <p class="sub">For two founders in health: a <strong>Pty Ltd company</strong> is the default — limited liability, a clean vehicle to own the IP, investable and grant-eligible. A plain partnership makes each of you personally liable for the other's debts. A discretionary trust can add tax flexibility later — accountant's call.</p>
+      <h3>Registrations, in order</h3>
+      <div class="step"><span class="n">1</span><p><strong>Clear the name three ways:</strong> ASIC name availability, IP Australia trade-mark search, and domain availability. A registered business name is <em>not</em> a trade mark — only a trade mark stops others using it.</p></div>
+      <div class="step"><span class="n">2</span><p><strong>Register the company</strong> with ASIC (≈$611, issues your ACN) via register.business.gov.au — one front door for most of this list.</p></div>
+      <div class="step"><span class="n">3</span><p><strong>ABN</strong> (free, Australian Business Register), then <strong>TFN</strong>; register a <strong>business name</strong> only if trading under something other than the company name.</p></div>
+      <div class="step"><span class="n">4</span><p><strong>GST</strong> at $75k turnover; <strong>.com.au domain</strong> (needs the ABN); business bank account before the first dollar moves.</p></div>
+      <h3>Protecting yourselves as co-founders</h3>
+      <ul>
+        <li><strong>Shareholders' agreement before the company is worth anything:</strong> equity split, founder vesting, decision rights, deadlock resolution, exit/drag/tag, and what happens if one of you stops working on it.</li>
+        <li><strong>IP deeds of assignment</strong> — everything either founder creates for the venture is assigned in writing to the company.</li>
+        <li><strong>Insurance for health:</strong> professional indemnity is non-negotiable for advice/analytics products; add cyber, public liability, D&amp;O as you grow. Privacy Act/APP duties apply to health information at any business size.</li>
+      </ul>
+      <h3>Business loans — the honest picture</h3>
+      <p class="sub">Banks lend against <strong>security and trading history</strong> — pre-revenue startups have neither, so early "loans" are really personal guarantees or mortgage draws (be cautious). No general government startup-loan scheme exists. Realistic early capital: founder funds → non-dilutive grants (col. 3) → RDTI-refund advance financing → angels. Debt makes sense once revenue exists.</p>
+    </div>
+
+    <!-- ============ column 2: IP / employment ============ -->
+    <div class="c2">
+      <h2>2 · The IP line while you're both still employed</h2>
+      <p class="sub">Your biggest legal risk — the venture sits in the same field as your day jobs, and you share an employer.</p>
+      <h3>Where the line sits</h3>
+      <ul>
+        <li>Your employer owns IP created <strong>"in the course of employment"</strong> — strongest where creating that kind of thing is part of your duties. Contracts often widen this: read the <strong>IP, moonlighting, conflict-of-interest and restraint clauses</strong> in both contracts and incorporated policies.</li>
+        <li><strong>Skills, experience and know-how in your head are generally yours.</strong> Documents, data, templates, pricing, contract terms and customer relationships are generally <strong>theirs</strong> — and confidentiality obligations survive resignation indefinitely.</li>
+        <li>Employees and officers also owe statutory duties (Corporations Act ss 182–183): no improper use of your <strong>position or information</strong> to gain an advantage — this covers diverting a business opportunity your employer could have pursued.</li>
+      </ul>
+      <div class="warn">
+        <p><strong>Danger zones — any one can sink the venture:</strong></p>
+        <ul>
+          <li>Building on employer time, devices, systems or accounts.</li>
+          <li>Using anything confidential from work — fund rates, contract terms, internal processes, audit data — in the product or the pitch.</li>
+          <li>Soliciting your employer's clients or staff while employed.</li>
+          <li>A restraint clause you assumed was unenforceable — courts do enforce reasonable ones, and an injunction can stop a launch cold.</li>
+        </ul>
+      </div>
+      <h3>Pathways (choose deliberately)</h3>
+      <div class="step"><span class="n">A</span><p><strong>Quiet independent build:</strong> own time, own devices, public sources only; keep a provable creation trail (repo history, dated notes). Lowest friction — but conflict clauses may still require disclosure.</p></div>
+      <div class="step"><span class="n">B</span><p><strong>Disclose and get a written carve-out:</strong> some employers consent, define the boundary, even become a first customer. Safest legally; tips your hand.</p></div>
+      <div class="step"><span class="n">C</span><p><strong>Resign before serious commercial activity</strong> (pilots, sales, funding): cleanest position; take nothing but expertise. Restraints still apply — get advice on scope.</p></div>
+      <p class="sub" style="margin-top:1mm"><strong>Recommended:</strong> A now → legal review of both contracts → B or C before any pilot or revenue conversation. Both founders sharing one employer doubles the exposure — one adviser should review both contracts together.</p>
+    </div>
+
+    <!-- ============ column 3: funding ============ -->
+    <div class="c3">
+      <h2>3 · Grants &amp; government funding — health</h2>
+      <p class="sub" style="margin-bottom:1.4mm">Most require a company + ABN first — another reason to incorporate early. Monitor <strong>GrantConnect</strong> and the business.gov.au grant finder monthly.</p>
+      <div class="grant"><span class="amt">43.5%</span><span class="name">R&amp;D Tax Incentive (federal)</span>
+        <p>Refundable offset on eligible R&amp;D, turnover &lt;$20m — cash back on dev spend. From 1 Jul 2028: threshold $50m, rate ≈48%, refunds limited to companies &lt;10 yrs, min spend $50k. Register with AusIndustry annually.</p></div>
+      <div class="grant"><span class="amt">to $5m</span><span class="name">ANDHealth+ (digital health)</span>
+        <p>Australia's dedicated digital-health commercialisation program — non-dilutive funding + structured support; expanded with $33m under the MRFF Incubator. On-target for health software.</p></div>
+      <div class="grant"><span class="amt">$132m pool</span><span class="name">MRFF BioMedTech Incubator (federal)</span>
+        <p>Funds incubators that back SMEs developing diagnostics, devices and <em>digital technologies</em> — apply via the incubators (e.g. ANDHealth), not the MRFF directly.</p></div>
+      <div class="grant"><span class="amt">$10–50k</span><span class="name">CSIRO Kick-Start</span>
+        <p>Matched funding for research with CSIRO — turnover &lt;$10m or trading &lt;3 yrs. Good for independently validating analytics/AI methods.</p></div>
+      <div class="grant"><span class="amt">VIC</span><span class="name">Innovation Victoria (new)</span>
+        <p>LaunchVic + Breakthrough Victoria merge into one "front door" from H2 2026 — grants, accelerators, patient co-investment. LaunchVic-era programs continue through transition; healthtech is a priority sector.</p></div>
+      <div class="grant"><span class="amt">⚠ paused</span><span class="name">Industry Growth Program (federal)</span>
+        <p>Commercialisation grants ($50k–$5m) reported paused mid-2026 — verify on business.gov.au before planning around it.</p></div>
+      <p class="sub"><strong>Sequencing:</strong> incorporate → RDTI from the first dev dollar → ANDHealth/Kick-Start with pilot evidence → Innovation Victoria for scale. Grants favour ventures with a pilot site and LOIs.</p>
+    </div>
+  </div>
+
+  <div class="recs">
+    <h2>Recommendations &amp; headline risks</h2>
+    <ol>
+      <li><strong>Incorporate early</strong> (Pty Ltd) and assign all venture IP into the company from day one.</li>
+      <li><strong>Shareholders' agreement + founder vesting</strong> signed before the company has value.</li>
+      <li><strong>Employment/IP legal review of both contracts before any pilot or revenue</strong> — the same-employer, same-field overlap is the venture's #1 risk.</li>
+      <li><strong>Bright lines always:</strong> no employer time, devices, documents or data — and a dated trail proving independent creation.</li>
+      <li><strong>Fund with non-dilutive money first</strong> (RDTI → ANDHealth/Kick-Start → Innovation Victoria); treat bank debt as a post-revenue tool.</li>
+      <li><strong>Risks to price in:</strong> employer IP/confidence claim or injunction; restraint enforcement; grant timelines (6–12 months); PI insurance cost in health.</li>
+    </ol>
+  </div>
+
+  <div class="sources">
+    <strong>Sources:</strong>
+    business.gov.au Business Registration Service &amp; guides · asic.gov.au (company &amp; business-name registration) · abr.gov.au (ABN) ·
+    DW Fox Tucker / LegalVision / Attwood Marshall on employee IP, restraint of trade &amp; fiduciary duties · Corporations Act 2001 ss 182–183 ·
+    business.gov.au R&amp;D Tax Incentive + 2026–27 Budget RDTI changes (Baker McKenzie, SmartCompany) · health.gov.au MRFF 2026 BioMedTech Incubator ·
+    andhealth.com.au (ANDHealth+) · csiro.au Kick-Start · launchvic.org &amp; invest.vic.gov.au (Innovation Victoria, July 2026) ·
+    Startup Daily / SmartCompany (Industry Growth Program pause). Verify all figures before relying on them.
+  </div>
+</div>
+</body>
+</html>
