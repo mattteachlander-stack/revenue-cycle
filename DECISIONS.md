@@ -265,3 +265,27 @@ they can be reviewed afterwards. Newest phase at the bottom.
   legibility — brand colours carry identity, semantic colours carry meaning.
 - **Verification:** full app flow reshoot clean (no console errors); pptx lint
   clean; HTML deck + standalone demo verified over file://.
+
+## D15 — v2 extension adopted; roadmap agreed (planning turn, no build yet)
+- Captured the founder's CORE Build Extension Prompt (v2) and the two council
+  review protocols into `docs/`; wired into CLAUDE.md so no session loses them.
+- Ran the spec through a condensed LLM-Council pass. Five criticisms changed
+  the plan: (1) the Leverage Index ships only fully decomposed and
+  evidence-linked — never a bare score; (2) the intelligence engine's data
+  policy is public sources + the customer's own history, per tenant —
+  cross-customer intelligence architecturally excluded (competition-law bright
+  line); (3) Workspace V2's 14 stages fold into the existing 6-step spine
+  rather than multiplying nav; (4) the three valuation methods are one
+  `Valuation` interface with method/confidence/provenance + override audit
+  trail; (5) data-dense v2 screens use progressive disclosure and existing
+  tokens — no new colours, minimal new nav.
+- Verdict on the refined spec: APPROVE WITH CHANGES, confidence 80%.
+- Agreed waves: W1 clause intelligence + valuation + lever register + AusCare
+  fund profile + Leverage Index + dependency visual → W2 package optimiser +
+  commercial dashboard → W3 change intelligence (version compare, change
+  register, hospital-proposed clause builder, scenario modelling) → W4 board
+  outputs + landing/deck/brief refresh. Each wave gates through council
+  review, design pass, verification, renders, demo rebuild.
+- Prototype remains canned/synthetic: demo the outputs, architect the inputs
+  (typed data contracts with evidence/confidence/provenance, fixtures today,
+  pipelines in the funded build).

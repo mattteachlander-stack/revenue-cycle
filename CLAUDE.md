@@ -102,3 +102,19 @@ Produce `NEXT-STEPS.md`: honest assessment of what the prototype proves and does
 - **Human-in-the-loop is a design principle**, not a disclaimer, and the partner brief and deck should present it as a feature.
 - Commit meaningfully at each phase; keep a clean root README explaining the repo and how to run the prototype.
 - If a phase is ballooning, cut scope yourself in favour of polish on what remains, and note the cut in `DECISIONS.md`.
+
+====================================================================
+EXTENSIONS (do not remove — these govern all work from v2 onward)
+====================================================================
+
+- `docs/core-extension-v2.md` — the CORE Build Extension Prompt (v2):
+  Negotiation Intelligence Engine, fund/hospital intelligence, dependency
+  analysis, Negotiation Leverage Index, Workspace V2, board-ready outputs,
+  Contract Clause Intelligence + Valuation, Negotiation Lever Register,
+  Package Optimiser, Commercial Dashboard, Contract Change Intelligence.
+  Extends this brief; does not replace it.
+- `docs/review-protocols.md` — the LLM Council and Design Council review
+  protocols. Apply (condensed, in writing) at every wave gate.
+- `outline/core-v2-roadmap.md` — the agreed wave plan (W1: clause
+  intelligence + fund intelligence + leverage index; W2: package optimiser +
+  commercial dashboard; W3: change intelligence; W4: board outputs + story).
