@@ -4,6 +4,7 @@ import {
   LayoutDashboard, FileSearch, Signpost, PenLine, MailQuestion,
   Landmark, MessagesSquare, Lock, Check, FlaskConical, LayoutGrid,
   Gauge, Inbox, ClipboardCheck, History, Layers, Scale, ListChecks, GitCompareArrows,
+  Columns3, FileQuestion,
 } from 'lucide-react'
 import { useDemo } from '../state'
 import { useRi } from '../state-integrity'
@@ -96,8 +97,8 @@ export default function Shell({ children }: { children: ReactNode }) {
     { key: 'analyse', to: '/analyse', label: 'Analyse position', sub: 'Positioning paper', unlocked: true, complete: analysisDone },
     { key: 'strategy', to: '/strategy', label: 'Strategy', sub: 'Choose a posture', unlocked: analysisDone, complete: posture !== null },
     { key: 'correspondence', to: '/correspondence', label: 'Correspondence', sub: 'Opening letter', unlocked: posture !== null, complete: letterDone },
-    { key: 'response', to: '/response', label: 'Fund response', sub: 'Digest & counter', unlocked: letterDone, complete: responseDigested },
-    { key: 'closeout', to: '/closeout', label: 'Close-out', sub: 'Board pack', unlocked: responseDigested, complete: false },
+    { key: 'response', to: '/response', label: 'Fund responses', sub: 'Digest & counter, each round', unlocked: letterDone, complete: responseDigested },
+    { key: 'closeout', to: '/closeout', label: 'Close-out', sub: 'Final board pack', unlocked: responseDigested, complete: false },
   ]
 
   return (
@@ -144,6 +145,7 @@ export default function Shell({ children }: { children: ReactNode }) {
             })}
           </ol>
           <div className="mt-1.5 space-y-0.5">
+            <Item accent={MOD.neg} to="/boardpack" icon={Landmark} label="Board pack" sub="Generate at any stage" />
             <Item accent={MOD.neg} to="/fund-intel" icon={Scale} label="Fund intelligence" sub="Profile · leverage index" />
             <Item accent={MOD.neg} to="/clauses" icon={ListChecks} label="Clause intelligence" sub="Register · levers · packages" />
             <Item accent={MOD.neg} to="/changes" icon={GitCompareArrows} label="Change intelligence" sub="Versions · register · scenarios" />
@@ -163,10 +165,14 @@ export default function Shell({ children }: { children: ReactNode }) {
               ) : null}
             />
             <Item accent={MOD.ri} to="/integrity/workbench" icon={ClipboardCheck} label="Workbench" sub="Review & respond" />
+            <Item accent={MOD.ri} to="/integrity/cdi" icon={FileQuestion} label="CDI" sub="Documentation improvement · roadmap" />
           </div>
 
           <SectionLabel color={MOD.ora} letter="E">Enquiry</SectionLabel>
-          <Item accent={MOD.ora} to="/oracle" icon={MessagesSquare} label="Ask the contract" sub="Cited answers · compare contracts" />
+          <div className="space-y-0.5">
+            <Item accent={MOD.ora} to="/oracle" icon={MessagesSquare} label="Ask the contract" sub="Cited answers, one agreement" />
+            <Item accent={MOD.ora} to="/compare" icon={Columns3} label="Compare contracts" sub="One question, every agreement" />
+          </div>
         </nav>
 
         <div className="px-5 py-4 border-t border-white/10">

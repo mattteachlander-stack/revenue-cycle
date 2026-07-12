@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { BookMarked, Columns3, CornerDownLeft, ShieldQuestion } from 'lucide-react'
+import { ArrowRight, BookMarked, Columns3, CornerDownLeft, ShieldQuestion } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import { PageHeader, Pill } from '../components/ui'
 import { Doc } from '../components/Doc'
@@ -11,14 +11,35 @@ interface Turn {
   qa: OracleQA | null // null = fallback
 }
 
-export default function Oracle() {
+const copy = {
+  ask: {
+    kicker: 'Enquiry suite · Ask the contract',
+    title: 'Ask the contract',
+    lede: 'Staff-facing Q&A over a single agreement — AusCare or Federation — plus the public legal framework and Bayview’s internal decisions register. Every answer cites its sources and states confidence; where the contract is silent, it says so and recommends escalation.',
+    placeholder: 'Ask any agreement — payment terms, consents, exclusions, notice periods…',
+    corpusNote: 'Demo corpus: two synthetic HPPAs (AusCare, Federation) · curated legislation summaries · synthetic internal register. Free-text questions map to the nearest demo answer.',
+  },
+  compare: {
+    kicker: 'Enquiry suite · Compare contracts',
+    title: 'Compare contracts',
+    lede: 'One question, every contract’s answer side by side. Termination notice, payment terms, indexation, audit rights — compared across the whole executed portfolio, with per-contract citations, so differences surface instead of hiding in filing cabinets.',
+    placeholder: 'Compare a term across all agreements — e.g. termination notice, payment terms…',
+    corpusNote: 'Demo portfolio: two synthetic HPPAs (AusCare 2023, Federation 2025). Free-text questions map to the nearest demo comparison.',
+  },
+}
+
+export default function Oracle({ mode = 'ask' }: { mode?: 'ask' | 'compare' }) {
   const [turns, setTurns] = useState<Turn[]>([])
   const [input, setInput] = useState('')
   const [busy, setBusy] = useState(false)
   const endRef = useRef<HTMLDivElement>(null)
+  const nav = useNavigate()
 
+  const scoped = oracleCorpus.filter((q) => (mode === 'compare' ? q.scope === 'portfolio' : q.scope === 'single'))
+  const scopedSuggestions = suggestedQuestions.filter((q) => (mode === 'compare' ? q.scope === 'portfolio' : q.scope === 'single'))
   const asked = new Set(turns.map((t) => t.qa?.id).filter(Boolean))
-  const remaining = suggestedQuestions.filter((q) => !asked.has(q.id))
+  const remaining = scopedSuggestions.filter((q) => !asked.has(q.id))
+  const c = copy[mode]
 
   const ask = (text: string, qa: OracleQA | null) => {
     if (busy) return
@@ -30,12 +51,12 @@ export default function Oracle() {
   const submitFree = () => {
     const text = input.trim()
     if (!text) return
-    // match a canned question by crude keyword overlap; otherwise fallback
+    // match a canned question by crude keyword overlap within this module's scope; otherwise fallback
     const norm = (s: string) => s.toLowerCase().replace(/[^a-z0-9 ]/g, '')
     const words = new Set(norm(text).split(/\s+/).filter((w) => w.length > 3))
     let best: OracleQA | null = null
     let bestScore = 0
-    for (const qa of oracleCorpus) {
+    for (const qa of scoped) {
       const qWords = norm(qa.question).split(/\s+/)
       const score = qWords.filter((w) => words.has(w)).length
       if (score > bestScore) { bestScore = score; best = qa }
@@ -49,15 +70,11 @@ export default function Oracle() {
 
   return (
     <div className="flex flex-col h-screen">
-      <PageHeader
-        kicker="Contract oracle · staff-facing"
-        title="Ask the contract"
-        lede="Answers grounded in every executed agreement — AusCare and Federation — plus the public legal framework and Bayview’s internal decisions register. Ask one contract, or compare across the portfolio. Every answer cites its sources and states confidence; where the contracts are silent, it says so and recommends escalation."
-      />
+      <PageHeader kicker={c.kicker} title={c.title} lede={c.lede} />
 
       <div className="flex-1 overflow-y-auto px-8 py-6">
         <div className="max-w-[880px] space-y-6">
-          {turns.length === 0 && (
+          {turns.length === 0 && mode === 'compare' && (
             <>
               <div className="card p-6 border-ora-100" style={{ borderColor: 'var(--color-ora-100)' }}>
                 <div className="flex items-center gap-2 mb-1">
@@ -69,13 +86,29 @@ export default function Oracle() {
                 </p>
                 <SuggestedGrid onPick={(qa) => ask(qa.question, qa)} ids={portfolioQuestions.map((s) => s.id)} />
               </div>
+              <SiblingPointer
+                icon={ShieldQuestion}
+                text="Need one agreement's answer, not a comparison?"
+                cta="Ask the contract"
+                onGo={() => nav('/oracle')}
+              />
+            </>
+          )}
+          {turns.length === 0 && mode === 'ask' && (
+            <>
               <div className="card p-6">
                 <div className="flex items-center gap-2 mb-3">
                   <ShieldQuestion className="size-4 text-ink-600" strokeWidth={1.75} />
-                  <span className="text-[13.5px] font-semibold text-ink-950">Or ask a single agreement — questions your front desk asked this week</span>
+                  <span className="text-[13.5px] font-semibold text-ink-950">Questions your front desk asked this week</span>
                 </div>
                 <SuggestedGrid onPick={(qa) => ask(qa.question, qa)} ids={singleQuestions.map((s) => s.id)} />
               </div>
+              <SiblingPointer
+                icon={Columns3}
+                text="Comparing a term across every agreement instead?"
+                cta="Compare contracts"
+                onGo={() => nav('/compare')}
+              />
             </>
           )}
 
@@ -104,7 +137,7 @@ export default function Oracle() {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && submitFree()}
-            placeholder="Ask any agreement — or compare terms across all of them…"
+            placeholder={c.placeholder}
             className="flex-1 rounded-lg border border-hairline-strong bg-paper px-4 py-2.5 text-[13.5px] outline-none
                        focus:border-ink-500 focus:ring-2 focus:ring-ink-100 placeholder:text-faint"
           />
@@ -117,11 +150,24 @@ export default function Oracle() {
             Ask <CornerDownLeft className="size-3.5" />
           </button>
         </div>
-        <p className="max-w-[880px] text-[10.75px] text-faint mt-2">
-          Demo corpus: two synthetic HPPAs (AusCare, Federation) · curated legislation summaries · synthetic internal register. Free-text questions map to the nearest demo answer.
-        </p>
+        <p className="max-w-[880px] text-[10.75px] text-faint mt-2">{c.corpusNote}</p>
       </div>
     </div>
+  )
+}
+
+function SiblingPointer({ icon: Icon, text, cta, onGo }: {
+  icon: typeof Columns3; text: string; cta: string; onGo: () => void
+}) {
+  return (
+    <button onClick={onGo}
+            className="w-full card px-5 py-3.5 flex items-center gap-3 text-left hover:shadow-raised transition">
+      <Icon className="size-4 shrink-0 text-ora-600" strokeWidth={1.75} />
+      <span className="text-[12.5px] text-muted flex-1">{text}</span>
+      <span className="inline-flex items-center gap-1 text-[12.5px] font-semibold text-ora-700">
+        {cta} <ArrowRight className="size-3" strokeWidth={2.5} />
+      </span>
+    </button>
   )
 }
 

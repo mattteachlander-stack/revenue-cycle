@@ -13,12 +13,15 @@ const steps = [
   { to: '/clauses', title: 'Levers & packages', note: 'Levers tab: 8 priced opportunities. Packages tab: $285k asked / $174k weighted. Trade the tradeables, never the must-haves.' },
   { to: '/strategy', title: 'Choose the posture', note: 'Pick Assertive re-band (the recommended card). The choice is theirs — that\'s the point.' },
   { to: '/correspondence', title: 'The letter', note: 'Draft it, skip the stream. "The copilot has no send button" gets a laugh and lands the trust story.' },
-  { to: '/response', title: 'The fund replies', note: 'Digest the response. The 50%-of-CPI trap is the money moment — a warm letter that legalises under-indexation.' },
+  { to: '/response', title: 'The fund replies — round 1', note: 'Digest the response. The 50%-of-CPI trap is the money moment — a warm letter that legalises under-indexation.' },
+  { to: '/response', title: 'Upload the next round', note: 'The loop: counter sent → upload round 2 → digest again. The scorecard shows +$182k of movement — the evidence pack worked.' },
+  { to: '/boardpack', title: 'Board pack, any stage', note: 'Boards meet monthly; negotiations don\'t wait. Generate the "settlement in reach" pack — the mandate question, not just a status update.' },
   { to: '/changes', title: 'Change intelligence', note: 'Same trap as a tracked change: current vs proposed side by side. Show the register — the negotiation\'s working document.' },
   { to: '/integrity/inbox', title: 'Audit season', note: 'Import the AusCare file → watch the PAS enrichment. Then the workbench: decide one item, export the Excel. A real file downloads.' },
-  { to: '/integrity', title: 'Prove improvement', note: '61% overturned, $32.9k defended, the learning loop. Audits become data, not fire drills.' },
-  { to: '/oracle', title: 'Ask the contracts', note: 'Run the termination comparison (60 vs 90 days, cited). Finish on the Saturday-list question: "the contract is silent — escalate."' },
-  { to: '/closeout', title: 'Board pack', note: 'Generate: sought vs settled, +$289k/yr, plus the risk register and talking points. End on "and nothing was ever sent without a human."' },
+  { to: '/integrity', title: 'Prove improvement', note: 'Outstanding / in progress / finalised at the top, then 61% overturned, $32.9k defended, the historic category view. Audits become data, not fire drills.' },
+  { to: '/oracle', title: 'Ask the contract', note: 'One agreement, cited answers. Finish on the Saturday-list question: "the contract is silent — escalate."' },
+  { to: '/compare', title: 'Compare contracts', note: 'Run the termination comparison (60 vs 90 days, per-contract citations). Two modules, one Enquiry suite.' },
+  { to: '/closeout', title: 'Close-out', note: 'Generate the final pack: sought vs settled, +$289k/yr, plus the risk register and talking points. End on "and nothing was ever sent without a human."' },
 ]
 
 export default function Presenter() {

@@ -12,6 +12,8 @@ interface DemoState {
   setLetterDone: (v: boolean) => void
   responseDigested: boolean
   setResponseDigested: (v: boolean) => void
+  round2Digested: boolean
+  setRound2Digested: (v: boolean) => void
 }
 
 const Ctx = createContext<DemoState | null>(null)
@@ -21,10 +23,12 @@ export function DemoProvider({ children }: { children: ReactNode }) {
   const [posture, setPosture] = useState<PostureId | null>(() => load<PostureId | null>('demo.posture', null))
   const [letterDone, setLetterDone] = useState(() => load('demo.letterDone', false))
   const [responseDigested, setResponseDigested] = useState(() => load('demo.responseDigested', false))
+  const [round2Digested, setRound2Digested] = useState(() => load('demo.round2Digested', false))
   useEffect(() => { save('demo.analysisDone', analysisDone) }, [analysisDone])
   useEffect(() => { save('demo.posture', posture) }, [posture])
   useEffect(() => { save('demo.letterDone', letterDone) }, [letterDone])
   useEffect(() => { save('demo.responseDigested', responseDigested) }, [responseDigested])
+  useEffect(() => { save('demo.round2Digested', round2Digested) }, [round2Digested])
   return (
     <Ctx.Provider
       value={{
@@ -32,6 +36,7 @@ export function DemoProvider({ children }: { children: ReactNode }) {
         posture, setPosture,
         letterDone, setLetterDone,
         responseDigested, setResponseDigested,
+        round2Digested, setRound2Digested,
       }}
     >
       {children}

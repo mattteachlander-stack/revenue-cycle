@@ -10,6 +10,7 @@ import Strategy from './screens/Strategy'
 import Correspondence from './screens/Correspondence'
 import FundResponse from './screens/FundResponse'
 import Closeout from './screens/Closeout'
+import BoardPack from './screens/BoardPack'
 import Oracle from './screens/Oracle'
 import Performance from './screens/Performance'
 import Operational from './screens/Operational'
@@ -19,6 +20,7 @@ import ChangeIntelligence from './screens/ChangeIntelligence'
 import RiDashboard from './screens/integrity/RiDashboard'
 import RiInbox from './screens/integrity/RiInbox'
 import RiWorkbench from './screens/integrity/RiWorkbench'
+import RiCdi from './screens/integrity/RiCdi'
 
 export default function App() {
   return (
@@ -34,7 +36,9 @@ export default function App() {
             <Route path="/correspondence" element={<Correspondence />} />
             <Route path="/response" element={<FundResponse />} />
             <Route path="/closeout" element={<Closeout />} />
-            <Route path="/oracle" element={<Oracle />} />
+            <Route path="/boardpack" element={<BoardPack />} />
+            <Route path="/oracle" element={<Oracle mode="ask" />} />
+            <Route path="/compare" element={<Oracle mode="compare" />} />
             <Route path="/performance" element={<Performance />} />
             <Route path="/operational" element={<Operational />} />
             <Route path="/fund-intel" element={<FundIntelligence />} />
@@ -43,6 +47,7 @@ export default function App() {
             <Route path="/integrity" element={<RiDashboard />} />
             <Route path="/integrity/inbox" element={<RiInbox />} />
             <Route path="/integrity/workbench" element={<RiWorkbench />} />
+            <Route path="/integrity/cdi" element={<RiCdi />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </Shell>

@@ -1,7 +1,8 @@
 import { useNavigate } from 'react-router-dom'
 import {
   ArrowRight, Handshake, History, MessagesSquare, ClipboardCheck, Radar,
-  Braces, Bot, Layers, Sparkles, Scale, ListChecks, GitCompareArrows, type LucideIcon,
+  Braces, Bot, Layers, Sparkles, Scale, ListChecks, GitCompareArrows,
+  Columns3, FileQuestion, Landmark, type LucideIcon,
 } from 'lucide-react'
 import { CoreMark } from '../components/Logo'
 
@@ -30,7 +31,8 @@ const suites: Suite[] = [
     strap: 'Win and keep winning',
     desc: 'Everything that touches the agreement itself — the live negotiation, and whether the value you negotiated actually lands.',
     modules: [
-      { name: 'Negotiation', desc: 'Run current and live HPPA negotiations with the human-in-the-loop copilot.', icon: Handshake, to: '/dashboard', badge: 'Live in demo' },
+      { name: 'Negotiation', desc: 'Run current and live HPPA negotiations round by round with the human-in-the-loop copilot, with board packs generated at any stage.', icon: Handshake, to: '/dashboard', badge: 'Live in demo' },
+      { name: 'Board packs', desc: 'Interim packs for every board meeting during a negotiation, and the final close-out pack when it settles.', icon: Landmark, to: '/boardpack', badge: 'Live in demo' },
       { name: 'Fund intelligence', desc: 'Fund profiles, mutual dependency, and the decomposed Negotiation Leverage Index.', icon: Scale, to: '/fund-intel', badge: 'Live in demo' },
       { name: 'Clause intelligence', desc: 'Every clause classified, unfair terms flagged and valued; levers, packages, commercial dashboard.', icon: ListChecks, to: '/clauses', badge: 'Live in demo' },
       { name: 'Change intelligence', desc: 'Version compare, change register, hospital-proposed clauses and scenario modelling.', icon: GitCompareArrows, to: '/changes', badge: 'Live in demo' },
@@ -58,6 +60,7 @@ const suites: Suite[] = [
     modules: [
       { name: 'Fund audit response', desc: 'Import fund audit files, enrich from the PAS, manage responses, export back to the fund, and track outcomes on dashboards.', icon: ClipboardCheck, to: '/integrity', badge: 'Live in demo' },
       { name: 'Proactive optimisation', desc: 'Claims-vs-contract reconciliation that surfaces underpayments and systematic leakage before anyone audits you.', icon: Radar },
+      { name: 'Clinical documentation improvement', desc: 'Documentation queries at discharge so the record supports the care delivered — audit findings teach it what to catch.', icon: FileQuestion, to: '/integrity/cdi', badge: 'Roadmap' },
     ],
   },
   {
@@ -67,7 +70,8 @@ const suites: Suite[] = [
     strap: 'Ask anything, get citations',
     desc: 'The question-answering layer over everything the platform holds — contracts today, and every other document set you load tomorrow.',
     modules: [
-      { name: 'Ask the contract', desc: 'Staff-facing Q&A over every executed agreement with citations, confidence, and cross-contract comparison.', icon: MessagesSquare, to: '/oracle', badge: 'Live in demo' },
+      { name: 'Ask the contract', desc: 'Staff-facing Q&A over a single agreement with citations, confidence, and escalation when the contract is silent.', icon: MessagesSquare, to: '/oracle', badge: 'Live in demo' },
+      { name: 'Compare contracts', desc: 'One question, every contract’s answer side by side — termination, payment terms, indexation across the portfolio.', icon: Columns3, to: '/compare', badge: 'Live in demo' },
     ],
   },
 ]

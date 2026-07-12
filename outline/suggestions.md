@@ -74,3 +74,8 @@ Status: proposed unless marked otherwise.*
 | Revenue Integrity audit platform (import → PAS → respond → Excel → dashboards) | **Built** |
 | Brand adoption (hex-C, navy/cyan/blue) | **Built** |
 | v2 extension (intelligence engines, leverage index, optimiser, change engine) | **Built** (waves 1–4) |
+| Multi-round fund responses — upload each new letter, digest, counter, repeat | **Built** — round 2 canned (26 Aug letter → +$182k movement scorecard → closing letter); loop card explains further rounds |
+| Board pack at any stage (multiple boards during a negotiation) | **Built** — /boardpack generates stage-aware interim packs (briefing / opening / round 1 / settlement mandate); close-out remains the final pack |
+| CDI module in Revenue Integrity (roadmap) | **Built** — concept preview: discharge documentation queries + learning loop fed by audit outcomes |
+| Enquiry split: Ask the Contract vs Compare Contracts | **Built** — two modules, two routes, scoped question sets, cross-pointers |
+| RI dashboard: outstanding / in progress / finalised + time-frame + historic by category | **Built** — live status counters from the workbench state, Last quarter/6 months/Full year selector, quarter-by-quarter category table with trends |

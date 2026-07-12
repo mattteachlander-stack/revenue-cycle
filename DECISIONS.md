@@ -376,3 +376,45 @@ Everything actionable in `outline/suggestions.md` built in one batch; C10
   HTML decks (17 slides, lint clean; fund-intel screenshot reshot at viewport
   size after the switcher changed the screen — fullPage shot broke slide 9
   bounds, caught by lint). Inline SVG favicon added (kills the benign 404).
+
+## D18 — Iterative negotiation, board packs at any stage, CDI roadmap, Enquiry split, RI dashboard v2
+
+**Date:** 2026-07-12 · **Trigger:** founder — multi-round fund interactions,
+board packs throughout the negotiation, CDI on the RI roadmap, Ask/Compare as
+separate Enquiry modules; plus (mid-turn) RI dashboard status counts
+(outstanding / in progress / finalised), a time-frame selector, and a historic
+view by category.
+
+- **Multi-round loop (Step 5).** `fundReply2.ts` authors round 2: AusCare's
+  26 Aug letter (+2.5% → +4.9%, carve-out deleted, binding joint expert),
+  digest with a round-1 → round-2 movement scorecard (+$182k/yr), and a
+  closing letter. The upload affordance is honest about the demo ("loads a
+  canned round-2 letter"); rounds stack top-to-bottom as a correspondence
+  trail. Round-2 numbers were authored *backwards from the close-out pack* so
+  the fund's "moved from +2.5% to +4.9% in one round" line and the settled
+  table stay literally true.
+- **Board packs at any stage (/boardpack).** Four authored interim packs
+  (briefing / opening lodged / round 1 / settlement mandate) gated by actual
+  progress — you can't generate a pack for a stage the negotiation hasn't
+  reached, and earlier stages stay regenerable (boards ask for what changed
+  since last month). Close-out (Step 6) remains the final sought-vs-settled
+  pack; each interim pack ends on the decision the board is being asked to
+  make, not a status recap.
+- **CDI (roadmap) in RI.** `/integrity/cdi` concept preview: three discharge
+  documentation queries (specificity, consistency, comorbidity capture) and a
+  learning-loop table showing CDI focus areas derived from recorded audit
+  outcomes + clause intelligence. Clinician-only record changes stated
+  on-screen.
+- **Enquiry split.** One `Oracle` component, `mode: 'ask' | 'compare'`; routes
+  `/oracle` and `/compare`; question corpus and free-text matching scoped per
+  module with cross-pointer cards. Chosen over duplicating the screen — the
+  split is a product/navigation statement, not a code fork.
+- **RI dashboard v2.** Status trio (outstanding / in progress / finalised)
+  computed live from workbench state (outstanding includes the
+  awaiting-import batch); time-frame selector gains "Last quarter"; new
+  historic-by-category table: quarter-by-quarter counts with defended-share
+  bars and an H2-vs-H1 trend chip, annotated so rising categories point at
+  the learning actions and CDI.
+- Landing, sidebar, Presenter (16 steps) and both deck framework slides
+  updated to the new module structure. All flows verified headlessly over the
+  preview server and the standalone file — zero console errors.
