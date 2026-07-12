@@ -3,7 +3,7 @@ import { NavLink, useLocation } from 'react-router-dom'
 import {
   LayoutDashboard, FileSearch, Signpost, PenLine, MailQuestion,
   Landmark, MessagesSquare, Lock, Check, FlaskConical, LayoutGrid,
-  Gauge, Inbox, ClipboardCheck, History, Layers,
+  Gauge, Inbox, ClipboardCheck, History, Layers, Scale, ListChecks, GitCompareArrows,
 } from 'lucide-react'
 import { useDemo } from '../state'
 import { useRi } from '../state-integrity'
@@ -142,7 +142,10 @@ export default function Shell({ children }: { children: ReactNode }) {
               )
             })}
           </ol>
-          <div className="mt-1.5">
+          <div className="mt-1.5 space-y-0.5">
+            <Item accent={MOD.neg} to="/fund-intel" icon={Scale} label="Fund intelligence" sub="Profile · leverage index" />
+            <Item accent={MOD.neg} to="/clauses" icon={ListChecks} label="Clause intelligence" sub="Register · levers · packages" />
+            <Item accent={MOD.neg} to="/changes" icon={GitCompareArrows} label="Change intelligence" sub="Versions · register · scenarios" />
             <Item accent={MOD.neg} to="/performance" icon={History} label="Historical" sub="Performance & value realisation" />
           </div>
 

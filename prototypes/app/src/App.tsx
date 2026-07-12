@@ -1,6 +1,7 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { DemoProvider } from './state'
 import { RiProvider } from './state-integrity'
+import { CommercialProvider } from './state-commercial'
 import Shell from './components/Shell'
 import Landing from './screens/Landing'
 import Dashboard from './screens/Dashboard'
@@ -12,6 +13,9 @@ import Closeout from './screens/Closeout'
 import Oracle from './screens/Oracle'
 import Performance from './screens/Performance'
 import Operational from './screens/Operational'
+import FundIntelligence from './screens/FundIntelligence'
+import ClauseIntelligence from './screens/ClauseIntelligence'
+import ChangeIntelligence from './screens/ChangeIntelligence'
 import RiDashboard from './screens/integrity/RiDashboard'
 import RiInbox from './screens/integrity/RiInbox'
 import RiWorkbench from './screens/integrity/RiWorkbench'
@@ -20,6 +24,7 @@ export default function App() {
   return (
     <DemoProvider>
       <RiProvider>
+        <CommercialProvider>
         <Shell>
           <Routes>
             <Route path="/" element={<Landing />} />
@@ -32,12 +37,16 @@ export default function App() {
             <Route path="/oracle" element={<Oracle />} />
             <Route path="/performance" element={<Performance />} />
             <Route path="/operational" element={<Operational />} />
+            <Route path="/fund-intel" element={<FundIntelligence />} />
+            <Route path="/clauses" element={<ClauseIntelligence />} />
+            <Route path="/changes" element={<ChangeIntelligence />} />
             <Route path="/integrity" element={<RiDashboard />} />
             <Route path="/integrity/inbox" element={<RiInbox />} />
             <Route path="/integrity/workbench" element={<RiWorkbench />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </Shell>
+        </CommercialProvider>
       </RiProvider>
     </DemoProvider>
   )

@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import {
   ArrowRight, Handshake, History, MessagesSquare, ClipboardCheck, Radar,
-  Braces, Bot, Layers, Sparkles, type LucideIcon,
+  Braces, Bot, Layers, Sparkles, Scale, ListChecks, GitCompareArrows, type LucideIcon,
 } from 'lucide-react'
 import { CoreMark } from '../components/Logo'
 
@@ -31,6 +31,9 @@ const suites: Suite[] = [
     desc: 'Everything that touches the agreement itself — the live negotiation, and whether the value you negotiated actually lands.',
     modules: [
       { name: 'Negotiation', desc: 'Run current and live HPPA negotiations with the human-in-the-loop copilot.', icon: Handshake, to: '/dashboard', badge: 'Live in demo' },
+      { name: 'Fund intelligence', desc: 'Fund profiles, mutual dependency, and the decomposed Negotiation Leverage Index.', icon: Scale, to: '/fund-intel', badge: 'Live in demo' },
+      { name: 'Clause intelligence', desc: 'Every clause classified, unfair terms flagged and valued; levers, packages, commercial dashboard.', icon: ListChecks, to: '/clauses', badge: 'Live in demo' },
+      { name: 'Change intelligence', desc: 'Version compare, change register, hospital-proposed clauses and scenario modelling.', icon: GitCompareArrows, to: '/changes', badge: 'Live in demo' },
       { name: 'Historical', desc: 'Negotiation performance over time and value realisation through each contract period.', icon: History, to: '/performance', badge: 'Live in demo' },
     ],
   },
