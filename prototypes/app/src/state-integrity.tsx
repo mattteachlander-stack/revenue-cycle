@@ -1,4 +1,5 @@
-import { createContext, useContext, useMemo, useState, type ReactNode } from 'react'
+import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from 'react'
+import { load, save } from './lib/persist'
 import {
   auscareBatch, auscareItems, federationBatch, federationItems,
   type AuditBatch, type AuditItem, type Comment, type Decision,
@@ -28,8 +29,10 @@ const Ctx = createContext<RiState | null>(null)
 const blank = (): ItemState => ({ decision: null, responseNote: '', extraComments: [], extraDocs: [] })
 
 export function RiProvider({ children }: { children: ReactNode }) {
-  const [imported, setImported] = useState(false)
-  const [itemState, setItemState] = useState<Record<string, ItemState>>({})
+  const [imported, setImported] = useState(() => load('ri.imported', false))
+  const [itemState, setItemState] = useState<Record<string, ItemState>>(() => load('ri.itemState', {}))
+  useEffect(() => { save('ri.imported', imported) }, [imported])
+  useEffect(() => { save('ri.itemState', itemState) }, [itemState])
 
   const batches = useMemo<AuditBatch[]>(
     () => (imported ? [{ ...auscareBatch, status: 'in review' as const }, federationBatch] : [auscareBatch, federationBatch]),

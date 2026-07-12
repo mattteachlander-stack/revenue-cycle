@@ -1,7 +1,22 @@
 import { useState } from 'react'
 import { Columns2, GitCompareArrows, Lightbulb, ListTodo, Route } from 'lucide-react'
 import { PageHeader, Section, Pill } from '../components/ui'
+import * as XLSX from 'xlsx'
 import { changes, proposedClause, scenariosFor, type ChangeItem } from '../data/changes'
+
+function exportChanges() {
+  const rows = changes.map((c) => ({
+    'Clause ref': c.clauseRef, Title: c.title, Originator: c.originator, Favour: c.favour,
+    'Risk': c.risk, 'Priority /10': c.priority, 'Value $/yr': c.annualValue, Status: c.status,
+    Owner: c.owner, Summary: c.summary, 'Recommended action': c.action,
+    'Decision history': c.history.map((h) => `${h.when}: ${h.what}`).join(' | '),
+  }))
+  const ws = XLSX.utils.json_to_sheet(rows)
+  ws['!cols'] = [{ wch: 14 }, { wch: 34 }, { wch: 12 }, { wch: 20 }, { wch: 8 }, { wch: 10 }, { wch: 11 }, { wch: 18 }, { wch: 14 }, { wch: 60 }, { wch: 60 }, { wch: 60 }]
+  const wb = XLSX.utils.book_new()
+  XLSX.utils.book_append_sheet(wb, ws, 'Change register')
+  XLSX.writeFile(wb, 'core-change-register.xlsx')
+}
 
 const C = 'var(--color-neg-700)'
 const C600 = 'var(--color-neg-600)'
@@ -137,7 +152,13 @@ function Register() {
           <h2 className="text-[14px] font-semibold text-ink-950">Negotiation change register</h2>
           <p className="text-[11.75px] text-muted mt-0.5">Every proposed change, its owner, status and full decision history — the single source of truth through the negotiation.</p>
         </div>
-        <span className="text-[11.5px] tabular text-faint">{changes.length} items · {agreed} agreed</span>
+        <span className="flex items-center gap-3">
+          <span className="text-[11.5px] tabular text-faint">{changes.length} items · {agreed} agreed</span>
+          <button onClick={exportChanges}
+                  className="rounded-lg border border-hairline-strong px-3 py-1.5 text-[11.5px] font-semibold text-ink-800 hover:bg-ink-50 transition">
+            Export .xlsx
+          </button>
+        </span>
       </div>
       <table className="w-full text-[12px]">
         <thead>

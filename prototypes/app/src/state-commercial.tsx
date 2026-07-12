@@ -1,4 +1,5 @@
-import { createContext, useContext, useState, type ReactNode } from 'react'
+import { createContext, useContext, useEffect, useState, type ReactNode } from 'react'
+import { load, save } from './lib/persist'
 import { clauses, type Valuation, type ValuationOverride } from './data/clauses'
 
 /** Human-in-the-loop valuation overrides (Wave 1) + package selection (Wave 2). */
@@ -17,9 +18,13 @@ export function CommercialProvider({ children }: { children: ReactNode }) {
   const [valuations, setValuations] = useState<Record<string, Valuation>>(() => {
     const m: Record<string, Valuation> = {}
     for (const c of clauses) if (c.valuation) m[c.id] = c.valuation
-    return m
+    return load('com.valuations', m)
   })
-  const [selectedLevers, setSelectedLevers] = useState<Set<string>>(new Set(['L1', 'L2', 'L3', 'L4', 'L5']))
+  const [selectedLevers, setSelectedLevers] = useState<Set<string>>(
+    () => new Set(load<string[]>('com.levers', ['L1', 'L2', 'L3', 'L4', 'L5'])),
+  )
+  useEffect(() => { save('com.valuations', valuations) }, [valuations])
+  useEffect(() => { save('com.levers', [...selectedLevers]) }, [selectedLevers])
 
   const overrideValuation = (clauseId: string, to: number, rationale: string) => {
     setValuations((v) => {

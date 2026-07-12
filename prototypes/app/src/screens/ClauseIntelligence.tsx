@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import {
   AlertTriangle, Check, FileWarning, Layers3, ListChecks, PackageOpen, Scale, Sparkles,
 } from 'lucide-react'
@@ -7,6 +8,7 @@ import {
   clauses, levers, packages, leverById, fmtKv,
   type ClauseRecord, type Contract, type Risk,
 } from '../data/clauses'
+import * as XLSX from 'xlsx'
 import { useCommercial } from '../state-commercial'
 
 const C = 'var(--color-neg-700)'
@@ -164,7 +166,10 @@ function Register({ rows, selected, onSelect }: { rows: ClauseRecord[]; selected
             </div>
           </div>
 
-          <div className="mt-3 text-[10.75px] text-faint">Evidence: {selected.evidence.join(' · ')}</div>
+          <div className="mt-3 flex items-center justify-between">
+            <span className="text-[10.75px] text-faint">Evidence: {selected.evidence.join(' · ')}</span>
+            <AskOracleLink />
+          </div>
         </div>
 
         {/* valuation */}
@@ -222,6 +227,21 @@ function Register({ rows, selected, onSelect }: { rows: ClauseRecord[]; selected
   )
 }
 
+function exportLevers() {
+  const rows = levers.map((l) => ({
+    Lever: l.title, 'Clause refs': l.clauseRefs.join(', '), Issue: l.issue, 'Why it matters': l.why,
+    'Value $/yr': l.negotiationValue, 'Ease': l.ease, 'Likelihood %': l.likelihoodPct,
+    'Recommended position': l.recommended, 'Fallback position': l.fallback,
+    'Dependencies': l.dependencies.join('; '), 'Evidence': l.evidence.join('; '),
+    'Must-have': l.mustHave ? 'Yes' : '', 'Tradeable': l.tradeable ? 'Yes' : '', 'Quick win': l.quickWin ? 'Yes' : '',
+  }))
+  const ws = XLSX.utils.json_to_sheet(rows)
+  ws['!cols'] = [{ wch: 34 }, { wch: 16 }, { wch: 30 }, { wch: 46 }, { wch: 10 }, { wch: 10 }, { wch: 12 }, { wch: 52 }, { wch: 52 }, { wch: 34 }, { wch: 40 }, { wch: 9 }, { wch: 9 }, { wch: 9 }]
+  const wb = XLSX.utils.book_new()
+  XLSX.utils.book_append_sheet(wb, ws, 'Negotiation levers')
+  XLSX.writeFile(wb, 'core-negotiation-levers.xlsx')
+}
+
 // --------------------------------------------------------------- tab: levers
 function Levers() {
   const { selectedLevers, toggleLever } = useCommercial()
@@ -232,7 +252,13 @@ function Levers() {
           <h2 className="text-[14px] font-semibold text-ink-950">Negotiation lever register — AusCare renewal</h2>
           <p className="text-[11.75px] text-muted mt-0.5">Every identified opportunity with positions, evidence and dependencies. Tick levers to build the package on the next tab.</p>
         </div>
-        <span className="text-[11.5px] tabular text-faint">{levers.length} levers · ${Math.round(levers.reduce((s, l) => s + l.negotiationValue, 0) / 1000)}k/yr identified</span>
+        <span className="flex items-center gap-3">
+          <span className="text-[11.5px] tabular text-faint">{levers.length} levers · ${Math.round(levers.reduce((s, l) => s + l.negotiationValue, 0) / 1000)}k/yr identified</span>
+          <button onClick={exportLevers}
+                  className="rounded-lg border border-hairline-strong px-3 py-1.5 text-[11.5px] font-semibold text-ink-800 hover:bg-ink-50 transition">
+            Export .xlsx
+          </button>
+        </span>
       </div>
       <table className="w-full text-[12px]">
         <thead>
@@ -423,6 +449,17 @@ function Kpi({ label, value, sub }: { label: string; value: string; sub: string 
       <div className="text-[24px] font-bold tracking-tight text-ink-950 tabular mt-1.5 leading-none">{value}</div>
       <p className="text-[11.5px] text-muted mt-1.5 leading-snug">{sub}</p>
     </div>
+  )
+}
+
+function AskOracleLink() {
+  const nav = useNavigate()
+  return (
+    <button onClick={() => nav('/oracle')}
+            className="shrink-0 text-[11.5px] font-semibold hover:underline underline-offset-2"
+            style={{ color: 'var(--color-ora-700)' }}>
+      Ask the oracle about this clause ↗
+    </button>
   )
 }
 

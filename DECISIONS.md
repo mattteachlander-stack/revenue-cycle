@@ -327,3 +327,52 @@ they can be reviewed afterwards. Newest phase at the bottom.
   updated. APPROVE.
 - All numbers reconcile with the existing demo narrative (the $45k/$108k/$30k
   clause values are the same figures the positioning paper and charts use).
+
+## D17 — Suggestions register built (A1–A5, B6, C11–C13, D14–D15)
+
+**Date:** 2026-07-12 · **Trigger:** founder — "Build all and combine into one
+html and new PPT."
+
+Everything actionable in `outline/suggestions.md` built in one batch; C10
+(contact details) remains blocked on the founder.
+
+- **A1 Federation profile + fund switcher.** `fundIntel.ts` gains
+  `federationIntel` (benefit ratio 86.2%, no active negotiation, agreement to
+  30 Jun 2028). Fund intelligence switches funds; the leverage index renders
+  only for the active AusCare negotiation — a leverage score against a fund
+  you're not negotiating with would be noise, so Federation shows a
+  "benchmark relationship" banner instead. *Council gate:* domain expert
+  confirmed the asymmetry is a feature, not a gap.
+- **A2 Cross-suite links.** Oracle citations whose source is an HPPA navigate
+  to `/clauses`; the clause drawer offers "Ask the contract about this
+  clause" → `/oracle`. Chosen over a shared modal to keep suites' code
+  independent (routing is the only coupling).
+- **A3 Registers export .xlsx.** `exportLevers()` and `exportChanges()` reuse
+  the RI workbench's SheetJS path; real files, verified via headless download
+  events previously — buttons verified present this build.
+- **A4 Presenter mode.** `components/Presenter.tsx` — 14 steps with speaker
+  notes, floating control, no route hijacking (navigates via the same hash
+  router the user would click through).
+- **A5 Session persistence + Reset demo.** `lib/persist.ts` (sessionStorage)
+  hydrates all three contexts; explicit "Reset demo" in the sidebar clears
+  and reloads. sessionStorage over localStorage so a closed tab still starts
+  clean for the next meeting.
+- **B6 Benchmark strategy memo** (`docs/benchmark-strategy.md`): staged
+  IHACPA/second-tier → own-tenant → legal-gated aggregates; "never" list is
+  explicit.
+- **C11 One-pager**: `deck/build_onepager.py` → `deck/onepager.html` →
+  `deck/core-onepager.pdf` (A4, embedded charts). Playwright print scripts
+  must run from `prototypes/app` (module resolution) — recorded for future
+  turns.
+- **C12 LOI template**: `outline/pilot-loi-template.md`.
+- **C13 Walkthrough recording**: `deck/core-demo-walkthrough.webm` (~100 s,
+  1280×800, silent) captured with Playwright `recordVideo` over the
+  standalone file — first cut for email follow-ups.
+- **D14/D15 story upkeep**: partner brief prices the modular suites and adds
+  platform-breadth differentiation; NEXT-STEPS success metrics gain 3a
+  (clause-intelligence quality) and 3b (leverage-index credibility).
+- **Deliverables rebuilt:** `prototypes/core-demo.html` (single file, 2.9 MB,
+  verified over file:// with zero console errors incl. fund switcher), pptx +
+  HTML decks (17 slides, lint clean; fund-intel screenshot reshot at viewport
+  size after the switcher changed the screen — fullPage shot broke slide 9
+  bounds, caught by lint). Inline SVG favicon added (kills the benign 404).

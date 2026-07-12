@@ -64,6 +64,11 @@ Before any real hospital document enters the system:
   3. Contract Agent answer accuracy on a held-out question set built from their
      own HPPA (target: zero confidently-wrong answers; "silent → escalate"
      behaviour verified);
+  3a. Clause-intelligence quality: unfair-clause flags and valuations reviewed
+     by the CEO against their own agreement (target: no material clause missed;
+     valuations defensible enough to table);
+  3b. Leverage-index credibility: the decomposed factor table survives the
+     CEO's — and ideally an ex-fund adviser's — scrutiny;
   4. Time actually spent by the CEO vs their last negotiation.
 - **Kill criteria (honesty forcing-function):** if the copilot's analysis finds
   nothing a competent reading wouldn't, or model outputs need so much correction
@@ -96,8 +101,11 @@ Before any real hospital document enters the system:
 ## Consolidated recommendation
 
 The wedge is right (day hospitals, negotiation moment), the trust architecture is
-right (human-in-the-loop, cite-everything, escalate-on-silence), and the demo is
-strong enough to open doors. The two things that decide whether this becomes a
+right (human-in-the-loop, cite-everything, escalate-on-silence, override-with-audit-
+trail), and the demo — now the full CORE platform with clause valuation, leverage
+decomposition, package optimisation and change tracking — is strong enough to open
+doors. See docs/benchmark-strategy.md for the benchmark-source plan (the largest
+open product risk) and outline/pilot-loi-template.md for pilot capture. The two things that decide whether this becomes a
 company are **generated-output quality on real contracts** and **a lawful,
 defensible benchmark source** — spend the next 90 days de-risking exactly those
 two, and let everything else stay as light as it is now.

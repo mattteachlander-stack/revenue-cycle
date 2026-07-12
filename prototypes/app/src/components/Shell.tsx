@@ -9,6 +9,7 @@ import { useDemo } from '../state'
 import { useRi } from '../state-integrity'
 import { facility, negotiation } from '../data/facility'
 import { CoreMark, CoreWordmark } from './Logo'
+import Presenter from './Presenter'
 
 const stepIcon = {
   dashboard: LayoutDashboard,
@@ -176,11 +177,18 @@ export default function Shell({ children }: { children: ReactNode }) {
               no live model calls.
             </p>
           </div>
+          <button
+            onClick={() => { sessionStorage.clear(); location.hash = '#/'; location.reload() }}
+            className="mt-2.5 w-full rounded-lg border border-white/15 px-3 py-1.5 text-[11px] font-semibold text-white/70 hover:bg-white/8 hover:text-white transition"
+          >
+            Reset demo
+          </button>
         </div>
       </aside>
 
       <div className="flex-1 ml-[264px] flex flex-col min-h-screen">
         <main className="flex-1">{children}</main>
+        <Presenter />
         <footer className="no-print border-t border-hairline bg-panel/70 px-8 py-3 flex items-center justify-between">
           <p className="text-[11px] text-faint">
             Demo — synthetic data only (Bayview Day Surgery, AusCare Health and Federation Health are fictional).

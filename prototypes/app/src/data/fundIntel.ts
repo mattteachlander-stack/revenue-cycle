@@ -140,3 +140,56 @@ export const hospitalIntel = {
   strengths: ['Quality record (top-quartile, 8 quarters)', 'Shortest ophthalmic + endoscopy waits', 'Multi-specialty day-case mix', 'Growth headroom without capital'],
   weaknesses: ['Payer concentration (top 2 funds = 46%)', 'Thin margin (4.9% EBITDA)', 'No overnight capability (transfer dependency)', 'Single-site exposure'],
 }
+
+// ------------------------------------------------- Federation profile (A1)
+export const federationIntel = {
+  fund: 'Federation Health',
+  updated: '6 Jul 2026',
+  status: 'No active negotiation — agreement runs to 30 Jun 2028. The engine keeps the dossier warm; preparation opens early 2028.',
+  financial: {
+    premiumIncreases: [
+      { year: '2022', value: 3.2 }, { year: '2023', value: 3.4 }, { year: '2024', value: 3.5 },
+      { year: '2025', value: 3.6 }, { year: '2026', value: 3.4 },
+    ] as Series[],
+    cpiComparator: [
+      { year: '2022', value: 6.1 }, { year: '2023', value: 5.4 }, { year: '2024', value: 3.6 },
+      { year: '2025', value: 3.4 }, { year: '2026', value: 3.2 },
+    ] as Series[],
+    benefitRatioPct: 86.2,
+    industryBenefitRatioPct: 85.0,
+    netMarginPct: 3.9,
+    managementExpensePct: 7.9,
+    industryMExpensePct: 8.6,
+    membershipGrowthPct: 3.1,
+    capitalCoverage: 1.9,
+    claimsInflationPct: 4.6,
+    hospitalBenefitsPaid: '$2.9bn',
+    policies: '~1.6m (≈12% share — synthetic)',
+  },
+  commercial: {
+    priorities: [
+      'Provider-partnership positioning ("no surprises" contracting)',
+      'Quality-linked payment expansion (loadings live at 40+ facilities)',
+      'Member growth in 30–45 segment via digital-first products',
+    ],
+    positioning: 'Large fund trading on provider relationships and member experience; pays for quality, expects data.',
+    publicCommitments: [
+      '"We will keep indexing our hospital partners at CPI — certainty is the deal" — Provider forum, Feb 2026 (synthetic)',
+    ],
+  },
+  behaviour: {
+    posture: 'Constructive; concedes structure (symmetry, floors) to protect multi-year certainty; firm on data/reporting asks.',
+    concessions: [
+      'FY25: full-CPI indexation + quality loading + symmetric exit in exchange for 3-year term (own history)',
+      'Accepted mutual-consent banding with independent expert without contest',
+    ],
+    commonRequests: ['Multi-year terms', 'Quarterly quality packs', 'Digital claiming compliance'],
+    riskAppetite: 'Low appetite for provider disputes; brand is built on partnership optics.',
+    relationship: [
+      { when: 'Jul 2025', event: 'FY25 renewal executed — the portfolio benchmark contract.' },
+      { when: 'May 2026', event: 'Quality loading (+0.5%) confirmed after 4 top-quartile quarters.' },
+      { when: 'Jun 2026', event: 'Prostheses audit opened (H2 FY26) — managed in Revenue Integrity.' },
+    ],
+  },
+  evidence: ['APRA-shaped fund financials (synthetic)', 'Own contract & remittance history', 'Provider forum materials (synthetic)'],
+}

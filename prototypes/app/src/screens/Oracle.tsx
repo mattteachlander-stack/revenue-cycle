@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { BookMarked, Columns3, CornerDownLeft, ShieldQuestion } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
 import { PageHeader, Pill } from '../components/ui'
 import { Doc } from '../components/Doc'
 import { useStream } from '../lib/stream'
@@ -195,6 +196,8 @@ function ConfidenceBadge({ level }: { level: OracleQA['confidence'] }) {
 }
 
 function CitationRow({ c }: { c: Citation }) {
+  const nav = useNavigate()
+  const isContract = c.source.includes('HPPA')
   const tone =
     c.source === 'AusCare HPPA' ? 'bg-ink-50 text-ink-700 border-ink-100'
     : c.source === 'Federation HPPA' ? 'bg-neg-50 text-neg-700 border-neg-100'
@@ -202,9 +205,14 @@ function CitationRow({ c }: { c: Citation }) {
     : 'bg-sage-100/60 text-sage-700 border-sage-100'
   return (
     <li className="flex items-start gap-2.5 text-[12px]">
-      <span className={`shrink-0 inline-flex items-center rounded-md border px-1.5 py-px font-semibold ${tone}`}>
-        {c.source} · {c.ref}
-      </span>
+      <button
+        onClick={() => isContract && nav('/clauses')}
+        disabled={!isContract}
+        title={isContract ? 'Open in Clause intelligence' : undefined}
+        className={`shrink-0 inline-flex items-center rounded-md border px-1.5 py-px font-semibold ${tone} ${isContract ? 'cursor-pointer hover:underline underline-offset-2' : 'cursor-default'}`}
+      >
+        {c.source} · {c.ref}{isContract ? ' ↗' : ''}
+      </button>
       <span className="text-muted italic leading-snug">“{c.quote}”</span>
     </li>
   )

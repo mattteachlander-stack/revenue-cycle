@@ -287,16 +287,21 @@ contracting support, the Tranche 2 leakage-audit product) is upside not counted 
 | Tiered by theatre/bed count | Fair scaling small→large; land-and-expand | Requires clean tiering |
 | Hybrid software + advisory | Higher ACV; hand-holding for first negotiation builds trust | Services don't scale; margin drag; risks "consultant not product" |
 
-**Recommendation — annual SaaS, tiered by theatre count, with an optional
-per-negotiation advisory add-on.** Rationale: the **Contract Agent creates continuous
+**Recommendation — modular suite licensing (the CORE model): annual SaaS per
+facility, tiered by theatre count, with suites licensed independently and an
+optional per-negotiation advisory add-on.** Rationale: the **Contract Agent creates continuous
 value** that justifies a subscription between negotiation cycles, so the platform isn't
 dormant; **tiering by theatres** matches price to facility size and ability to pay; the
 **advisory add-on** monetises the first, highest-stakes negotiation and builds trust
 without making services the core business. Indicative pricing (to be validated in pilots):
 
-- **Day hospital, 2–4 theatres:** ~**$18–28k/yr** platform.
-- **Larger independent, 5+ theatres / overnight:** ~**$35–60k/yr.**
+- **Contracting suite (the wedge):** ~**$18–28k/yr** for a 2–4-theatre day
+  hospital; ~$35–60k/yr for larger independents.
+- **Enquiry suite:** +~$6k/yr · **Revenue Integrity suite:** +~$9k/yr ·
+  **Operational modules** priced as released.
 - **Per-negotiation advisory add-on:** ~**$8–15k** per negotiated agreement.
+- Comprehensive (all suites) or bespoke (strategic modules only); add or drop
+  at renewal — no bundle lock-in.
 
 The pitch is trivially ROI-positive: on a facility with even $8–12m of fund revenue, a
 **1% rate improvement returns $80–120k a year** — multiples of the subscription.
@@ -339,9 +344,12 @@ The pitch is trivially ROI-positive: on a facility with even $8–12m of fund re
 **Differentiation & defensibility:** (1) **Australian-specific depth** — HPPA structures,
 second-tier default mechanics, the PHI Act and rules, the buying-group landscape; (2) the
 **human-in-the-loop, cite-everything discipline** that makes output trustworthy in a
-regulated, high-stakes setting; (3) a **domain-tuned corpus and playbook library** that
-compounds with every negotiation and contract seen (with strict per-customer data
-isolation — §9); (4) **channel and reference lock-in** through the peak bodies. The moat
+regulated, high-stakes setting; (3) **platform breadth as a moat** — the same intelligence
+layer powers negotiation, clause valuation, change tracking, audit defence and staff
+enquiry, so every module deepens the value of the others (§3.3); (4) a **domain-tuned
+corpus and playbook library** that compounds with every negotiation and contract seen
+(with strict per-customer data isolation — §9); (5) **channel and reference lock-in**
+through the peak bodies. The moat
 is less any single model and more the **accumulated Australian contracting know-how,
 trust, and distribution.**
 
@@ -362,8 +370,9 @@ trust, and distribution.**
 
 ## 10. Roadmap
 
-- **Tranche 1 (now): Negotiation Agent + Contract Agent.** Win the negotiation moment and
-  the daily contract-query habit for day hospitals.
+- **Tranche 1 (now — shipped as the CORE Contracting + Enquiry suites, with the
+  Revenue Integrity audit-response module already demonstrable):** win the negotiation
+  moment, the daily contract-query habit, and the audit season.
 - **Tranche 2: Revenue-leakage audit.** Claims-vs-contract reconciliation and underpayment
   detection — reconcile what the fund *actually paid* against what the executed HPPA
   *entitled* the hospital to, and surface systematic underpayments. High, recurring,
