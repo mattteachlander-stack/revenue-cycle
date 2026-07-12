@@ -212,7 +212,21 @@ the contract is silent — **says so explicitly and recommends escalation** rath
 guessing. This turns a filing cabinet of contracts into an institutional memory the front
 desk and theatre coordinator can actually query.
 
-### 3.3 Why these two first
+### 3.3 The intelligence layer (current build direction — v2)
+Both products now sit on a **Negotiation Intelligence Engine**: per-fund profiles
+(financial, commercial and negotiation-behaviour intelligence from public sources
+plus the hospital's own history), hospital and catchment intelligence, mutual
+dependency modelling, and a fully **decomposed Negotiation Leverage Index** — a
+score that summarises an evidenced argument rather than replacing one. A
+**Contract Clause Intelligence Engine** classifies every clause, flags unfair,
+arduous and penalty-based terms with reasons, and **values each one** (automated
+from PAS/revenue data, rules-based, or human-assigned with a full override audit
+trail), feeding a negotiation lever register, a package optimiser and a contract
+change engine that tracks every proposed amendment from first draft to final
+position. Competition-law rail, architecturally enforced: public data + the
+customer's own history, per tenant — never other hospitals' confidential terms.
+
+### 3.4 Why these two first
 The Negotiation Agent captures value at the single highest-leverage moment (contract
 renewal); the Contract Agent captures value every day in between and creates the daily
 habit that retains the account. Together they are the front half of the long-term

@@ -111,12 +111,14 @@ def rule(s, x, y, w, color=HAIR, h=Pt(1.2)):
     return r
 
 
-def footer(s, n, dark=False):
+_footer_n = [0]
+def footer(s, n=0, dark=False):
+    _footer_n[0] += 1
     _, tf = box(s, Inches(0.75), Inches(7.06), Inches(11), Inches(0.3))
     add_par(tf, 'CORE by Counterpart Health — pilot briefing · demonstration uses synthetic data · not legal or financial advice',
             9, W80 if dark else FAINT)
     _, tf2 = box(s, Inches(12.35), Inches(7.06), Inches(0.6), Inches(0.3))
-    add_par(tf2, f'{n:02d}', 9, W80 if dark else FAINT, align=PP_ALIGN.RIGHT)
+    add_par(tf2, f'{_footer_n[0]:02d}', 9, W80 if dark else FAINT, align=PP_ALIGN.RIGHT)
 
 
 def card(s, x, y, w, h, fill=PANEL, line_c=HAIR):
@@ -340,6 +342,19 @@ bullets(tf, [
     ('An opportunity register. ', '$332k/yr identified across the portfolio — captured, in negotiation, or lapsed with a reason.'),
 ], size=13.5, gap=12)
 footer(s, 8)
+
+# ================================================================ 8b · C: intelligence layer
+s = slide()
+suite_kicker(s, 'C', C_BLUE, 'Contracting suite · negotiation intelligence engine')
+title(s, 'It reasons like a fund contract executive', size=29)
+pic_card(s, '40-fund-intel.png', Inches(0.75), Inches(1.95), Inches(6.05), folder=V2,
+         caption='The Negotiation Leverage Index — every factor weighted, evidenced, explained')
+pic_card(s, '42-clauses-hitl.png', Inches(7.05), Inches(1.95), Inches(6.05), folder=V2,
+         caption='Every clause classified, unfair terms flagged, valued — you can override, with an audit trail')
+_, tf = box(s, Inches(0.75), Inches(6.15), Inches(11.8), Inches(0.7))
+add_par(tf, 'Fund profiles, mutual dependency, a decomposed leverage index, and a priced register of every negotiation lever — public data plus your own history, never other hospitals’ terms.',
+        12.5, MUTED, line=1.3)
+footer(s)
 
 # ================================================================ 9 · O: operational previews
 s = slide()

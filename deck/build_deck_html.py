@@ -44,6 +44,8 @@ IMG = {
     'workbench': uri(os.path.join(V, '26-ri-workbench.png')),
     'ridash': uri(os.path.join(V, '23-ri-dashboard.png')),
     'compare': uri(os.path.join(V, '22-oracle-compare-termination.png')),
+    'fundintel': uri(os.path.join(V, '40-fund-intel.png')),
+    'clausehitl': uri(os.path.join(V, '42-clauses-hitl.png')),
     'margins': uri(os.path.join(CH, 'margins.png'), width=1100),
     'concentration': uri(os.path.join(CH, 'concentration.png'), width=1100),
     'leakage': uri(os.path.join(CH, 'leakage.png'), width=1200),
@@ -141,9 +143,9 @@ def chip(letter, color):
     return f'<span class="chip" style="background:var(--{color})">{letter}</span>'
 
 
-def foot(n, total=16):
-    return (f'<div class="foot"><span>CORE by Counterpart Health — pilot briefing · synthetic data · '
-            f'not legal or financial advice</span><span>{n:02d} / {total}</span></div>')
+def foot(n=0, total=0):
+    return ('<div class="foot"><span>CORE by Counterpart Health — pilot briefing · synthetic data · '
+            'not legal or financial advice</span><span>@@N@@ / @@T@@</span></div>')
 
 
 slides = []
@@ -288,6 +290,18 @@ slides.append(shot_slide(8, 'C', 'c', 'Contracting suite · Historical module',
     ('An opportunity register.', '$332k/yr identified across the portfolio — captured, in negotiation, or lapsed with a reason.'),
   ]))
 
+# 8b · intelligence layer
+slides.append(f"""
+<section class="slide"><div class="inner">
+  <div class="kicker" style="color:var(--c)">{chip('C', 'c')} Contracting suite · negotiation intelligence engine</div>
+  <h1>It reasons like a fund contract executive</h1>
+  <div class="cols" style="grid-template-columns:1fr 1fr">
+    <div><img class="shot" src="{IMG['fundintel']}" alt=""><div class="cap">The Negotiation Leverage Index — every factor weighted, evidenced, explained</div></div>
+    <div><img class="shot" src="{IMG['clausehitl']}" alt=""><div class="cap">Every clause classified, unfair terms flagged, valued — overridable, with an audit trail</div></div>
+  </div>
+  <p class="lede" style="margin-top:1rem;margin-bottom:0">Fund profiles, mutual dependency, and a priced register of every negotiation lever — public data plus your own history, never other hospitals' terms.</p>
+</div>{foot()}</section>""")
+
 # 9 · O previews
 slides.append(shot_slide(9, 'O', 'o', 'Operational suite · roadmap previews',
   'Next: the revenue day-to-day, automated with review', IMG['operational'],
@@ -429,6 +443,23 @@ html = f"""<!doctype html>
 </body>
 </html>"""
 
+total = len(slides)
+for i in range(total):
+    slides[i] = slides[i].replace('@@N@@', f'{i + 1:02d}').replace('@@T@@', str(total))
+html = f"""<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CORE — pilot briefing · by Counterpart Health</title>
+<style>{CSS}</style>
+</head>
+<body>
+{''.join(slides)}
+<div class="nav"><button id="prev" title="Previous slide">↑</button><button id="next" title="Next slide">↓</button></div>
+<script>{JS}</script>
+</body>
+</html>"""
 with open(OUT, 'w') as f:
     f.write(html)
 print(f'wrote {OUT} ({os.path.getsize(OUT) / 1e6:.1f} MB, {len(slides)} slides)')

@@ -289,3 +289,41 @@ they can be reviewed afterwards. Newest phase at the bottom.
 - Prototype remains canned/synthetic: demo the outputs, architect the inputs
   (typed data contracts with evidence/confidence/provenance, fixtures today,
   pipelines in the funded build).
+
+## D16 — v2 Waves 1–4 built (council gates, condensed)
+- **Wave 1 (clause + fund intelligence).** Clause Intelligence Engine over both
+  HPPAs: 18 clause records classified across the category set, unfair/penalty
+  terms flagged with reasons, plain-English readings, burden/complexity/risk
+  ratings. Valuation as one `Valuation` interface (automated-from-PAS,
+  rules-based, manual) with **working human-in-the-loop overrides + audit trail**
+  (verified by driving an override headlessly). Negotiation lever register
+  (8 levers, positions/fallbacks/dependencies/evidence). AusCare fund profile
+  (financial/commercial/behaviour), decomposed **Negotiation Leverage Index**
+  (12 weighted, evidenced factors → 6.2/10 with posture + raises/lowers), and
+  the mutual-dependency visual (Bayview 22% dependent; AusCare 31% locally
+  reliant). *Council gate:* skeptic satisfied — the score is presented as the
+  summary of the factor table, methodology labelled illustrative; competition
+  rail stated on-screen ("never other customers' terms"). APPROVE.
+- **Wave 2 (optimiser + commercial dashboard).** Package optimiser with live
+  lever selection, three preset packages aligned to the postures, asked vs
+  likelihood-weighted totals, trade lists and sequencing; commercial dashboard
+  with total opportunity, flags, burden/complexity, category risk heatmap,
+  top-10 priorities and change progress. Hospital-intelligence panel added to
+  fund intelligence. *Council gate:* PM confirmed no new top-level nav beyond
+  the three Contracting entries; heatmap uses progressive disclosure via
+  tooltips-by-title. APPROVE.
+- **Wave 3 (change intelligence).** Version compare (7 tracked changes incl.
+  the fund reply's 50%-CPI trap and Schedule 4), change register with owners/
+  status/decision history, hospital-proposed clause builder (quality-incentive
+  worked example: drafted wording, rationale, objections with responses,
+  alternatives, strategy), scenario modelling (accept/partial/reject/counter
+  with likelihoods and next responses) for CH-2 and CH-6. *Council gate:* QA
+  noted scenario likelihoods are authored, not modelled — labelled "synthetic"
+  on-screen. APPROVE.
+- **Wave 4 (board outputs + story).** Close-out gains downloadable risk
+  register and meeting talking points; both deck formats gained an
+  intelligence-layer slide (now 17 slides, footers auto-numbered); partner
+  brief §3.3 states the v2 positioning incl. the competition rail; README
+  updated. APPROVE.
+- All numbers reconcile with the existing demo narrative (the $45k/$108k/$30k
+  clause values are the same figures the positioning paper and charts use).

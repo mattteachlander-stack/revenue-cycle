@@ -20,7 +20,7 @@ synthetic demo data in [`prototypes/shared-data/`](prototypes/shared-data/), dec
 ## The platform — CORE
 
 **CORE** (by Counterpart Health) is four suites, each with modules beneath:
-**C**ontracting (negotiation copilot + historical value realisation), **O**perational
+**C**ontracting (negotiation copilot, fund intelligence & leverage index, clause & change intelligence, historical value realisation), **O**perational
 (provisional DRG, AI coding, billing bots — concept previews), **R**evenue Integrity
 (fund audit response live; proactive optimisation on the roadmap), and **E**nquiry
 (cited, cross-contract Q&A). Licence all of it or only the strategic pieces.
