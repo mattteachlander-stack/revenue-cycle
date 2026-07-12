@@ -418,3 +418,56 @@ view by category.
 - Landing, sidebar, Presenter (16 steps) and both deck framework slides
   updated to the new module structure. All flows verified headlessly over the
   preview server and the standalone file — zero console errors.
+
+## D19 — Founder's improved-demo review adopted selectively; status strip, reporting & legislation modules, uplift pricing
+
+**Date:** 2026-07-12 · **Trigger:** founder uploaded a modified core-demo.html
+and requested: dashboard negotiation status, a contract-reporting module, an
+ask-legislation module, and uplift-linked pricing.
+
+- **Uploaded file review.** The upload = our exact latest build + a ~16 KB
+  script/style block appended: bottom "guided journey" bar, evidence dialog,
+  draft edit/save/copy/export, a11y patches, responsive overrides. Verdict:
+  the *ideas* are good, the *mechanism* (DOM-scraping MutationObserver,
+  regex draft detection, localStorage that survives Reset demo, wiped on
+  every rebuild) is not. **Adopted as first-class React:** Evidence panel
+  (`components/Evidence.tsx`, per-screen provenance specs on Dashboard/Fund/
+  Clause intelligence + human-approval rule), draft tools on Correspondence
+  (edit-in-place, save version to sessionStorage so Reset clears it, copy,
+  .txt export), skip link + `:focus-visible` outlines +
+  `prefers-reduced-motion` support. **Declined:** the bottom journey bar
+  (duplicates the sidebar steps and Presenter; costs vertical space) and
+  blanket responsive-collapse overrides (demo is presentation-first; grid
+  `!important` rewrites break the dashboard layouts).
+- **Negotiation status strip** (`components/NegotiationStatus.tsx`) at the
+  top of the dashboard: stage-aware last-correspondence line with date, next
+  expected action, agreed list ("nothing is agreed until the package is"
+  when empty), outstanding list, and a 3-segment rounds progress bar.
+  Content derives from the same canned rounds as Step 5, so the strip, the
+  correspondence trail and the board packs can never disagree.
+- **Contract reporting module** (Operational, `/reporting`): 9 obligations
+  extracted from both synthetic HPPAs with clause refs, frequency, next-due,
+  data source and status; 90-day submission timeline; KPIs (tracked/due-30d/
+  overdue/auto-collected). The proposed Schedule 4 appears as
+  "under negotiation" — reporting obligations are contract terms, so the
+  register is fed by Change intelligence, which the screen states.
+- **Ask legislation module** (Enquiry, `/legislation`): 7 curated Q&As over
+  the PHI Act 2007 + Rules and Health Insurance Act 1973/MBS (second-tier
+  default, clinical categories, waiting periods, Prescribed List, 75/25
+  split, IFC, portability), each with provision-cited references, an
+  "In real terms" translation, and confidence. Fallback = outside-corpus →
+  verify on legislation.gov.au / escalate. Corpus roadmap card lists
+  candidate additions (Accreditation Rules, state day-procedure licensing,
+  Privacy Act/APPs, National Health Act, ACL unfair terms) for the founder
+  to prioritise.
+- **Uplift-linked pricing.** Landing strip now shows two models side by
+  side: platform licence (unchanged) and the performance option — reduced
+  base + 10–15% share of measured first-year uplift vs a **pre-agreed
+  mechanical baseline** (fund's opening offer or prior-term trajectory),
+  measured from remittances by Historical, capped, accruing only on paid
+  remittances. Brief §6 records the design rails and the honest weakness
+  (counterfactual attribution) — the baseline must be fixed in writing
+  before the first letter, not judged after the fact.
+- Presenter grown to 19 steps; deck framework slides updated (Operational
+  4 modules, Enquiry 3). All flows verified headlessly (preview + file://),
+  zero console errors; pptx lint clean.

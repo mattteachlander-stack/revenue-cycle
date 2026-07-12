@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import {
   ArrowRight, Handshake, History, MessagesSquare, ClipboardCheck, Radar,
   Braces, Bot, Layers, Sparkles, Scale, ListChecks, GitCompareArrows,
-  Columns3, FileQuestion, Landmark, type LucideIcon,
+  Columns3, FileQuestion, Landmark, CalendarClock, Gavel, TrendingUp, type LucideIcon,
 } from 'lucide-react'
 import { CoreMark } from '../components/Logo'
 
@@ -46,6 +46,7 @@ const suites: Suite[] = [
     strap: 'Run the revenue day-to-day',
     desc: 'The modules that sit inside daily operations — coding, classification, and billing automation as they are developed.',
     modules: [
+      { name: 'Contract reporting', desc: 'Every reporting obligation scoured from every contract — submission timeline, data assembled from the systems that hold it.', icon: CalendarClock, to: '/reporting', badge: 'Live in demo' },
       { name: 'Provisional DRG allocation', desc: 'Suggested DRG at booking and discharge, before coding.', icon: Layers, to: '/operational', badge: 'Preview' },
       { name: 'AI coding assistant', desc: 'Draft clinical coding with confidence scores for coder review.', icon: Braces, to: '/operational', badge: 'Preview' },
       { name: 'Billing bots', desc: 'Automated claim assembly, checks and lodgement workflows.', icon: Bot, to: '/operational', badge: 'Preview' },
@@ -72,6 +73,7 @@ const suites: Suite[] = [
     modules: [
       { name: 'Ask the contract', desc: 'Staff-facing Q&A over a single agreement with citations, confidence, and escalation when the contract is silent.', icon: MessagesSquare, to: '/oracle', badge: 'Live in demo' },
       { name: 'Compare contracts', desc: 'One question, every contract’s answer side by side — termination, payment terms, indexation across the portfolio.', icon: Columns3, to: '/compare', badge: 'Live in demo' },
+      { name: 'Ask legislation', desc: 'PHI Act, benefit rules and the MBS — cited provisions translated into what they mean for the facility in real terms.', icon: Gavel, to: '/legislation', badge: 'Live in demo' },
     ],
   },
 ]
@@ -174,19 +176,33 @@ export default function Landing() {
           })}
         </div>
 
-        {/* pricing strip */}
-        <div className="mt-5 rounded-xl px-6 py-5 bg-ink-950 text-white flex items-start gap-4">
-          <div className="size-10 rounded-xl bg-white/10 grid place-items-center shrink-0">
-            <Sparkles className="size-4.5 text-white/80" strokeWidth={1.75} />
-          </div>
-          <div className="flex-1">
-            <div className="text-[10.5px] font-bold tracking-[0.09em] uppercase text-white/50">Modular by design</div>
-            <p className="text-[12.75px] text-white/85 leading-relaxed mt-1 max-w-[110ch]">
-              Suites and modules are licensed per facility, tiered by theatre count — comprehensive for a group that wants the
-              full treatment, bespoke for a smaller organisation that only wants the pieces strategic to its business. Add or
-              drop modules at renewal; no bundle lock-in. Indicative pricing: Contracting from $18k/yr · Enquiry +$6k ·
-              Revenue Integrity +$9k · Operational modules priced as released.
-            </p>
+        {/* pricing strip — base licence + uplift-linked performance component */}
+        <div className="mt-5 rounded-xl px-6 py-5 bg-ink-950 text-white">
+          <div className="flex items-start gap-4">
+            <div className="size-10 rounded-xl bg-white/10 grid place-items-center shrink-0">
+              <Sparkles className="size-4.5 text-white/80" strokeWidth={1.75} />
+            </div>
+            <div className="flex-1 grid grid-cols-2 gap-6">
+              <div>
+                <div className="text-[10.5px] font-bold tracking-[0.09em] uppercase text-white/50">Platform licence — modular by design</div>
+                <p className="text-[12.5px] text-white/85 leading-relaxed mt-1">
+                  Suites and modules licensed per facility, tiered by theatre count. Add or drop modules at renewal;
+                  no bundle lock-in. Indicative: Contracting from $18k/yr · Enquiry +$6k · Revenue Integrity +$9k ·
+                  Operational modules priced as released.
+                </p>
+              </div>
+              <div className="border-l border-white/15 pl-6">
+                <div className="text-[10.5px] font-bold tracking-[0.09em] uppercase flex items-center gap-1.5" style={{ color: '#2ee6c9' }}>
+                  <TrendingUp className="size-3" strokeWidth={2.5} /> Performance option — pay from the uplift
+                </div>
+                <p className="text-[12.5px] text-white/85 leading-relaxed mt-1">
+                  Reduced base licence + a share of the <strong className="text-white">measured negotiation uplift</strong> —
+                  the settled outcome against a pre-agreed baseline (the fund's opening offer, or the prior term's
+                  trajectory), verified from remittances by the Historical module, capped, and payable only as the
+                  uplift is actually banked. Aligned incentives: CORE earns when the negotiation does.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

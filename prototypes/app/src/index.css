@@ -219,3 +219,27 @@ html {
   .doc { font-size: 11pt; }
   body { background: white; }
 }
+
+/* accessibility — adopted from founder's improved-demo review */
+:where(button, a, [role='button'], input, [tabindex]):focus-visible {
+  outline: 3px solid var(--color-blue-600);
+  outline-offset: 2px;
+  border-radius: 0.45rem;
+}
+.skip-link {
+  position: fixed; left: 1rem; top: -5rem; z-index: 100;
+  background: var(--color-navy-950); color: #fff;
+  padding: 0.7rem 1rem; border-radius: 0.5rem;
+  font-size: 13px; font-weight: 600;
+  transition: top 0.15s ease;
+}
+.skip-link:focus { top: 1rem; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .stream-caret::after { animation: none !important; }
+}

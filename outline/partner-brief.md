@@ -286,6 +286,7 @@ contracting support, the Tranche 2 leakage-audit product) is upside not counted 
 | Per-negotiation engagement | Aligns price to the high-value moment; easy ROI story | Lumpy; no retention between cycles; feels like consulting |
 | Tiered by theatre/bed count | Fair scaling small→large; land-and-expand | Requires clean tiering |
 | Hybrid software + advisory | Higher ACV; hand-holding for first negotiation builds trust | Services don't scale; margin drag; risks "consultant not product" |
+| Uplift-linked performance fee | Perfect incentive alignment; easiest board sign-off ("pay from the win") | Baseline must be defined and measurable; attribution disputes; revenue lag & lumpiness |
 
 **Recommendation — modular suite licensing (the CORE model): annual SaaS per
 facility, tiered by theatre count, with suites licensed independently and an
@@ -300,11 +301,26 @@ without making services the core business. Indicative pricing (to be validated i
 - **Enquiry suite:** +~$6k/yr · **Revenue Integrity suite:** +~$9k/yr ·
   **Operational modules** priced as released.
 - **Per-negotiation advisory add-on:** ~**$8–15k** per negotiated agreement.
+- **Performance option (founder direction):** a facility can elect a **reduced
+  base licence + a share of the measured negotiation uplift** — e.g. base at
+  ~50–60% of list plus **10–15% of first-year realised uplift**, capped.
+  The uplift is settled outcome vs a **pre-agreed baseline** (the fund's
+  opening written offer, or the prior term's realised trajectory), measured
+  from remittances by the Historical module and payable as the uplift is
+  banked, not at signature. Design rails, to be validated with pilots and
+  counsel: (a) baseline agreed in writing *before* the first letter goes out;
+  (b) fee accrues only on paid remittances, so a fund's under-payment is
+  CORE's problem too; (c) hard cap per negotiation; (d) the facility can
+  always choose flat pricing — some boards will prefer paying for software,
+  not sharing wins. Attribution is the honest weakness: the counterfactual
+  ("what would you have got without CORE?") is contestable, which is why the
+  baseline must be mechanical, not judged after the fact.
 - Comprehensive (all suites) or bespoke (strategic modules only); add or drop
   at renewal — no bundle lock-in.
 
 The pitch is trivially ROI-positive: on a facility with even $8–12m of fund revenue, a
-**1% rate improvement returns $80–120k a year** — multiples of the subscription.
+**1% rate improvement returns $80–120k a year** — multiples of the subscription. The
+performance option turns that arithmetic into the contract itself.
 
 ---
 

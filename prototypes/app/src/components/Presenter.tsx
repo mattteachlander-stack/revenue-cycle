@@ -6,7 +6,7 @@ import { ChevronLeft, ChevronRight, Presentation, X } from 'lucide-react'
 
 const steps = [
   { to: '/', title: 'Platform home', note: 'Open on CORE: four suites, modular licensing. Say "everything you\'ll see is synthetic data" out loud.' },
-  { to: '/dashboard', title: 'The renewal', note: '$3.12m at stake, 56 days to the fund\'s deadline, 5 flagged clauses. This is the CEO\'s reality.' },
+  { to: '/dashboard', title: 'The renewal', note: '$3.12m at stake, 56 days to the deadline — and the status strip: last correspondence, what\'s agreed, what\'s outstanding. Months-long negotiations need a "where are we" answer in five seconds.' },
   { to: '/analyse', title: 'Positioning paper', note: 'Generate, let it stream a beat, then Skip. Point at the priced BATNA and the targets table.' },
   { to: '/fund-intel', title: 'Fund intelligence', note: 'The 6.2/10 leverage score — then immediately show the factor table. The score summarises; the factors argue. Flip to Federation to show every fund gets a dossier.' },
   { to: '/clauses', title: 'Clause intelligence', note: 'Click cl. 19.1 → set a manual value with a rationale → the override lands in the audit trail. Human-in-the-loop in five seconds.' },
@@ -17,10 +17,12 @@ const steps = [
   { to: '/response', title: 'Upload the next round', note: 'The loop: counter sent → upload round 2 → digest again. The scorecard shows +$182k of movement — the evidence pack worked.' },
   { to: '/boardpack', title: 'Board pack, any stage', note: 'Boards meet monthly; negotiations don\'t wait. Generate the "settlement in reach" pack — the mandate question, not just a status update.' },
   { to: '/changes', title: 'Change intelligence', note: 'Same trap as a tracked change: current vs proposed side by side. Show the register — the negotiation\'s working document.' },
+  { to: '/reporting', title: 'Contract reporting', note: 'The obligations the contracts impose, scoured clause-by-clause: timeline, data sources, zero missed submissions. Schedule 4 shows why it lives with Change intelligence.' },
   { to: '/integrity/inbox', title: 'Audit season', note: 'Import the AusCare file → watch the PAS enrichment. Then the workbench: decide one item, export the Excel. A real file downloads.' },
   { to: '/integrity', title: 'Prove improvement', note: 'Outstanding / in progress / finalised at the top, then 61% overturned, $32.9k defended, the historic category view. Audits become data, not fire drills.' },
   { to: '/oracle', title: 'Ask the contract', note: 'One agreement, cited answers. Finish on the Saturday-list question: "the contract is silent — escalate."' },
-  { to: '/compare', title: 'Compare contracts', note: 'Run the termination comparison (60 vs 90 days, per-contract citations). Two modules, one Enquiry suite.' },
+  { to: '/compare', title: 'Compare contracts', note: 'Run the termination comparison (60 vs 90 days, per-contract citations). Then Ask legislation: the second-tier question — the law behind the BATNA, in real terms.' },
+  { to: '/legislation', title: 'Ask legislation', note: 'PHI Act + MBS with cited provisions and an "in real terms" translation. Ask the second-tier default question — it prices the walk-away.' },
   { to: '/closeout', title: 'Close-out', note: 'Generate the final pack: sought vs settled, +$289k/yr, plus the risk register and talking points. End on "and nothing was ever sent without a human."' },
 ]
 

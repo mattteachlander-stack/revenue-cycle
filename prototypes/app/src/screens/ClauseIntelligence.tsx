@@ -4,6 +4,7 @@ import {
   AlertTriangle, Check, FileWarning, Layers3, ListChecks, PackageOpen, Scale, Sparkles,
 } from 'lucide-react'
 import { PageHeader, Section, Pill } from '../components/ui'
+import EvidenceButton from '../components/Evidence'
 import {
   clauses, levers, packages, leverById, fmtKv,
   type ClauseRecord, type Contract, type Risk,
@@ -33,6 +34,13 @@ export default function ClauseIntelligence() {
         kicker="Contracting suite · contract clause intelligence engine"
         title="Every clause, read like opposing counsel — then priced"
         lede="Each clause classified, risk-rated, explained in plain English, and valued — automated from PAS and revenue data where possible, rules-based where not, and always overridable by the human in the loop with a full audit trail."
+        right={
+          <EvidenceButton spec={{
+            source: 'Executed AusCare and Federation HPPAs (full text), Bayview PAS episode extracts and remittance history.',
+            method: 'Clause classification + three-method valuation (automated, rules-based, manual override with audit trail).',
+            confidence: 'Stated per clause in the register; overrides always displace the automated figure.',
+          }} />
+        }
       />
 
       <Section className="pb-10">

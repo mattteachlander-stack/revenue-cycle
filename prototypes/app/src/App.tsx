@@ -14,6 +14,8 @@ import BoardPack from './screens/BoardPack'
 import Oracle from './screens/Oracle'
 import Performance from './screens/Performance'
 import Operational from './screens/Operational'
+import Reporting from './screens/Reporting'
+import Legislation from './screens/Legislation'
 import FundIntelligence from './screens/FundIntelligence'
 import ClauseIntelligence from './screens/ClauseIntelligence'
 import ChangeIntelligence from './screens/ChangeIntelligence'
@@ -41,6 +43,8 @@ export default function App() {
             <Route path="/compare" element={<Oracle mode="compare" />} />
             <Route path="/performance" element={<Performance />} />
             <Route path="/operational" element={<Operational />} />
+            <Route path="/reporting" element={<Reporting />} />
+            <Route path="/legislation" element={<Legislation />} />
             <Route path="/fund-intel" element={<FundIntelligence />} />
             <Route path="/clauses" element={<ClauseIntelligence />} />
             <Route path="/changes" element={<ChangeIntelligence />} />

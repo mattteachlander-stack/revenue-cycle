@@ -2,6 +2,8 @@ import { useNavigate } from 'react-router-dom'
 import { ArrowRight, CalendarClock, TrendingDown, ShieldAlert, FileWarning } from 'lucide-react'
 import { PageHeader, Section, GenerateButton, Pill, ClauseChip } from '../components/ui'
 import { facility, negotiation, fmtM } from '../data/facility'
+import NegotiationStatus from '../components/NegotiationStatus'
+import EvidenceButton from '../components/Evidence'
 
 export default function Dashboard() {
   const nav = useNavigate()
@@ -13,14 +15,25 @@ export default function Dashboard() {
         title={`${facility.name} × ${negotiation.fund} — HPPA renewal`}
         lede={`Current agreement expires ${negotiation.contractExpires}. ${negotiation.fundShort} has asked for proposals by ${negotiation.proposalsDue}. Everything below is drawn from the executed HPPA, your uploaded financials, and public industry data.`}
         right={
-          <GenerateButton onClick={() => nav('/analyse')}>
-            Analyse position <ArrowRight className="size-4" strokeWidth={2} />
-          </GenerateButton>
+          <div className="flex items-center gap-2">
+            <EvidenceButton spec={{
+              source: 'Executed AusCare HPPA + schedules, Bayview FY24–26 financial and case-mix extracts, synthetic market medians.',
+              method: 'Rate schedule vs volume-weighted market comparison; clause flags from the clause-classification engine.',
+            }} />
+            <GenerateButton onClick={() => nav('/analyse')}>
+              Analyse position <ArrowRight className="size-4" strokeWidth={2} />
+            </GenerateButton>
+          </div>
         }
       />
 
+      {/* live negotiation status — where the months-long back-and-forth is up to */}
+      <Section>
+        <NegotiationStatus />
+      </Section>
+
       {/* KPI row */}
-      <Section className="grid grid-cols-4 gap-4">
+      <Section className="grid grid-cols-4 gap-4 pt-0">
         <Kpi
           icon={<TrendingDown className="size-4 text-clay-600" strokeWidth={1.75} />}
           label="Revenue under negotiation"

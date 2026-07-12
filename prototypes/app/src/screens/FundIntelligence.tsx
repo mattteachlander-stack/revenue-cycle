@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ArrowRight, Building2, Gauge as GaugeIcon, Landmark, Scale, ShieldAlert } from 'lucide-react'
 import { PageHeader, Section } from '../components/ui'
+import EvidenceButton from '../components/Evidence'
 import {
   ausCareIntel, federationIntel, leverageFactors, leverageScore, leverageReading, dependencies, hospitalIntel,
 } from '../data/fundIntel'
@@ -27,11 +28,17 @@ export default function FundIntelligence() {
         title={`${fund} — fund intelligence${isAusCare ? ' & leverage' : ''}`}
         lede="Every fund gets a dossier the engine keeps warm. Public sources plus Bayview's own history — never other customers' terms. Every figure carries its evidence."
         right={
+          <div className="flex items-center gap-2">
+          <EvidenceButton spec={{
+            source: 'APRA quarterly statistics, PHIO State of the Health Funds, fund annual reports, premium-round announcements — plus Bayview\u2019s own remittance and negotiation history. Never other customers\u2019 confidential terms.',
+            method: 'Weighted factor decomposition (leverage index); dependency modelling from payer-mix and catchment data.',
+          }} />
           <button onClick={() => nav('/clauses')}
                   className="inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-[13px] font-semibold text-white transition hover:brightness-110"
                   style={{ background: 'linear-gradient(120deg, #0ea5c4 0%, #2f6bf6 55%, #4f46e5 100%)' }}>
             Clause intelligence <ArrowRight className="size-4" strokeWidth={2} />
           </button>
+          </div>
         }
       />
 

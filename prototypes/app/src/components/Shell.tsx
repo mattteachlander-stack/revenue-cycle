@@ -4,7 +4,7 @@ import {
   LayoutDashboard, FileSearch, Signpost, PenLine, MailQuestion,
   Landmark, MessagesSquare, Lock, Check, FlaskConical, LayoutGrid,
   Gauge, Inbox, ClipboardCheck, History, Layers, Scale, ListChecks, GitCompareArrows,
-  Columns3, FileQuestion,
+  Columns3, FileQuestion, CalendarClock, Gavel,
 } from 'lucide-react'
 import { useDemo } from '../state'
 import { useRi } from '../state-integrity'
@@ -103,6 +103,7 @@ export default function Shell({ children }: { children: ReactNode }) {
 
   return (
     <div className="min-h-screen flex">
+      <a href="#main" className="skip-link no-print">Skip to main content</a>
       <aside className="w-[264px] shrink-0 text-white flex flex-col fixed inset-y-0 no-print overflow-y-auto"
              style={{ background: 'var(--color-navy-950)' }}>
         <div className="px-5 pt-5 pb-4 border-b border-white/10">
@@ -153,7 +154,10 @@ export default function Shell({ children }: { children: ReactNode }) {
           </div>
 
           <SectionLabel color={MOD.ops} letter="O">Operational</SectionLabel>
-          <Item accent={MOD.ops} to="/operational" icon={Layers} label="Concept previews" sub="Provisional DRG · coding · billing bots" />
+          <div className="space-y-0.5">
+            <Item accent={MOD.ops} to="/reporting" icon={CalendarClock} label="Contract reporting" sub="Obligations · timeline · data" />
+            <Item accent={MOD.ops} to="/operational" icon={Layers} label="Concept previews" sub="Provisional DRG · coding · billing bots" />
+          </div>
 
           <SectionLabel color={MOD.ri} letter="R">Revenue Integrity</SectionLabel>
           <div className="space-y-0.5">
@@ -172,6 +176,7 @@ export default function Shell({ children }: { children: ReactNode }) {
           <div className="space-y-0.5">
             <Item accent={MOD.ora} to="/oracle" icon={MessagesSquare} label="Ask the contract" sub="Cited answers, one agreement" />
             <Item accent={MOD.ora} to="/compare" icon={Columns3} label="Compare contracts" sub="One question, every agreement" />
+            <Item accent={MOD.ora} to="/legislation" icon={Gavel} label="Ask legislation" sub="PHI & Medicare rules, in real terms" />
           </div>
         </nav>
 
@@ -193,7 +198,7 @@ export default function Shell({ children }: { children: ReactNode }) {
       </aside>
 
       <div className="flex-1 ml-[264px] flex flex-col min-h-screen">
-        <main className="flex-1">{children}</main>
+        <main id="main" tabIndex={-1} className="flex-1">{children}</main>
         <Presenter />
         <footer className="no-print border-t border-hairline bg-panel/70 px-8 py-3 flex items-center justify-between">
           <p className="text-[11px] text-faint">
