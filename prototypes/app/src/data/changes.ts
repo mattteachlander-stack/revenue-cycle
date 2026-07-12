@@ -60,7 +60,7 @@ export const changes: ChangeItem[] = [
       implementation: 'None.',
     },
     summary: 'The letter’s sharpest trap: reads as a concession ("a floor!") while legalising half-CPI indexation. Worse than the current clause, which at least must survive a reasonableness argument.',
-    action: 'Reject wording; accept the *shape*: floor = 100% of the Indexation Amount, cl. 12.3 deleted. Non-negotiable for a multi-year term.',
+    action: 'Reject the wording; accept the shape: a floor set at 100% of the Indexation Amount, with cl. 12.3 deleted. Non-negotiable for a multi-year term.',
     history: [
       { when: '1 Aug 2026', what: 'Proposed by AusCare as "acknowledging your preference for certainty".' },
       { when: '8 Aug 2026', what: 'Rejected with counter: clauses 12.1–12.2 unchanged, 12.3 deleted.' },
