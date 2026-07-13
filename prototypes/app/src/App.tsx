@@ -16,6 +16,8 @@ import Performance from './screens/Performance'
 import Operational from './screens/Operational'
 import Reporting from './screens/Reporting'
 import Legislation from './screens/Legislation'
+import RegChange from './screens/RegChange'
+import Education from './screens/Education'
 import FundIntelligence from './screens/FundIntelligence'
 import ClauseIntelligence from './screens/ClauseIntelligence'
 import ChangeIntelligence from './screens/ChangeIntelligence'
@@ -44,7 +46,9 @@ export default function App() {
             <Route path="/performance" element={<Performance />} />
             <Route path="/operational" element={<Operational />} />
             <Route path="/reporting" element={<Reporting />} />
+            <Route path="/regchange" element={<RegChange />} />
             <Route path="/legislation" element={<Legislation />} />
+            <Route path="/education" element={<Education />} />
             <Route path="/fund-intel" element={<FundIntelligence />} />
             <Route path="/clauses" element={<ClauseIntelligence />} />
             <Route path="/changes" element={<ChangeIntelligence />} />

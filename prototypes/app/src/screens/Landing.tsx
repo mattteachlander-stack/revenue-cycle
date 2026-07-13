@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import {
   ArrowRight, Handshake, History, MessagesSquare, ClipboardCheck, Radar,
   Braces, Bot, Layers, Sparkles, Scale, ListChecks, GitCompareArrows,
-  Columns3, FileQuestion, Landmark, CalendarClock, Gavel, TrendingUp, type LucideIcon,
+  Columns3, FileQuestion, Landmark, CalendarClock, Gavel, GraduationCap, TrendingUp, type LucideIcon,
 } from 'lucide-react'
 import { CoreMark } from '../components/Logo'
 
@@ -32,24 +32,11 @@ const suites: Suite[] = [
     desc: 'Everything that touches the agreement itself — the live negotiation, and whether the value you negotiated actually lands.',
     modules: [
       { name: 'Negotiation', desc: 'Run current and live HPPA negotiations round by round with the human-in-the-loop copilot, with board packs generated at any stage.', icon: Handshake, to: '/dashboard', badge: 'Live in demo' },
-      { name: 'Board packs', desc: 'Interim packs for every board meeting during a negotiation, and the final close-out pack when it settles.', icon: Landmark, to: '/boardpack', badge: 'Live in demo' },
-      { name: 'Fund intelligence', desc: 'Fund profiles, mutual dependency, and the decomposed Negotiation Leverage Index.', icon: Scale, to: '/fund-intel', badge: 'Live in demo' },
       { name: 'Clause intelligence', desc: 'Every clause classified, unfair terms flagged and valued; levers, packages, commercial dashboard.', icon: ListChecks, to: '/clauses', badge: 'Live in demo' },
+      { name: 'Fund intelligence', desc: 'Fund profiles, mutual dependency, and the decomposed Negotiation Leverage Index.', icon: Scale, to: '/fund-intel', badge: 'Live in demo' },
       { name: 'Change intelligence', desc: 'Version compare, change register, hospital-proposed clauses and scenario modelling.', icon: GitCompareArrows, to: '/changes', badge: 'Live in demo' },
+      { name: 'Board packs', desc: 'Interim packs for every board meeting during a negotiation, and the final close-out pack when it settles.', icon: Landmark, to: '/boardpack', badge: 'Live in demo' },
       { name: 'Historical', desc: 'Negotiation performance over time and value realisation through each contract period.', icon: History, to: '/performance', badge: 'Live in demo' },
-    ],
-  },
-  {
-    letter: 'O',
-    key: 'ops',
-    name: 'Operational',
-    strap: 'Run the revenue day-to-day',
-    desc: 'The modules that sit inside daily operations — coding, classification, and billing automation as they are developed.',
-    modules: [
-      { name: 'Contract reporting', desc: 'Every reporting obligation scoured from every contract — submission timeline, data assembled from the systems that hold it.', icon: CalendarClock, to: '/reporting', badge: 'Live in demo' },
-      { name: 'Provisional DRG allocation', desc: 'Suggested DRG at booking and discharge, before coding.', icon: Layers, to: '/operational', badge: 'Preview' },
-      { name: 'AI coding assistant', desc: 'Draft clinical coding with confidence scores for coder review.', icon: Braces, to: '/operational', badge: 'Preview' },
-      { name: 'Billing bots', desc: 'Automated claim assembly, checks and lodgement workflows.', icon: Bot, to: '/operational', badge: 'Preview' },
     ],
   },
   {
@@ -74,6 +61,21 @@ const suites: Suite[] = [
       { name: 'Ask the contract', desc: 'Staff-facing Q&A over a single agreement with citations, confidence, and escalation when the contract is silent.', icon: MessagesSquare, to: '/oracle', badge: 'Live in demo' },
       { name: 'Compare contracts', desc: 'One question, every contract’s answer side by side — termination, payment terms, indexation across the portfolio.', icon: Columns3, to: '/compare', badge: 'Live in demo' },
       { name: 'Ask legislation', desc: 'PHI Act, benefit rules and the MBS — cited provisions translated into what they mean for the facility in real terms.', icon: Gavel, to: '/legislation', badge: 'Live in demo' },
+      { name: 'Education', desc: 'The organisation\u2019s disseminated education, searchable — and flagged for update when contracts, rules or audits change the facts it teaches.', icon: GraduationCap, to: '/education', badge: 'Live in demo' },
+    ],
+  },
+  {
+    letter: 'O',
+    key: 'ops',
+    name: 'Operational',
+    strap: 'Run the revenue day-to-day',
+    desc: 'The modules that sit inside daily operations — coding, classification, and billing automation as they are developed.',
+    modules: [
+      { name: 'Regulatory change', desc: 'MBS, banding and reform changes ingested and assessed for materiality against your own volumes and rates — decide, then act or deliberately don\u2019t.', icon: Radar, to: '/regchange', badge: 'Live in demo' },
+      { name: 'Contract reporting', desc: 'Every reporting obligation scoured from every contract — submission timeline, data assembled from the systems that hold it.', icon: CalendarClock, to: '/reporting', badge: 'Live in demo' },
+      { name: 'Provisional DRG allocation', desc: 'Suggested DRG at booking and discharge, before coding.', icon: Layers, to: '/operational', badge: 'Preview' },
+      { name: 'AI coding assistant', desc: 'Draft clinical coding with confidence scores for coder review.', icon: Braces, to: '/operational', badge: 'Preview' },
+      { name: 'Billing bots', desc: 'Automated claim assembly, checks and lodgement workflows.', icon: Bot, to: '/operational', badge: 'Preview' },
     ],
   },
 ]
@@ -117,6 +119,10 @@ export default function Landing() {
 
       {/* suites */}
       <div className="px-10 py-8 max-w-[1300px]">
+        <p className="text-[11.5px] text-faint mb-3 -mt-1">
+          Suites and modules ordered by commercial value — highest first. Contracting is the wedge; Operational modules
+          are priced as they release.
+        </p>
         <div className="grid grid-cols-4 gap-4 items-start">
           {suites.map((s) => {
             const t = tone[s.key]

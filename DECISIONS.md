@@ -471,3 +471,41 @@ ask-legislation module, and uplift-linked pricing.
 - Presenter grown to 19 steps; deck framework slides updated (Operational
   4 modules, Enquiry 3). All flows verified headlessly (preview + file://),
   zero console errors; pptx lint clean.
+
+## D20 — Regulatory change + Education modules; commercial-value ordering
+
+**Date:** 2026-07-13 · **Trigger:** founder — MBS/banding/reform materiality
+module (Operational), education library module (Enquiry, with the question
+"is this already captured?"), and "order the tools by commercial value".
+
+- **Regulatory change (`/regchange`).** Synthetic feed of 7 external changes
+  (MBS descriptor + indexation + renumbering, banding reform consultation,
+  Prescribed List tranche, PHI rules consultation, state staffing guidance),
+  each assessed **against the facility's own volumes and rates** — the
+  worked example makes the method explicit (change × 3,410 episodes ×
+  $4.47m line → Material). Decisions are the product: consultation response,
+  update education, brief sites, negotiation input, or **no action, on the
+  record**. Cross-links: RC-3 feeds the parked lens-cost lever (Clause
+  intelligence); education flags land in the Education library.
+- **Education (`/education`).** Answer to the founder's question: *partially
+  captured, separate module justified.* The Enquiry suite answers questions
+  from source documents; education is a different corpus — internal,
+  versioned, audience-addressed artefacts whose **currency is a state to
+  manage**, and the update-flag behaviour is a workflow, not a Q&A. Built:
+  searchable library (7 artefacts with owner/version/audience), and an
+  update-required panel where each flag names its triggering module and
+  change (settled clauses → AusCare pack v4; MBS RC-1 → endoscopy card;
+  Prescribed List RC-3 → prostheses workflow; staffing guidance RC-7 →
+  recovery guide). Q&A over the education corpus goes on the roadmap —
+  stated on-screen — which is where it merges back into Enquiry's
+  cited-answer interface.
+- **Commercial-value ordering.** Sidebar and platform home now run
+  **C → R → E → O** (Contracting is the wedge; RI defends measured dollars;
+  Enquiry is the daily-use retention layer; Operational is largely
+  roadmap/priced-as-released), with modules value-ordered inside each suite
+  and an explanatory note on the landing grid. The CORE acronym is
+  unaffected — the hero copy still names the suites in brand order; only
+  layout order changed. Deck framework slide keeps C-O-R-E (it explains the
+  acronym), with module lists updated and compressed.
+- Presenter now 21 steps. Standalone + decks rebuilt; all routes verified
+  (preview + file://) with zero console errors; pptx lint clean.

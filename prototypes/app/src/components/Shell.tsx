@@ -4,7 +4,7 @@ import {
   LayoutDashboard, FileSearch, Signpost, PenLine, MailQuestion,
   Landmark, MessagesSquare, Lock, Check, FlaskConical, LayoutGrid,
   Gauge, Inbox, ClipboardCheck, History, Layers, Scale, ListChecks, GitCompareArrows,
-  Columns3, FileQuestion, CalendarClock, Gavel,
+  Columns3, FileQuestion, CalendarClock, Gavel, GraduationCap, Radar,
 } from 'lucide-react'
 import { useDemo } from '../state'
 import { useRi } from '../state-integrity'
@@ -145,18 +145,13 @@ export default function Shell({ children }: { children: ReactNode }) {
               )
             })}
           </ol>
+          {/* modules ordered by commercial value, highest first (D20) */}
           <div className="mt-1.5 space-y-0.5">
-            <Item accent={MOD.neg} to="/boardpack" icon={Landmark} label="Board pack" sub="Generate at any stage" />
-            <Item accent={MOD.neg} to="/fund-intel" icon={Scale} label="Fund intelligence" sub="Profile · leverage index" />
             <Item accent={MOD.neg} to="/clauses" icon={ListChecks} label="Clause intelligence" sub="Register · levers · packages" />
+            <Item accent={MOD.neg} to="/fund-intel" icon={Scale} label="Fund intelligence" sub="Profile · leverage index" />
             <Item accent={MOD.neg} to="/changes" icon={GitCompareArrows} label="Change intelligence" sub="Versions · register · scenarios" />
+            <Item accent={MOD.neg} to="/boardpack" icon={Landmark} label="Board pack" sub="Generate at any stage" />
             <Item accent={MOD.neg} to="/performance" icon={History} label="Historical" sub="Performance & value realisation" />
-          </div>
-
-          <SectionLabel color={MOD.ops} letter="O">Operational</SectionLabel>
-          <div className="space-y-0.5">
-            <Item accent={MOD.ops} to="/reporting" icon={CalendarClock} label="Contract reporting" sub="Obligations · timeline · data" />
-            <Item accent={MOD.ops} to="/operational" icon={Layers} label="Concept previews" sub="Provisional DRG · coding · billing bots" />
           </div>
 
           <SectionLabel color={MOD.ri} letter="R">Revenue Integrity</SectionLabel>
@@ -177,6 +172,14 @@ export default function Shell({ children }: { children: ReactNode }) {
             <Item accent={MOD.ora} to="/oracle" icon={MessagesSquare} label="Ask the contract" sub="Cited answers, one agreement" />
             <Item accent={MOD.ora} to="/compare" icon={Columns3} label="Compare contracts" sub="One question, every agreement" />
             <Item accent={MOD.ora} to="/legislation" icon={Gavel} label="Ask legislation" sub="PHI & Medicare rules, in real terms" />
+            <Item accent={MOD.ora} to="/education" icon={GraduationCap} label="Education" sub="Library · update flags" />
+          </div>
+
+          <SectionLabel color={MOD.ops} letter="O">Operational</SectionLabel>
+          <div className="space-y-0.5">
+            <Item accent={MOD.ops} to="/regchange" icon={Radar} label="Regulatory change" sub="MBS · banding · reform materiality" />
+            <Item accent={MOD.ops} to="/reporting" icon={CalendarClock} label="Contract reporting" sub="Obligations · timeline · data" />
+            <Item accent={MOD.ops} to="/operational" icon={Layers} label="Concept previews" sub="Provisional DRG · coding · billing bots" />
           </div>
         </nav>
 

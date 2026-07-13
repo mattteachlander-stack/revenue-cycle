@@ -223,11 +223,11 @@ for letter, color, light, name, strap, mods in [
     ('C', 'c', 'cl', 'Contracting', 'Win the renewal, then verify the value lands',
      ['Negotiation — round-by-round copilot', 'Board packs at any stage', 'Historical — value realisation']),
     ('O', 'o', 'ol', 'Operational', 'The revenue day-to-day, automated with review',
-     ['Contract reporting — obligations & timelines', 'Provisional DRG allocation', 'AI coding assistant', 'Billing bots']),
+     ['Regulatory change — MBS/reform materiality', 'Contract reporting — obligations & timelines', 'DRG · coding · billing bots (previews)']),
     ('R', 'r', 'rl', 'Revenue Integrity', 'Audit management in both directions',
      ['Fund audit response — import → respond → export', 'Proactive optimisation — find leakage first', 'Clinical documentation improvement (roadmap)']),
     ('E', 'e', 'el', 'Enquiry', 'Ask anything, get citations',
-     ['Ask the contract — cited Q&amp;A', 'Compare contracts — side-by-side', 'Ask legislation — PHI rules in real terms']),
+     ['Ask the contract — cited Q&amp;A', 'Compare contracts — side-by-side', 'Ask legislation — PHI rules in real terms', 'Education library — flagged current']),
 ]:
     lis = ''.join(f'<li style="color:var(--muted)"><span style="color:var(--{color})">■</span>  {m}</li>' for m in mods)
     suite_cards += f"""

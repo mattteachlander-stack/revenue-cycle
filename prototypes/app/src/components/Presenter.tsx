@@ -17,12 +17,14 @@ const steps = [
   { to: '/response', title: 'Upload the next round', note: 'The loop: counter sent → upload round 2 → digest again. The scorecard shows +$182k of movement — the evidence pack worked.' },
   { to: '/boardpack', title: 'Board pack, any stage', note: 'Boards meet monthly; negotiations don\'t wait. Generate the "settlement in reach" pack — the mandate question, not just a status update.' },
   { to: '/changes', title: 'Change intelligence', note: 'Same trap as a tracked change: current vs proposed side by side. Show the register — the negotiation\'s working document.' },
+  { to: '/regchange', title: 'Regulatory change', note: 'MBS descriptor change × 3,410 episodes = material; MBS indexation = immaterial, no action. The value is the decision on the record — including deliberate inaction.' },
   { to: '/reporting', title: 'Contract reporting', note: 'The obligations the contracts impose, scoured clause-by-clause: timeline, data sources, zero missed submissions. Schedule 4 shows why it lives with Change intelligence.' },
   { to: '/integrity/inbox', title: 'Audit season', note: 'Import the AusCare file → watch the PAS enrichment. Then the workbench: decide one item, export the Excel. A real file downloads.' },
   { to: '/integrity', title: 'Prove improvement', note: 'Outstanding / in progress / finalised at the top, then 61% overturned, $32.9k defended, the historic category view. Audits become data, not fire drills.' },
   { to: '/oracle', title: 'Ask the contract', note: 'One agreement, cited answers. Finish on the Saturday-list question: "the contract is silent — escalate."' },
   { to: '/compare', title: 'Compare contracts', note: 'Run the termination comparison (60 vs 90 days, per-contract citations). Then Ask legislation: the second-tier question — the law behind the BATNA, in real terms.' },
   { to: '/legislation', title: 'Ask legislation', note: 'PHI Act + MBS with cited provisions and an "in real terms" translation. Ask the second-tier default question — it prices the walk-away.' },
+  { to: '/education', title: 'Education library', note: 'The closing loop: the MBS change, the settled clauses and the audit learnings all flag the education they invalidate. Nothing taught goes stale silently.' },
   { to: '/closeout', title: 'Close-out', note: 'Generate the final pack: sought vs settled, +$289k/yr, plus the risk register and talking points. End on "and nothing was ever sent without a human."' },
 ]
 
