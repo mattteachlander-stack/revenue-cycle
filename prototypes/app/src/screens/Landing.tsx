@@ -40,6 +40,20 @@ const suites: Suite[] = [
     ],
   },
   {
+    letter: 'O',
+    key: 'ops',
+    name: 'Operational',
+    strap: 'Run the revenue day-to-day',
+    desc: 'The modules that sit inside daily operations — coding, classification, and billing automation as they are developed.',
+    modules: [
+      { name: 'Regulatory change', desc: 'MBS, banding and reform changes ingested and assessed for materiality against your own volumes and rates — decide, then act or deliberately don\u2019t.', icon: Radar, to: '/regchange', badge: 'Live in demo' },
+      { name: 'Contract reporting', desc: 'Every reporting obligation scoured from every contract — submission timeline, data assembled from the systems that hold it.', icon: CalendarClock, to: '/reporting', badge: 'Live in demo' },
+      { name: 'Provisional DRG allocation', desc: 'Suggested DRG at booking and discharge, before coding.', icon: Layers, to: '/operational', badge: 'Preview' },
+      { name: 'AI coding assistant', desc: 'Draft clinical coding with confidence scores for coder review.', icon: Braces, to: '/operational', badge: 'Preview' },
+      { name: 'Billing bots', desc: 'Automated claim assembly, checks and lodgement workflows.', icon: Bot, to: '/operational', badge: 'Preview' },
+    ],
+  },
+  {
     letter: 'R',
     key: 'ri',
     name: 'Revenue Integrity',
@@ -62,20 +76,6 @@ const suites: Suite[] = [
       { name: 'Compare contracts', desc: 'One question, every contract’s answer side by side — termination, payment terms, indexation across the portfolio.', icon: Columns3, to: '/compare', badge: 'Live in demo' },
       { name: 'Ask legislation', desc: 'PHI Act, benefit rules and the MBS — cited provisions translated into what they mean for the facility in real terms.', icon: Gavel, to: '/legislation', badge: 'Live in demo' },
       { name: 'Education', desc: 'The organisation\u2019s disseminated education, searchable — and flagged for update when contracts, rules or audits change the facts it teaches.', icon: GraduationCap, to: '/education', badge: 'Live in demo' },
-    ],
-  },
-  {
-    letter: 'O',
-    key: 'ops',
-    name: 'Operational',
-    strap: 'Run the revenue day-to-day',
-    desc: 'The modules that sit inside daily operations — coding, classification, and billing automation as they are developed.',
-    modules: [
-      { name: 'Regulatory change', desc: 'MBS, banding and reform changes ingested and assessed for materiality against your own volumes and rates — decide, then act or deliberately don\u2019t.', icon: Radar, to: '/regchange', badge: 'Live in demo' },
-      { name: 'Contract reporting', desc: 'Every reporting obligation scoured from every contract — submission timeline, data assembled from the systems that hold it.', icon: CalendarClock, to: '/reporting', badge: 'Live in demo' },
-      { name: 'Provisional DRG allocation', desc: 'Suggested DRG at booking and discharge, before coding.', icon: Layers, to: '/operational', badge: 'Preview' },
-      { name: 'AI coding assistant', desc: 'Draft clinical coding with confidence scores for coder review.', icon: Braces, to: '/operational', badge: 'Preview' },
-      { name: 'Billing bots', desc: 'Automated claim assembly, checks and lodgement workflows.', icon: Bot, to: '/operational', badge: 'Preview' },
     ],
   },
 ]
@@ -111,18 +111,11 @@ export default function Landing() {
             underneath each. Licence the lot for an end-to-end treatment of the revenue cycle, or pick the modules
             strategic for your facility.
           </p>
-          <p className="font-display font-bold text-[13px] tracking-[0.06em] mt-4 text-white/90">
-            Every <span style={{ color: '#2ee6c9' }}>Contract</span>. Every <span style={{ color: '#22b8f0' }}>Dollar</span>. Every <span style={{ color: '#7c9dff' }}>Decision</span>.
-          </p>
         </div>
       </div>
 
       {/* suites */}
       <div className="px-10 py-8 max-w-[1300px]">
-        <p className="text-[11.5px] text-faint mb-3 -mt-1">
-          Suites and modules ordered by commercial value — highest first. Contracting is the wedge; Operational modules
-          are priced as they release.
-        </p>
         <div className="grid grid-cols-4 gap-4 items-start">
           {suites.map((s) => {
             const t = tone[s.key]

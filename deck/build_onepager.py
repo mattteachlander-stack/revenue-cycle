@@ -77,7 +77,7 @@ li:before {{ content:''; position:absolute; left:0; top:1.55mm; width:1.6mm; hei
   <div class="suite" style="background:#4338ca"><b>R · Revenue Integrity</b><span>Audit response today · proactive leakage detection next</span></div>
   <div class="suite" style="background:#0c8577"><b>E · Enquiry</b><span>Ask any contract — cited, confidence-scored, cross-contract</span></div>
 </div>
-<p class="every">Every <i style="color:#0c8577">Contract</i>. Every <i style="color:#0e7e99">Dollar</i>. Every <i style="color:#2f6bf6">Decision</i>. &nbsp;·&nbsp; Pilot slots: 2–3 facilities, renewal-date priority — free access, a real positioning paper for your live negotiation, founding-customer pricing.</p>
+<p class="every">Pilot slots: 2–3 facilities, renewal-date priority — free access, a real positioning paper for your live negotiation, founding-customer pricing.</p>
 <div class="foot"><span>Pilot enquiries: [contact to be added]</span><span>Public figures cited to APRA, DoHAC, ACCC · product imagery is a working demo on synthetic data · not legal or financial advice</span></div>
 </body></html>"""
 open(os.path.join(HERE, 'onepager.html'), 'w').write(html)

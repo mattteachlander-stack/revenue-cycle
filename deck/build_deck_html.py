@@ -163,7 +163,6 @@ slides.append(f"""
       <span style="color:var(--gold-soft)">Or just the piece you need.</span></h1>
       <p class="lede" style="color:var(--mist)">CORE — Contracting · Operational · Revenue Integrity · Enquiry.
       Modular revenue-cycle intelligence for Australian day hospitals and independent private hospitals.</p>
-      <p style="font-size:.95rem;font-weight:700;color:#fff;margin-bottom:.8rem">Every <span style="color:#2ee6c9">Contract</span>. Every <span style="color:#22b8f0">Dollar</span>. Every <span style="color:#7c9dff">Decision</span>.</p>
       <p style="font-size:.85rem;color:var(--w80)">By Counterpart Health · Briefing for prospective pilot sites</p>
     </div>
     <div><img class="shot" src="{IMG['hero']}" alt="CORE platform home">

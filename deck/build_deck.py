@@ -209,7 +209,6 @@ add_par(tf, 'The full revenue cycle.', 40, WHITE, font=SERIF, bold=True, space_a
 add_par(tf, 'Or just the piece you need.', 40, GOLD_SOFT, font=SERIF, bold=True, space_after=12)
 add_par(tf, 'CORE — Contracting · Operational · Revenue Integrity · Enquiry. Commercial intelligence for healthcare: modular revenue-cycle capability for Australian day hospitals and independent private hospitals.',
         13.5, MIST, line=1.35, space_after=10)
-add_par(tf, 'Every Contract. Every Dollar. Every Decision.', 14, GOLD_SOFT, bold=True)
 hh = pic_card(s, 'title-hero.png', Inches(7.75), Inches(3.55), Inches(5.15), folder=ASSETS)
 _, tf = box(s, Inches(7.75), Inches(3.55) + hh + Inches(0.07), Inches(5.15), Inches(0.3))
 add_par(tf, 'The working platform — synthetic data', 9.5, MIST, italic=True)

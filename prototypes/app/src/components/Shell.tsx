@@ -145,13 +145,19 @@ export default function Shell({ children }: { children: ReactNode }) {
               )
             })}
           </ol>
-          {/* modules ordered by commercial value, highest first (D20) */}
           <div className="mt-1.5 space-y-0.5">
             <Item accent={MOD.neg} to="/clauses" icon={ListChecks} label="Clause intelligence" sub="Register · levers · packages" />
             <Item accent={MOD.neg} to="/fund-intel" icon={Scale} label="Fund intelligence" sub="Profile · leverage index" />
             <Item accent={MOD.neg} to="/changes" icon={GitCompareArrows} label="Change intelligence" sub="Versions · register · scenarios" />
             <Item accent={MOD.neg} to="/boardpack" icon={Landmark} label="Board pack" sub="Generate at any stage" />
             <Item accent={MOD.neg} to="/performance" icon={History} label="Historical" sub="Performance & value realisation" />
+          </div>
+
+          <SectionLabel color={MOD.ops} letter="O">Operational</SectionLabel>
+          <div className="space-y-0.5">
+            <Item accent={MOD.ops} to="/regchange" icon={Radar} label="Regulatory change" sub="MBS · banding · reform materiality" />
+            <Item accent={MOD.ops} to="/reporting" icon={CalendarClock} label="Contract reporting" sub="Obligations · timeline · data" />
+            <Item accent={MOD.ops} to="/operational" icon={Layers} label="Concept previews" sub="Provisional DRG · coding · billing bots" />
           </div>
 
           <SectionLabel color={MOD.ri} letter="R">Revenue Integrity</SectionLabel>
@@ -175,12 +181,6 @@ export default function Shell({ children }: { children: ReactNode }) {
             <Item accent={MOD.ora} to="/education" icon={GraduationCap} label="Education" sub="Library · update flags" />
           </div>
 
-          <SectionLabel color={MOD.ops} letter="O">Operational</SectionLabel>
-          <div className="space-y-0.5">
-            <Item accent={MOD.ops} to="/regchange" icon={Radar} label="Regulatory change" sub="MBS · banding · reform materiality" />
-            <Item accent={MOD.ops} to="/reporting" icon={CalendarClock} label="Contract reporting" sub="Obligations · timeline · data" />
-            <Item accent={MOD.ops} to="/operational" icon={Layers} label="Concept previews" sub="Provisional DRG · coding · billing bots" />
-          </div>
         </nav>
 
         <div className="px-5 py-4 border-t border-white/10">
@@ -208,7 +208,7 @@ export default function Shell({ children }: { children: ReactNode }) {
             Demo — synthetic data only (Bayview Day Surgery, AusCare Health and Federation Health are fictional).
             Decision support, <strong className="font-medium text-muted">not legal or financial advice</strong>.
           </p>
-          <p className="text-[11px] text-faint tabular">CORE · Every Contract. Every Dollar. Every Decision. · prototype 0.4</p>
+          <p className="text-[11px] text-faint tabular">CORE by Counterpart Health · prototype 0.4</p>
         </footer>
       </div>
     </div>

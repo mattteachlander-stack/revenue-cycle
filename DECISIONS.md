@@ -509,3 +509,16 @@ module (Operational), education library module (Enquiry, with the question
   acronym), with module lists updated and compressed.
 - Presenter now 21 steps. Standalone + decks rebuilt; all routes verified
   (preview + file://) with zero console errors; pptx lint clean.
+
+## D21 — CORE order restored; tagline retired
+
+**Date:** 2026-07-13 · **Trigger:** founder — "ensure CORE structure remain;
+remove Every Contract. Every Dollar. Every Decision."
+
+- Suite order reverted to **C → O → R → E** in the sidebar and platform home
+  (D20's value ordering overrode the acronym; the founder chose the brand).
+  Module ordering within suites keeps the value ranking.
+- Tagline removed everywhere it rendered: landing hero, app footer (now
+  "CORE by Counterpart Health · prototype 0.4"), pptx + HTML deck title
+  slides, and the one-pager footer (pilot-slots line retained). Historical
+  references in DECISIONS/ledger left as record.
